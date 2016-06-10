@@ -117,7 +117,7 @@ damePlusFch = function(id){
 }
 dameMscPic = function(item){
 	$(".s0_popUp").addClass("dispInh");
-	$(".s0_popUp-boxPic-pic").html('<img src="assets/pags/ramos/ramos-mscPic-'+item+'.jpg" />');
+	$(".s0_popUp-boxPic-pic").html('<img src="'+item+'" />');
 	$(".s0_popUp-boxPic-epi").html('Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et');
 }
 cerrarMscPic = function(){
