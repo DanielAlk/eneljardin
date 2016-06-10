@@ -1,14 +1,14 @@
 <div id="s1_bt">
-	<div id="s1_bt-a_lgo" onclick="dameInicio()"></div>
+	<a id="s1_bt-a_lgo" href="<%= root_path %>"></a>
 	<div id="s1_bt-b_mnu">
 		<ul>
-			<li><a id="s1_bt-b_mnu-hom" href="<%= root_path %>">HOME</a></li>
-			<li><a id="s1_bt-b_mnu-bie" href="<%= welcome_page_path %>">BIENVENIDOS</a></li>
-			<li><a id="s1_bt-b_mnu-tal" href="talleres.php">TALLERES ONLINE</a></li>
-			<li><a id="s1_bt-b_mnu-ram" href="ramos.php">RAMOS</a></li>
-			<li><a id="s1_bt-b_mnu-pre" href="presenciales.php">TALLERES PRESENCIALES</a></li>
-			<li><a id="s1_bt-b_mnu-pub" href="publicaciones.php">PUBLICACIONES</a></li>
-			<li><a id="s1_bt-b_mnu-con" href="contacto.php">CONTACTO</a></li>
+			<li><a id="s1_bt-b_mnu-hom" class="<%= nav_class :home %>" href="<%= root_path %>">HOME</a></li>
+			<li><a id="s1_bt-b_mnu-bie" class="<%= nav_class :welcome %>" href="<%= welcome_page_path %>">BIENVENIDOS</a></li>
+			<li><a id="s1_bt-b_mnu-tal" class="<%= nav_class :workshops %>" href="<%= workshops_page_path %>">TALLERES ONLINE</a></li>
+			<li><a id="s1_bt-b_mnu-ram" class="<%= nav_class :bouquets %>" href="<%= bouquets_page_path %>">RAMOS</a></li>
+			<li><a id="s1_bt-b_mnu-pre" class="<%= nav_class :face_workshops %>" href="<%= face_workshops_page_path %>">TALLERES PRESENCIALES</a></li>
+			<li><a id="s1_bt-b_mnu-pub" class="<%= nav_class :publications %>" href="<%= publications_page_path %>">PUBLICACIONES</a></li>
+			<li><a id="s1_bt-b_mnu-con" class="<%= nav_class :contact %>" href="<%= contact_page_path %>">CONTACTO</a></li>
 		</ul>
 		<div class="clear"></div>
 	</div>
@@ -29,19 +29,19 @@
 	</div>
 </div>
 <div id="s1_btRD">
-	<div id="s1_btRD-a_lgo" onclick="dameInicio()"></div>
+	<a id="s1_btRD-a_lgo" href="<%= root_path %>"></a>
 	<div id="s1_btRD-b_btnMenu" onclick="accionMenu()"></div>
 	<div id="s1_btRD-c_menu">
 		<div id="s1_btRD-c_menu-tit">MENU</div>
 		<div id="s1_btRD-c_menu-btnCerrar" onclick="accionMenu()"></div>
 		<ul>
-			<li><a id="s1_btRD-c_menu-hom" href="<%= root_path %>">HOME</a></li>
-			<li><a id="s1_btRD-c_menu-bie" href="<%= welcome_page_path %>">BIENVENIDOS</a></li>
-			<li><a id="s1_btRD-c_menu-tal" href="talleres.php">TALLERES ONLINE</a></li>
-			<li><a id="s1_btRD-c_menu-ram" href="ramos.php">RAMOS</a></li>
-			<li><a id="s1_btRD-c_menu-pre" href="presenciales.php">TALLERES PRESENCIALES</a></li>
-			<li><a id="s1_btRD-c_menu-pub" href="publicaciones.php">PUBLICACIONES</a></li>
-			<li><a id="s1_btRD-c_menu-con" href="contacto.php">CONTACTO</a></li>
+			<li><a id="s1_btRD-c_menu-hom" class="<%= nav_class :home %>" href="<%= root_path %>">HOME</a></li>
+			<li><a id="s1_btRD-c_menu-bie" class="<%= nav_class :welcome %>" href="<%= welcome_page_path %>">BIENVENIDOS</a></li>
+			<li><a id="s1_btRD-c_menu-tal" class="<%= nav_class :workshops %>" href="<%= workshops_page_path %>">TALLERES ONLINE</a></li>
+			<li><a id="s1_btRD-c_menu-ram" class="<%= nav_class :bouquets %>" href="<%= bouquets_page_path %>">RAMOS</a></li>
+			<li><a id="s1_btRD-c_menu-pre" class="<%= nav_class :face_workshops %>" href="<%= face_workshops_page_path %>">TALLERES PRESENCIALES</a></li>
+			<li><a id="s1_btRD-c_menu-pub" class="<%= nav_class :publications %>" href="<%= publications_page_path %>">PUBLICACIONES</a></li>
+			<li><a id="s1_btRD-c_menu-con" class="<%= nav_class :contact %>" href="<%= contact_page_path %>">CONTACTO</a></li>
 		</ul>
 		<ul>
 			<li><a id="s1_btRD-c_menu-aul" href="aula.php" style="background: #84b059;">AULA VIRTUAL</a></li>
@@ -62,13 +62,13 @@
 	<!--
 	<div id="s1_btRD-b_mnu">
 		<ul>
-			<li><a id="s1_btRD-b_mnu-hom" href="<%= root_path %>">HOME</a></li>
-			<li><a id="s1_btRD-b_mnu-bie" href="<%= welcome_page_path %>">BIENVENIDOS</a></li>
-			<li><a id="s1_btRD-b_mnu-tal" href="talleres.php">TALLERES ONLINE</a></li>
-			<li><a id="s1_btRD-b_mnu-ram" href="ramos.php">RAMOS</a></li>
-			<li><a id="s1_btRD-b_mnu-pre" href="presenciales.php">TALLERES PRESENCIALES</a></li>
-			<li><a id="s1_btRD-b_mnu-pub" href="publicaciones.php">PUBLICACIONES</a></li>
-			<li><a id="s1_btRD-b_mnu-con" href="contacto.php">CONTACTO</a></li>
+			<li><a id="s1_btRD-b_mnu-hom" class="<%= nav_class :home %>" href="<%= root_path %>">HOME</a></li>
+			<li><a id="s1_btRD-b_mnu-bie" class="<%= nav_class :welcome %>" href="<%= welcome_page_path %>">BIENVENIDOS</a></li>
+			<li><a id="s1_btRD-b_mnu-tal" class="<%= nav_class :workshops %>" href="<%= workshops_page_path %>">TALLERES ONLINE</a></li>
+			<li><a id="s1_btRD-b_mnu-ram" class="<%= nav_class :bouquets %>" href="<%= bouquets_page_path %>">RAMOS</a></li>
+			<li><a id="s1_btRD-b_mnu-pre" class="<%= nav_class :face_workshops %>" href="<%= face_workshops_page_path %>">TALLERES PRESENCIALES</a></li>
+			<li><a id="s1_btRD-b_mnu-pub" class="<%= nav_class :publications %>" href="<%= publications_page_path %>">PUBLICACIONES</a></li>
+			<li><a id="s1_btRD-b_mnu-con" class="<%= nav_class :contact %>" href="<%= contact_page_path %>">CONTACTO</a></li>
 		</ul>
 		<div class="clear"></div>
 	</div>

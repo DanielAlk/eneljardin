@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
-  get 'welcome', to: 'pages#welcome', as: :welcome_page
+  get 'bienvenidos', to: 'pages#welcome', as: :welcome_page
+  get 'talleres-online', to: 'pages#workshops', as: :workshops_page
+  get 'ramos', to: 'pages#bouquets', as: :bouquets_page
+  get 'talleres-presenciales', to: 'pages#face_workshops', as: :face_workshops_page
+  get 'publicaciones', to: 'pages#publications', as: :publications_page
+  get 'contacto', to: 'pages#contact', as: :contact_page
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
