@@ -1,0 +1,76 @@
+<div id="s1_bt">
+	<div id="s1_bt-a_lgo" onclick="dameInicio()"></div>
+	<div id="s1_bt-b_mnu">
+		<ul>
+			<li><a id="s1_bt-b_mnu-hom" href="<%= root_path %>">HOME</a></li>
+			<li><a id="s1_bt-b_mnu-bie" href="<%= welcome_page_path %>">BIENVENIDOS</a></li>
+			<li><a id="s1_bt-b_mnu-tal" href="talleres.php">TALLERES ONLINE</a></li>
+			<li><a id="s1_bt-b_mnu-ram" href="ramos.php">RAMOS</a></li>
+			<li><a id="s1_bt-b_mnu-pre" href="presenciales.php">TALLERES PRESENCIALES</a></li>
+			<li><a id="s1_bt-b_mnu-pub" href="publicaciones.php">PUBLICACIONES</a></li>
+			<li><a id="s1_bt-b_mnu-con" href="contacto.php">CONTACTO</a></li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	<div id="s1_bt-c_bsp">
+		<ul>
+			<li><a href="aula.php" style="background: #84b059;" id="s1_bt-c_bsp-aul">AULA VIRTUAL</a></li>
+			<li><a href="javascript: accionIngreso();" style="background: #a49f9c;" id="s1_bt-c_bsp-ing">INGRESAR</a></li>
+			<li><a href="#" style="background: #efefef; color:#222;" id="s1_bt-c_bsp-reg">REGISTRARSE</a></li>
+		</ul>
+		<div id="s1_bt-c_bsp-fomrIng">
+			<form name="ingreso" method="post" action="includes/ing_prc.php">
+				<input type="text" placeholder="Usuario" id="ing_usr" name="ing_usr" />
+				<input type="password" placeholder="Contraseña" id="ing_psw" name="ing_psw" />
+				<input type="submit" value="▷" name="ing_sbm" id="ing_sbm" />
+			</form>
+			<button onclick="accionIngreso()">✕</button>
+		</div>
+	</div>
+</div>
+<div id="s1_btRD">
+	<div id="s1_btRD-a_lgo" onclick="dameInicio()"></div>
+	<div id="s1_btRD-b_btnMenu" onclick="accionMenu()"></div>
+	<div id="s1_btRD-c_menu">
+		<div id="s1_btRD-c_menu-tit">MENU</div>
+		<div id="s1_btRD-c_menu-btnCerrar" onclick="accionMenu()"></div>
+		<ul>
+			<li><a id="s1_btRD-c_menu-hom" href="<%= root_path %>">HOME</a></li>
+			<li><a id="s1_btRD-c_menu-bie" href="<%= welcome_page_path %>">BIENVENIDOS</a></li>
+			<li><a id="s1_btRD-c_menu-tal" href="talleres.php">TALLERES ONLINE</a></li>
+			<li><a id="s1_btRD-c_menu-ram" href="ramos.php">RAMOS</a></li>
+			<li><a id="s1_btRD-c_menu-pre" href="presenciales.php">TALLERES PRESENCIALES</a></li>
+			<li><a id="s1_btRD-c_menu-pub" href="publicaciones.php">PUBLICACIONES</a></li>
+			<li><a id="s1_btRD-c_menu-con" href="contacto.php">CONTACTO</a></li>
+		</ul>
+		<ul>
+			<li><a id="s1_btRD-c_menu-aul" href="aula.php" style="background: #84b059;">AULA VIRTUAL</a></li>
+			<li>
+				<a id="s1_btRD-c_menu-ing" href="javascript: accionIngreso();" style="background: #a49f9c;" >INGRESAR</a>
+				<div id="s1_btRD-c_menu-ing-form">
+					<form name="ingreso" method="post" action="includes/ing_prc.php">
+						<input type="text" placeholder="Usuario" id="ing_usr" name="ing_usr" />
+						<input type="password" placeholder="Contraseña" id="ing_psw" name="ing_psw" />
+						<input type="submit" value="▷" name="ing_sbm" id="ing_sbm" />
+					</form>
+					<button onclick="accionIngreso()">✕</button>
+				</div>
+			</li>
+			<li><a id="s1_btRD-c_menu-reg" href="#" style="background: #efefef; color:#222;" >REGISTRARSE</a></li>
+		</ul>
+	</div>
+	<!--
+	<div id="s1_btRD-b_mnu">
+		<ul>
+			<li><a id="s1_btRD-b_mnu-hom" href="<%= root_path %>">HOME</a></li>
+			<li><a id="s1_btRD-b_mnu-bie" href="<%= welcome_page_path %>">BIENVENIDOS</a></li>
+			<li><a id="s1_btRD-b_mnu-tal" href="talleres.php">TALLERES ONLINE</a></li>
+			<li><a id="s1_btRD-b_mnu-ram" href="ramos.php">RAMOS</a></li>
+			<li><a id="s1_btRD-b_mnu-pre" href="presenciales.php">TALLERES PRESENCIALES</a></li>
+			<li><a id="s1_btRD-b_mnu-pub" href="publicaciones.php">PUBLICACIONES</a></li>
+			<li><a id="s1_btRD-b_mnu-con" href="contacto.php">CONTACTO</a></li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	-->
+</div>
