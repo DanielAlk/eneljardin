@@ -1,0 +1,211 @@
+<div id="s2_back" class="aula">
+	<div id="s2_back-cont">
+		<div id="s2_back-cont-tit">Aula virtual</div>
+		<div id="s2_back-cont-txt">Vestibulum id ligula porta felis euismod semper. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</div>
+	</div>
+</div>
+<div id="s3_des">
+	<div id="s3_des-btnSup">
+		<ul>
+			<li><a href="<%= classroom_videos_path %>" class="activo">VIDEOS</a></li>
+			<li><a href="<%= classroom_notes_path %>" >APUNTES</a></li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	<div class="s3_des-vid">
+		<div class="s3_des-vid-vFr">
+			<!--<iframe width="100%" src="https://www.youtube.com/embed/roKb1kxrBwo?rel=0&amp;showinfo=0&amp;autoplay=1" frameborder="0" allowfullscreen></iframe>-->
+			<iframe width="100%" src="https://www.youtube.com/embed/roKb1kxrBwo?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+		</div>
+		<div class="s3_des-vid-col1">
+			<div class="s3_des-vid-col1-datV">
+				<h1>Canteros, arbustos en invierno</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+			</div>
+			<div class="s3_des-msg">
+				<div class="s3_des-msg-tit">Mensajes:</div>
+				<div class="s3_des-msg-mInc">
+					<div class="s3_des-msg-mInc-pic"><img src="<%= asset_path 'profile/profilePic-1.jpg' %>" /></div>
+					<div class="s3_des-msg-mInc-form">
+						<textarea type="text" name="mInc_txt" id="mInc_txt" placeholder="Escribe tu consulta aquí..." onfocus="exp_mInc()" onblur="cont_mInc()"></textarea>
+						<button>✓</button>
+					</div>
+					<div class="clear"></div>
+				</div>	
+				<div class="s3_des-msg-mLst">
+					<ul>
+						<li>
+							<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-2.jpg' %>" /></div>
+							<div class="s3_des-msg-mLst-mtxt">
+								<div class="s3_des-msg-mLst-mtxt-nom">Jessica Briscenio</div>
+								<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
+							</div>
+						</li>
+						<li>
+							<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-3.jpg' %>" /></div>
+							<div class="s3_des-msg-mLst-mtxt">
+								<div class="s3_des-msg-mLst-mtxt-nom">Laura Prado</div>
+								<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
+							</div>
+						</li>
+						<li>
+							<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-4.jpg' %>" /></div>
+							<div class="s3_des-msg-mLst-mtxt">
+								<div class="s3_des-msg-mLst-mtxt-nom">Gabriela Lopez</div>
+								<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
+							</div>
+							<ul>
+								<li>
+									<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-8.jpg' %>" /></div>
+									<div class="s3_des-msg-mLst-mtxt">
+										<div class="s3_des-msg-mLst-mtxt-nom">Clara Billoch</div>
+										<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
+									</div>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-5.jpg' %>" /></div>
+							<div class="s3_des-msg-mLst-mtxt">
+								<div class="s3_des-msg-mLst-mtxt-nom">Valeria Romeo</div>
+								<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
+							</div>
+						</li>
+						<li>
+							<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-6.jpg' %>" /></div>
+							<div class="s3_des-msg-mLst-mtxt">
+								<div class="s3_des-msg-mLst-mtxt-nom">Fernanda Piro</div>
+								<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
+							</div>
+						</li>
+						<li>
+							<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-7.jpg' %>" /></div>
+							<div class="s3_des-msg-mLst-mtxt">
+								<div class="s3_des-msg-mLst-mtxt-nom">Daniela Lonero</div>
+								<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
+							</div>
+						</li>
+					</ul>
+					<button class="btn_full">MOSTRAR MÁS</button>
+				</div>
+			</div>
+		</div>
+		<div class="s3_des-vid-col2">
+			<div class="s3_des-vid-col2-tit">Mas videos</div>
+			<div class="s3_des-vid-col2-fch">
+				<div class="s3_des-vid-col2-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-05.jpg' %>" /></div>
+				<div class="s3_des-vid-col2-fch-dat">
+					<div class="s3_des-vid-col2-fch-dat-tit">Arboles Frutales</div>
+					<div class="s3_des-vid-col2-fch-dat-txt">Lorem ipsum dolor sit amet, consectetur </div>
+					<div class="s3_des-vid-col2-fch-dat-inf">Comprado</div>
+					<div class="s3_des-vid-col2-fch-dat-btn">
+						<ul>
+							<li><a class="btn_c-gr" href="#">Reproducir</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="s3_des-vid-col2-fch">
+				<div class="s3_des-vid-col2-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-06.jpg' %>" /></div>
+				<div class="s3_des-vid-col2-fch-dat">
+					<div class="s3_des-vid-col2-fch-dat-tit">Cesped</div>
+					<div class="s3_des-vid-col2-fch-dat-txt">Lorem ipsum dolor sit amet, consectetur </div>
+					<div class="s3_des-vid-col2-fch-dat-inf">Desde $299.99</div>
+					<div class="s3_des-vid-col2-fch-dat-btn">
+						<ul>
+							<li><a class="btn_c" href="#">Comprar</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="s3_des-vid-col2-fch">
+				<div class="s3_des-vid-col2-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-07.jpg' %>" /></div>
+				<div class="s3_des-vid-col2-fch-dat">
+					<div class="s3_des-vid-col2-fch-dat-tit">Enredaderas</div>
+					<div class="s3_des-vid-col2-fch-dat-txt">Lorem ipsum dolor sit amet, consectetur </div>
+					<div class="s3_des-vid-col2-fch-dat-inf">Desde $299.99</div>
+					<div class="s3_des-vid-col2-fch-dat-btn">
+						<ul>
+							<li><a class="btn_c" href="#">Comprar</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="s3_des-vid-col2-fch">
+				<div class="s3_des-vid-col2-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-08.jpg' %>" /></div>
+				<div class="s3_des-vid-col2-fch-dat">
+					<div class="s3_des-vid-col2-fch-dat-tit">Bulbos</div>
+					<div class="s3_des-vid-col2-fch-dat-txt">Lorem ipsum dolor sit amet, consectetur </div>
+					<div class="s3_des-vid-col2-fch-dat-inf">Desde $299.99</div>
+					<div class="s3_des-vid-col2-fch-dat-btn">
+						<ul>
+							<li><a class="btn_c" href="#">Comprar</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="s3_des-vid-col2-fch">
+				<div class="s3_des-vid-col2-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-09.jpg' %>" /></div>
+				<div class="s3_des-vid-col2-fch-dat">
+					<div class="s3_des-vid-col2-fch-dat-tit">Control de Plagas</div>
+					<div class="s3_des-vid-col2-fch-dat-txt">Lorem ipsum dolor sit amet, consectetur </div>
+					<div class="s3_des-vid-col2-fch-dat-inf">Comprado.</div>
+					<div class="s3_des-vid-col2-fch-dat-btn">
+						<ul>
+							<li><a class="btn_c-gr" href="#">Reproducir</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="s3_des-vid-col2-fch">
+				<div class="s3_des-vid-col2-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-10.jpg' %>" /></div>
+				<div class="s3_des-vid-col2-fch-dat">
+					<div class="s3_des-vid-col2-fch-dat-tit">Poda</div>
+					<div class="s3_des-vid-col2-fch-dat-txt">Lorem ipsum dolor sit amet, consectetur </div>
+					<div class="s3_des-vid-col2-fch-dat-inf">Desde $299.99</div>
+					<div class="s3_des-vid-col2-fch-dat-btn">
+						<ul>
+							<li><a class="btn_c" href="#">Comprar</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="s3_des-vid-col2-fch">
+				<div class="s3_des-vid-col2-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-11.jpg' %>" /></div>
+				<div class="s3_des-vid-col2-fch-dat">
+					<div class="s3_des-vid-col2-fch-dat-tit">Flores Anuales</div>
+					<div class="s3_des-vid-col2-fch-dat-txt">Lorem ipsum dolor sit amet, consectetur </div>
+					<div class="s3_des-vid-col2-fch-dat-inf">Comprado</div>
+					<div class="s3_des-vid-col2-fch-dat-btn">
+						<ul>
+							<li><a class="btn_c-gr" href="#">Reproducir</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="s3_des-vid-col2-fch">
+				<div class="s3_des-vid-col2-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-12.jpg' %>" /></div>
+				<div class="s3_des-vid-col2-fch-dat">
+					<div class="s3_des-vid-col2-fch-dat-tit">Fertilización</div>
+					<div class="s3_des-vid-col2-fch-dat-txt">Lorem ipsum dolor sit amet, consectetur </div>
+					<div class="s3_des-vid-col2-fch-dat-inf">Desde $299.99</div>
+					<div class="s3_des-vid-col2-fch-dat-btn">
+						<ul>
+							<li><a class="btn_c" href="#">Comprar</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<button class="btn_full">MOSTRAR MÁS</button>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>

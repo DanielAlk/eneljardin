@@ -14,7 +14,7 @@
 	</div>
 	<div id="s1_bt-c_bsp">
 		<ul>
-			<li><a href="aula.php" style="background: #84b059;" id="s1_bt-c_bsp-aul">AULA VIRTUAL</a></li>
+			<li><a href="<%= classroom_videos_path %>" style="background: #84b059;" id="s1_bt-c_bsp-aul">AULA VIRTUAL</a></li>
 			<li><a href="javascript: accionIngreso();" style="background: #a49f9c;" id="s1_bt-c_bsp-ing">INGRESAR</a></li>
 			<li><a href="#" style="background: #efefef; color:#222;" id="s1_bt-c_bsp-reg">REGISTRARSE</a></li>
 		</ul>
@@ -44,7 +44,7 @@
 			<li><a id="s1_btRD-c_menu-con" class="<%= nav_class :contact %>" href="<%= contact_page_path %>">CONTACTO</a></li>
 		</ul>
 		<ul>
-			<li><a id="s1_btRD-c_menu-aul" href="aula.php" style="background: #84b059;">AULA VIRTUAL</a></li>
+			<li><a id="s1_btRD-c_menu-aul" href="<%= classroom_videos_path %>" style="background: #84b059;">AULA VIRTUAL</a></li>
 			<li>
 				<a id="s1_btRD-c_menu-ing" href="javascript: accionIngreso();" style="background: #a49f9c;" >INGRESAR</a>
 				<div id="s1_btRD-c_menu-ing-form">

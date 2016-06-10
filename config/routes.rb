@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   get 'publicaciones', to: 'pages#publications', as: :publications_page
   get 'contacto', to: 'pages#contact', as: :contact_page
 
+  get 'aula-virtual/videos', to: 'classroom#videos', as: :classroom_videos
+  get 'aula-virtual/video', to: 'classroom#video', as: :classroom_video
+  get 'aula-virtual/apuntes', to: 'classroom#notes', as: :classroom_notes
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
