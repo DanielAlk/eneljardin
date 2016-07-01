@@ -1,0 +1,15 @@
+@mixin transition($property, $delay, $ease-function) {
+	-webkit-transition: $property $delay $ease-function;
+	-moz-transition: $property $delay $ease-function;
+	-ms-transition: $property $delay $ease-function;
+	-o-transition: $property $delay $ease-function;
+	transition: $property $delay $ease-function;
+}
+
+/* CARDS DE LA HOME BORDESITO DEL TITULO */
+.pst_postal-tit { @include transition(text-indent, 400ms, ease-out); position: relative; max-width: none; border: none; white-space: nowrap; overflow: hidden;
+	&:after { content: ' '; position: absolute; top: 100%; left: 0; border-bottom: 1px solid rgba(0,0,0,.25); width: 60%; margin: 0 20%; }
+}
+
+/* LOGO VERTIGO DEL FOOTER */
+#s5_fir-lVrt { width: auto; height: 20px; margin-bottom: -8px; }

@@ -158,8 +158,8 @@ ocultarMsg = function(){
 	$(".s3_des-msg").css({ display: "none" });
 }
 
-$(window).scroll(function () {
-    /*scrollP = $(window).scrollTop();
+/*$(window).scroll(function () {
+    scrollP = $(window).scrollTop();
     if(scrollP > 32 && !$("#s2").hasClass("s2_fixed")){
 	    $("body").addClass("bodyPadding");
 		$("#s1").addClass("s1_display");
@@ -168,7 +168,7 @@ $(window).scroll(function () {
 	    $("body").removeClass();
 	    $("#s1").removeClass();
 	    $("#s2").removeClass();
-    }*/
-});
+    }
+});*/
 $(window).on("resize", redimensionar);
 $("body").ready(inicio);

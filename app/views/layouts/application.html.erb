@@ -10,5 +10,10 @@
 	<%= render 'layouts/navigation' %>
 	<%= yield %>
 	<%= render 'layouts/footer' %>
+	<script>
+		$(function() {
+			<%= content_for :extra_js %>
+		});
+	</script>
 </body>
 </html>
