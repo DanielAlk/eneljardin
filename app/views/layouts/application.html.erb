@@ -12,6 +12,12 @@
 	<%= render 'layouts/footer' %>
 	<script>
 		$(function() {
+			<% if notice.present? %>
+				Utils.notification('notice', '<%= notice.html_safe %>');
+			<% end %>
+			<% if alert.present? %>
+				Utils.notification('alert', '<%= alert.html_safe %>');
+			<% end %>
 			<%= content_for :extra_js %>
 		});
 	</script>

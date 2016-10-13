@@ -15,8 +15,14 @@
 	<div id="s1_bt-c_bsp">
 		<ul>
 			<li><a href="<%= classroom_videos_path %>" style="background: #84b059;" id="s1_bt-c_bsp-aul">AULA VIRTUAL</a></li>
-			<li><a href="javascript: accionIngreso();" style="background: #a49f9c;" id="s1_bt-c_bsp-ing">INGRESAR</a></li>
-			<li><a href="#" style="background: #efefef; color:#222;" id="s1_bt-c_bsp-reg">REGISTRARSE</a></li>
+			<% if user_signed_in? %>
+				<li><a href="<%= edit_user_registration_path %>" style="background: #a49f9c;" id="s1_bt-c_bsp-ing">EDITAR PERFÍL</a></li>
+				<li><a href="<%= destroy_user_session_path %>" data-method="delete" style="background: #efefef; color:#222;" id="s1_bt-c_bsp-reg">CERRAR SESIÓN</a></li>
+			<% else %>
+				<!--li><a href="javascript: accionIngreso();" style="background: #a49f9c;" id="s1_bt-c_bsp-ing">INGRESAR</a></li-->
+				<li><a href="<%= new_user_session_path %>" style="background: #a49f9c;" id="s1_bt-c_bsp-ing">INGRESAR</a></li>
+				<li><a href="<%= new_user_registration_path %>" style="background: #efefef; color:#222;" id="s1_bt-c_bsp-reg">REGISTRARSE</a></li>
+			<% end %>
 		</ul>
 		<div id="s1_bt-c_bsp-fomrIng">
 			<form name="ingreso" method="post" action="includes/ing_prc.php">
@@ -45,18 +51,24 @@
 		</ul>
 		<ul>
 			<li><a id="s1_btRD-c_menu-aul" href="<%= classroom_videos_path %>" style="background: #84b059;">AULA VIRTUAL</a></li>
-			<li>
-				<a id="s1_btRD-c_menu-ing" href="javascript: accionIngreso();" style="background: #a49f9c;" >INGRESAR</a>
-				<div id="s1_btRD-c_menu-ing-form">
-					<form name="ingreso" method="post" action="includes/ing_prc.php">
-						<input type="text" placeholder="Usuario" id="ing_usr" name="ing_usr" />
-						<input type="password" placeholder="Contraseña" id="ing_psw" name="ing_psw" />
-						<input type="submit" value="▷" name="ing_sbm" id="ing_sbm" />
-					</form>
-					<button onclick="accionIngreso()">✕</button>
-				</div>
-			</li>
-			<li><a id="s1_btRD-c_menu-reg" href="#" style="background: #efefef; color:#222;" >REGISTRARSE</a></li>
+			<% if user_signed_in? %>
+				<li><a id="s1_btRD-c_menu-ing" href="<%= edit_user_registration_path %>" style="background: #a49f9c;" >EDITAR PERFÍL</a></li>
+				<li><a id="s1_btRD-c_menu-reg" href="<%= destroy_user_session_path %>" data-method="delete" style="background: #efefef; color:#222;" >CERRAR SESIÓN</a></li>
+			<% else %>
+				<li>
+					<!--a id="s1_btRD-c_menu-ing" href="javascript: accionIngreso();" style="background: #a49f9c;" >INGRESAR</a-->
+					<a id="s1_btRD-c_menu-ing" href="<%= new_user_session_path %>" style="background: #a49f9c;" >INGRESAR</a>
+					<div id="s1_btRD-c_menu-ing-form">
+						<form name="ingreso" method="post" action="includes/ing_prc.php">
+							<input type="text" placeholder="Usuario" id="ing_usr" name="ing_usr" />
+							<input type="password" placeholder="Contraseña" id="ing_psw" name="ing_psw" />
+							<input type="submit" value="▷" name="ing_sbm" id="ing_sbm" />
+						</form>
+						<button onclick="accionIngreso()">✕</button>
+					</div>
+				</li>
+				<li><a id="s1_btRD-c_menu-reg" href="<%= new_user_registration_path %>" style="background: #efefef; color:#222;" >REGISTRARSE</a></li>
+			<% end %>
 		</ul>
 	</div>
 	<!--

@@ -13,5 +13,6 @@
  * require_tree .
  *= require pages
  *= require custom
+ *= require devise
  *= require_self
  */
