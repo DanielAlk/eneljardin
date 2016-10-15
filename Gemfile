@@ -38,6 +38,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'figaro'
 gem 'devise'
 gem "paperclip", "~> 5.0.0"
+gem 'acts_as_commentable'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
