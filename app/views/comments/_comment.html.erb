@@ -1,0 +1,15 @@
+<li class="<%= 'rootComment' if comment.commentable_type != 'Comment' %>">
+	<div class="s3_des-msg-mLst-mPic"><%= image_tag comment.user.avatar.url(:thumb) %></div>
+	<div class="s3_des-msg-mLst-mtxt">
+		<div class="s3_des-msg-mLst-mtxt-nom"><%= comment.user.name %></div>
+		<div class="s3_des-msg-mLst-mtxt-txt"><%= comment.text %></div>
+		<% if comment.commentable_type != 'Comment' %>
+			<a href="<%= comment.id %>" data-user-id="<%= current_user.id %>" class="utils-respond s3_des-msg-mLst-mtxt-lnk">Responder</a>
+		<% else %>
+			<a href="<%= comment.commentable.id %>" data-user-id="<%= current_user.id %>" class="utils-respond s3_des-msg-mLst-mtxt-lnk">Responder</a>
+		<% end %>
+	</div>
+	<ul id="<%= 'comments_' + comment.id.to_s %>">
+		<%= render comment.comments %>
+	</ul>
+</li>

@@ -1,37 +1,60 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_comment, only: [:show, :update, :destroy]
-  respond_to :json
+  before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
+  # GET /comments
   # GET /comments.json
   def index
     @comments = Comment.all
-
-    render json: @comments
+    @comments = @comments.where(commentable_id: params[:f][:commentable_id], commentable_type: params[:f][:commentable_type]) if params[:f].present? && params[:f][:commentable_id].present? && params[:f][:commentable_type].present?
+    @comments = @comments.order(created_at: :desc).paginate(page: params[:page], per_page: 4) if params[:page].present?
   end
 
+  # GET /comments/1
   # GET /comments/1.json
   def show
-    render json: @comment
   end
 
+  # GET /comments/new
+  def new
+    @comment = Comment.new
+  end
+
+  # GET /comments/1/edit
+  def edit
+  end
+
+  # POST /comments
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
 
-    if @comment.save
-      render json: @comment, status: :created, location: @comment
-    else
-      render json: @comment.errors, status: :unprocessable_entity
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.json { render :show, status: :created, location: @comment }
+        format.js { render :show, status: :created, location: @comment }
+      else
+        format.html { render :new }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.js { render js: @comment.errors, status: :unprocessable_entity }
+      end
     end
   end
 
+  # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
-    if @comment.update(comment_params)
-      render json: @comment, status: :ok, location: @comment
-    else
-      render json: @comment.errors, status: :unprocessable_entity
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.json { render :show, status: :ok, location: @comment }
+        format.js { render :show, status: :ok, location: @comment }
+      else
+        format.html { render :edit }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.js { render js: @comment.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -39,7 +62,11 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.json
   def destroy
     @comment.destroy
-    head :no_content
+    respond_to do |format|
+      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
+      format.json { head :no_content }
+      format.js { head :no_content }
+    end
   end
 
   private
@@ -50,6 +77,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:title, :comment, :commentable_id, :commentable_type, :user_id, :role)
+      params.require(:comment).permit(:title, :text, :commentable_id, :commentable_type, :user_id, :role)
     end
 end

@@ -1,0 +1,7 @@
+$(function() {
+	<% if @comment.commentable_type != 'Comment' %>
+		$('#comments').prepend('<%= j(render(@comment)) %>');
+	<% else %>
+		$('#comments_<%= @comment.commentable_id %>').append('<%= j(render(@comment)) %>');
+	<% end %>
+});

@@ -1,0 +1,7 @@
+$(function() {
+	$('#comments').append('<%= j(render(@comments)) %>');
+	$('#moreComments').attr('href', '<%= comments_path(page: params[:page].to_i + 1) %>');
+	<% if @comments.total_pages == @comments.current_page %>
+		$('#moreComments').remove();
+	<% end %>
+});

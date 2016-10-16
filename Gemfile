@@ -38,9 +38,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'figaro'
 gem 'devise'
 gem "paperclip", "~> 5.0.0"
-gem 'acts_as_commentable'
 gem 'autonumeric-rails'
-gem 'active_model_serializers', '~> 0.10.0'
 gem 'will_paginate', '~> 3.1.0'
 
 group :development, :test do

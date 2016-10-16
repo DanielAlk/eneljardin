@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   }
   
   resources :movies
-  resources :comments, :defaults => { :format => :json }
+  resources :comments
 
   get 'bienvenidos', to: 'pages#welcome', as: :welcome_page
   get 'talleres-online', to: 'pages#workshops', as: :workshops_page
@@ -19,7 +19,6 @@ Rails.application.routes.draw do
 
   get 'aula-virtual/videos', to: 'classroom#videos', as: :classroom_videos
   get 'aula-virtual/video/:movie_id', to: 'classroom#video', as: :classroom_video
-  get 'aula-virtual/video_comments/:movie_id', to: 'classroom#video_comments', as: :classroom_video_comments
   get 'aula-virtual/apuntes', to: 'classroom#notes', as: :classroom_notes
 
   # The priority is based upon order of creation: first created -> highest priority.

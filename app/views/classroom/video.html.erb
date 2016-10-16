@@ -3,29 +3,17 @@
 	$('form.new_comment').validate({
 		submitHandler: function(form) {
 			cont_mInc();
-			Utils.jtemplate(form, 'prepend', function($template) {
-				Utils.respond(<%= current_user.id %>, $template.find('.utils-respond'));
-			});
+			var loader = Utils.loader();
+			$.post($(form).attr('action'), $(form).serialize(), loader.hide, 'script');
+			form.reset();
 		}
 	});
-	Utils.showMoreTemplate('#show_more_comments', function($template) {
-		Utils.respond(<%= current_user.id %>, $template.find('.utils-respond'));
+	$('#moreComments').click(function() {
+		var loader = Utils.loader();
+		$.getScript($(this).attr('href')).done(loader.hide);
 	});
-	Utils.respond(<%= current_user.id %>);
+	$(document).on('click', '.utils-respond', Utils.respond);
 <% end %>
-
-<div class="hidden">
-	<li id="commentTemplate">
-		<div class="s3_des-msg-mLst-mPic"><img data-src="user_avatar" /></div>
-		<div class="s3_des-msg-mLst-mtxt">
-			<div class="s3_des-msg-mLst-mtxt-nom" data-text="user_name"></div>
-			<div class="s3_des-msg-mLst-mtxt-txt" data-text="comment"></div>
-			<!--a data-href="commentable.id" data-if="commentable_type == 'Comment'" class="utils-respond s3_des-msg-mLst-mtxt-lnk">Responder</a-->
-			<a data-href="id" data-if="commentable_type == 'Movie'" class="utils-respond s3_des-msg-mLst-mtxt-lnk">Responder</a>
-		</div>
-		<ul id="comment_list_" data-id="id" data-repeat="comments"></ul>
-	</li>
-</div>
 
 <div id="s2_back" class="aula">
 	<div id="s2_back-cont">
@@ -54,50 +42,25 @@
 			<div class="s3_des-msg">
 				<div class="s3_des-msg-tit">Mensajes:</div>
 				<div class="s3_des-msg-mInc">
-					<div class="s3_des-msg-mInc-pic"><img src="<%= current_user.avatar.url(:thumb) %>" /></div>
+					<div class="s3_des-msg-mInc-pic"><%= image_tag current_user.avatar.url(:thumb) %></div>
 					<div class="s3_des-msg-mInc-form">
-						<%= form_for Comment.new(commentable: @movie), data: { jtemplate: '#commentTemplate', list: '#commentList' } do |f| %>
+						<%= form_for Comment.new(commentable: @movie) do |f| %>
 							<%= f.hidden_field :commentable_id %>
 							<%= f.hidden_field :commentable_type %>
 							<%= f.hidden_field :user_id, value: current_user.id %>
-							<%= f.text_area :comment, type: 'text', placeholder: 'Escribe tu consulta aquí…', onfocus: 'exp_mInc()', required: true, maxlength: 540 %>
+							<%= f.text_area :text, type: 'text', placeholder: 'Escribe tu consulta aquí…', onfocus: 'exp_mInc()', required: true, maxlength: 540 %>
 							<%= f.submit '✓' %>
 						<% end %>
 					</div>
 					<div class="clear"></div>
 				</div>
 				<div class="s3_des-msg-mLst">
-					<ul id="commentList">
-						<% @comments.each do |comment| %>
-							<li class="rootComment">
-								<div class="s3_des-msg-mLst-mPic"><img src="<%= comment.user.avatar.url(:thumb) %>" /></div>
-								<div class="s3_des-msg-mLst-mtxt">
-									<div class="s3_des-msg-mLst-mtxt-nom"><%= comment.user.name %></div>
-									<div class="s3_des-msg-mLst-mtxt-txt"><%= comment.comment %></div>	
-									<a href="<%= comment.id %>" class="utils-respond s3_des-msg-mLst-mtxt-lnk">Responder</a>
-								</div>
-								<ul id="<%= 'comment_list_' + comment.id.to_s %>">
-									<% comment.comments.each do |sub_comment| %>
-										<li>
-											<div class="s3_des-msg-mLst-mPic"><img src="<%= sub_comment.user.avatar.url(:thumb) %>" /></div>
-											<div class="s3_des-msg-mLst-mtxt">
-												<div class="s3_des-msg-mLst-mtxt-nom"><%= sub_comment.user.name %></div>
-												<div class="s3_des-msg-mLst-mtxt-txt"><%= sub_comment.comment %></div>	
-												<!--a href="<%= comment.id %>" class="utils-respond s3_des-msg-mLst-mtxt-lnk">Responder</a-->
-											</div>
-										</li>
-									<% end %>
-								</ul>
-							</li>
-						<% end %>
+					<ul id="comments">
+						<%= render @comments %>
 					</ul>
-					<button class="btn_full" id="show_more_comments"
-					data-template="#commentTemplate"
-					data-list="#commentList"
-					data-url="<%= classroom_video_comments_path(@movie) %>"
-					data-page="2"
-					data-user-id="<%= current_user.id %>"
-					style="cursor:pointer;">MOSTRAR MÁS</button>
+					<% unless @comments.total_pages == @comments.current_page %>
+						<button id="moreComments" class="btn_full" href="<%= comments_path(page: 2, f: { commentable_id: @movie.id, commentable_type: 'Movie' }) %>" style="cursor:pointer;">MOSTRAR MÁS</button>
+					<% end %>
 				</div>
 			</div>
 		</div>
@@ -105,7 +68,11 @@
 			<div class="s3_des-vid-col2-tit">Mas videos</div>
 			<% @movies.each do |movie| %>
 				<div class="s3_des-vid-col2-fch">
-					<div class="s3_des-vid-col2-fch-pic"><img src="<%= movie.image.url(:thumb) %>" /></div>
+					<div class="s3_des-vid-col2-fch-pic">
+						<a href="<%= classroom_video_path(movie) %>">
+							<%= image_tag movie.image.url(:thumb) %>
+						</a>
+					</div>
 					<div class="s3_des-vid-col2-fch-dat">
 						<div class="s3_des-vid-col2-fch-dat-tit"><%= movie.title %></div>
 						<div class="s3_des-vid-col2-fch-dat-txt"><%= movie.description[0..29] %>…</div>
