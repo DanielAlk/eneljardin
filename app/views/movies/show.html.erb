@@ -1,8 +1,22 @@
 <p id="notice"><%= notice %></p>
 
+<div style="float:left; margin-right: -120px;">
+  <%= image_tag @movie.image.url(:small), style: 'width:120px;height:auto;' %>
+</div>
+
 <p>
   <strong>Title:</strong>
   <%= @movie.title %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @movie.price %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @movie.level %>
 </p>
 
 <p>
@@ -15,7 +29,7 @@
   <%= @movie.video_url %>
 </p>
 
-<iframe style="margin-left:-135px;" src="<%= @movie.video_url %>?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<iframe style="margin-left:-75px;" src="<%= @movie.video_url %>?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>

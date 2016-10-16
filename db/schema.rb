@@ -29,11 +29,17 @@ ActiveRecord::Schema.define(version: 20161015113245) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "movies", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.text     "description", limit: 65535
-    t.string   "video_url",   limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "title",              limit: 255
+    t.text     "description",        limit: 65535
+    t.string   "video_url",          limit: 255
+    t.decimal  "price",                            precision: 8, scale: 2
+    t.integer  "level",              limit: 4,                             default: 0
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
+    t.datetime "created_at",                                                           null: false
+    t.datetime "updated_at",                                                           null: false
   end
 
   create_table "users", force: :cascade do |t|

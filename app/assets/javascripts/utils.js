@@ -40,3 +40,8 @@ Utils.notification = function(n_class, text) {
 		});
 	}, 100);
 };
+
+Utils.autonumeric = function() {
+	$('input.autonumeric').autoNumeric('init', { aSep: '.', aDec: ',', aPad: false });
+	$('input.autonumeric-price').autoNumeric('init', { aSep: '.', aDec: ',', aPad: 2 });
+};

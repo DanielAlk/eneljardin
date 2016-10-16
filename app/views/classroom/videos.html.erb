@@ -18,13 +18,13 @@
 			<div class="s3_des-fchro-fch">
 				<div class="s3_des-fchro-fch-pic">
 					<a href="<%= classroom_video_path(movie) %>">
-						<img src="<%= asset_path 'pags/aula/aula_vid-01.jpg' %>" />
+						<img src="<%= movie.image.url(:small) %>" />
 					</a>
 				</div>
 				<div class="s3_des-fchro-fch-cont">
 					<div class="s3_des-fchro-fch-cont-tit"><%= movie.title %></div>
 					<div class="s3_des-fchro-fch-cont-txt"><%= movie.description %></div>
-					<div class="s3_des-fchro-fch-cont-dat">Nivel: principiantes  -  Valor $49.99</div>
+					<div class="s3_des-fchro-fch-cont-dat">Nivel: <%= t ('movie.level.' + movie.level) %>  -  Valor <%= movie.price.to_s(:currency, unit: '$', separator: ",", delimiter: ".") %></div>
 					<div class="s3_des-fchro-fch-cont-btn">
 						<ul>
 							<li><a href="<%= classroom_video_path(movie) %>" class="btn_m">REPRODUCIR</a></li>
@@ -35,36 +35,6 @@
 			</div>
 		<% end %>
 	</div>
-	<div class="s3_des-bTit">Rosas</div>
-	<div class="s3_des-fchro aula">
-		<div class="s3_des-fchro-fch">
-			<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-03.jpg' %>" /></div>
-			<div class="s3_des-fchro-fch-cont">
-				<div class="s3_des-fchro-fch-cont-tit">rosas 1</div>
-				<div class="s3_des-fchro-fch-cont-txt">En este curso nos introducimos en el mundo de las huertas. Con la practicidad y simpleza que la caracterizan Clara nos explica todo lo que necesitamos saber para comenzar nuestra primera huerta y nos cuenta paso a paso como mantenerla sana y productiva todo el año.</div>
-				<div class="s3_des-fchro-fch-cont-dat">Nivel: principiantes  -  Valor $49.99</div>
-				<div class="s3_des-fchro-fch-cont-btn">
-					<ul>
-						<li><a href="javascript: playVideo(3);" class="btn_m">REPRODUCIR</a></li>
-					</ul>
-					<div class="clear"></div>
-				</div>
-			</div>
-		</div>
-		<div class="s3_des-fchro-fch">
-			<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-04.jpg' %>" /></div>
-			<div class="s3_des-fchro-fch-cont">
-				<div class="s3_des-fchro-fch-cont-tit">rosas 2</div>
-				<div class="s3_des-fchro-fch-cont-txt">En este curso nos introducimos en el mundo de las huertas. Con la practicidad y simpleza que la caracterizan Clara nos explica todo lo que necesitamos saber para comenzar nuestra primera huerta y nos cuenta paso a paso como mantenerla sana y productiva todo el año.</div>
-				<div class="s3_des-fchro-fch-cont-dat">Nivel: principiantes  -  Valor $49.99</div>
-				<div class="s3_des-fchro-fch-cont-btn">
-					<ul>
-						<li><a href="javascript: playVideo(4);" class="btn_m">REPRODUCIR</a></li>
-					</ul>
-					<div class="clear"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<button onclick="console.log('Mostrar Mas')" class="btn_full">Mostrar Más</button>
+	<button disabled="disabled" class="btn_full">&nbsp;</button>
+	<!--button onclick="console.log('Mostrar Mas')" class="btn_full">Mostrar Más</button!-->
 </div>

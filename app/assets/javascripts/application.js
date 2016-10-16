@@ -16,4 +16,5 @@
 //= require jquery.validate.additional-methods
 //= require jquery.validate.localization/messages_es_AR
 //= require turbolinks
+//= require autonumeric
 //= require_tree .
