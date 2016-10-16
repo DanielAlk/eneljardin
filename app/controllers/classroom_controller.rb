@@ -1,5 +1,6 @@
 class ClassroomController < ApplicationController
   def videos
+  	@movies = Movie.all
   end
 
   def video
