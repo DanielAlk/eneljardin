@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     passwords: 'users/passwords'
   }
+  
+  resources :movies
 
   get 'bienvenidos', to: 'pages#welcome', as: :welcome_page
   get 'talleres-online', to: 'pages#workshops', as: :workshops_page
