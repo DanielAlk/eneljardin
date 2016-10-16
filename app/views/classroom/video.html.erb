@@ -1,3 +1,7 @@
+<% content_for :extra_js do %>
+	$('form.edit_movie').validate();
+<% end %>
+
 <div id="s2_back" class="aula">
 	<div id="s2_back-cont">
 		<div id="s2_back-cont-tit">Aula virtual</div>
@@ -15,23 +19,25 @@
 	<div class="s3_des-vid">
 		<div class="s3_des-vid-vFr">
 			<!--<iframe width="100%" src="https://www.youtube.com/embed/roKb1kxrBwo?rel=0&amp;showinfo=0&amp;autoplay=1" frameborder="0" allowfullscreen></iframe>-->
-			<iframe width="100%" src="https://www.youtube.com/embed/roKb1kxrBwo?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+			<iframe width="100%" src="<%= @movie.video_url %>?title=0&byline=0&portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 		</div>
 		<div class="s3_des-vid-col1">
 			<div class="s3_des-vid-col1-datV">
-				<h1>Canteros, arbustos en invierno</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+				<h1><%= @movie.title %></h1>
+				<p><%= @movie.description %></p>
 			</div>
 			<div class="s3_des-msg">
 				<div class="s3_des-msg-tit">Mensajes:</div>
 				<div class="s3_des-msg-mInc">
-					<div class="s3_des-msg-mInc-pic"><img src="<%= asset_path 'profile/profilePic-1.jpg' %>" /></div>
+					<div class="s3_des-msg-mInc-pic"><img src="<%= current_user.avatar.url(:thumb) %>" /></div>
 					<div class="s3_des-msg-mInc-form">
-						<textarea type="text" name="mInc_txt" id="mInc_txt" placeholder="Escribe tu consulta aquí..." onfocus="exp_mInc()" onblur="cont_mInc()"></textarea>
-						<button>✓</button>
+						<%= form_for @movie do |f| %>
+							<textarea type="text" name="movie[comment]" id="mInc_txt" placeholder="Escribe tu consulta aquí..." onfocus="exp_mInc()" onblur="cont_mInc()" required="required" minlength="8" maxlength="540"></textarea>
+							<button type="submit">✓</button>
+						<% end %>
 					</div>
 					<div class="clear"></div>
-				</div>	
+				</div>
 				<div class="s3_des-msg-mLst">
 					<ul>
 						<li>
@@ -92,118 +98,34 @@
 		</div>
 		<div class="s3_des-vid-col2">
 			<div class="s3_des-vid-col2-tit">Mas videos</div>
-			<div class="s3_des-vid-col2-fch">
-				<div class="s3_des-vid-col2-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-05.jpg' %>" /></div>
-				<div class="s3_des-vid-col2-fch-dat">
-					<div class="s3_des-vid-col2-fch-dat-tit">Arboles Frutales</div>
-					<div class="s3_des-vid-col2-fch-dat-txt">Lorem ipsum dolor sit amet, consectetur </div>
-					<div class="s3_des-vid-col2-fch-dat-inf">Comprado</div>
-					<div class="s3_des-vid-col2-fch-dat-btn">
-						<ul>
-							<li><a class="btn_c-gr" href="#">Reproducir</a></li>
-						</ul>
+			<% @movies.each do |movie| %>
+				<div class="s3_des-vid-col2-fch">
+					<div class="s3_des-vid-col2-fch-pic"><img src="<%= movie.image.url(:thumb) %>" /></div>
+					<div class="s3_des-vid-col2-fch-dat">
+						<div class="s3_des-vid-col2-fch-dat-tit"><%= movie.title %></div>
+						<div class="s3_des-vid-col2-fch-dat-txt"><%= movie.description[0..29] %>…</div>
+						<div class="s3_des-vid-col2-fch-dat-inf">
+							<% if true %>
+								Comprado
+							<% else %>
+								Desde <%= movie.price.to_s(:currency, unit: '$', separator: ',', delimiter: '.') %>
+							<% end %>
+						</div>
+						<div class="s3_des-vid-col2-fch-dat-btn">
+							<ul>
+								<li>
+									<% if true %>
+										<a class="btn_c-gr" href="<%= classroom_video_path(movie) %>">Reproducir</a>
+									<% else %>
+										<a class="btn_c" href="#">Comprar</a>
+									<% end %>
+								</li>
+							</ul>
+						</div>
 					</div>
+					<div class="clear"></div>
 				</div>
-				<div class="clear"></div>
-			</div>
-			<div class="s3_des-vid-col2-fch">
-				<div class="s3_des-vid-col2-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-06.jpg' %>" /></div>
-				<div class="s3_des-vid-col2-fch-dat">
-					<div class="s3_des-vid-col2-fch-dat-tit">Cesped</div>
-					<div class="s3_des-vid-col2-fch-dat-txt">Lorem ipsum dolor sit amet, consectetur </div>
-					<div class="s3_des-vid-col2-fch-dat-inf">Desde $299.99</div>
-					<div class="s3_des-vid-col2-fch-dat-btn">
-						<ul>
-							<li><a class="btn_c" href="#">Comprar</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-			<div class="s3_des-vid-col2-fch">
-				<div class="s3_des-vid-col2-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-07.jpg' %>" /></div>
-				<div class="s3_des-vid-col2-fch-dat">
-					<div class="s3_des-vid-col2-fch-dat-tit">Enredaderas</div>
-					<div class="s3_des-vid-col2-fch-dat-txt">Lorem ipsum dolor sit amet, consectetur </div>
-					<div class="s3_des-vid-col2-fch-dat-inf">Desde $299.99</div>
-					<div class="s3_des-vid-col2-fch-dat-btn">
-						<ul>
-							<li><a class="btn_c" href="#">Comprar</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-			<div class="s3_des-vid-col2-fch">
-				<div class="s3_des-vid-col2-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-08.jpg' %>" /></div>
-				<div class="s3_des-vid-col2-fch-dat">
-					<div class="s3_des-vid-col2-fch-dat-tit">Bulbos</div>
-					<div class="s3_des-vid-col2-fch-dat-txt">Lorem ipsum dolor sit amet, consectetur </div>
-					<div class="s3_des-vid-col2-fch-dat-inf">Desde $299.99</div>
-					<div class="s3_des-vid-col2-fch-dat-btn">
-						<ul>
-							<li><a class="btn_c" href="#">Comprar</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-			<div class="s3_des-vid-col2-fch">
-				<div class="s3_des-vid-col2-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-09.jpg' %>" /></div>
-				<div class="s3_des-vid-col2-fch-dat">
-					<div class="s3_des-vid-col2-fch-dat-tit">Control de Plagas</div>
-					<div class="s3_des-vid-col2-fch-dat-txt">Lorem ipsum dolor sit amet, consectetur </div>
-					<div class="s3_des-vid-col2-fch-dat-inf">Comprado.</div>
-					<div class="s3_des-vid-col2-fch-dat-btn">
-						<ul>
-							<li><a class="btn_c-gr" href="#">Reproducir</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-			<div class="s3_des-vid-col2-fch">
-				<div class="s3_des-vid-col2-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-10.jpg' %>" /></div>
-				<div class="s3_des-vid-col2-fch-dat">
-					<div class="s3_des-vid-col2-fch-dat-tit">Poda</div>
-					<div class="s3_des-vid-col2-fch-dat-txt">Lorem ipsum dolor sit amet, consectetur </div>
-					<div class="s3_des-vid-col2-fch-dat-inf">Desde $299.99</div>
-					<div class="s3_des-vid-col2-fch-dat-btn">
-						<ul>
-							<li><a class="btn_c" href="#">Comprar</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-			<div class="s3_des-vid-col2-fch">
-				<div class="s3_des-vid-col2-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-11.jpg' %>" /></div>
-				<div class="s3_des-vid-col2-fch-dat">
-					<div class="s3_des-vid-col2-fch-dat-tit">Flores Anuales</div>
-					<div class="s3_des-vid-col2-fch-dat-txt">Lorem ipsum dolor sit amet, consectetur </div>
-					<div class="s3_des-vid-col2-fch-dat-inf">Comprado</div>
-					<div class="s3_des-vid-col2-fch-dat-btn">
-						<ul>
-							<li><a class="btn_c-gr" href="#">Reproducir</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-			<div class="s3_des-vid-col2-fch">
-				<div class="s3_des-vid-col2-fch-pic"><img src="<%= asset_path 'pags/aula/aula_vid-12.jpg' %>" /></div>
-				<div class="s3_des-vid-col2-fch-dat">
-					<div class="s3_des-vid-col2-fch-dat-tit">Fertilización</div>
-					<div class="s3_des-vid-col2-fch-dat-txt">Lorem ipsum dolor sit amet, consectetur </div>
-					<div class="s3_des-vid-col2-fch-dat-inf">Desde $299.99</div>
-					<div class="s3_des-vid-col2-fch-dat-btn">
-						<ul>
-							<li><a class="btn_c" href="#">Comprar</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
+			<% end %>
 			<button class="btn_full">MOSTRAR MÁS</button>
 		</div>
 		<div class="clear"></div>

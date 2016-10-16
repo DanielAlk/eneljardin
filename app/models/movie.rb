@@ -2,6 +2,8 @@ class Movie < ActiveRecord::Base
 	has_attached_file :image, styles: { large: "769x606#", medium: '714x513#', small: "272x195#", thumb: "105x75#" }
 	validates_attachment :image, presence: true, content_type: { content_type: /\Aimage\/.*\Z/ }
 
+	acts_as_commentable
+
 	enum level: [ :beginner, :intermediate, :advanced, :professional ]
 
 	def level=(level)
