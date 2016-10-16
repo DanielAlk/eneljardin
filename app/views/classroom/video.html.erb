@@ -1,6 +1,31 @@
 <% content_for :extra_js do %>
-	$('form.edit_movie').validate();
+	Utils.cont_mInc_fix($('form.new_comment'));
+	$('form.new_comment').validate({
+		submitHandler: function(form) {
+			cont_mInc();
+			Utils.jtemplate(form, 'prepend', function($template) {
+				Utils.respond(<%= current_user.id %>, $template.find('.utils-respond'));
+			});
+		}
+	});
+	Utils.showMoreTemplate('#show_more_comments', function($template) {
+		Utils.respond(<%= current_user.id %>, $template.find('.utils-respond'));
+	});
+	Utils.respond(<%= current_user.id %>);
 <% end %>
+
+<div class="hidden">
+	<li id="commentTemplate">
+		<div class="s3_des-msg-mLst-mPic"><img data-src="user_avatar" /></div>
+		<div class="s3_des-msg-mLst-mtxt">
+			<div class="s3_des-msg-mLst-mtxt-nom" data-text="user_name"></div>
+			<div class="s3_des-msg-mLst-mtxt-txt" data-text="comment"></div>
+			<!--a data-href="commentable.id" data-if="commentable_type == 'Comment'" class="utils-respond s3_des-msg-mLst-mtxt-lnk">Responder</a-->
+			<a data-href="id" data-if="commentable_type == 'Movie'" class="utils-respond s3_des-msg-mLst-mtxt-lnk">Responder</a>
+		</div>
+		<ul id="comment_list_" data-id="id" data-repeat="comments"></ul>
+	</li>
+</div>
 
 <div id="s2_back" class="aula">
 	<div id="s2_back-cont">
@@ -31,68 +56,48 @@
 				<div class="s3_des-msg-mInc">
 					<div class="s3_des-msg-mInc-pic"><img src="<%= current_user.avatar.url(:thumb) %>" /></div>
 					<div class="s3_des-msg-mInc-form">
-						<%= form_for @movie do |f| %>
-							<textarea type="text" name="movie[comment]" id="mInc_txt" placeholder="Escribe tu consulta aquí..." onfocus="exp_mInc()" onblur="cont_mInc()" required="required" minlength="8" maxlength="540"></textarea>
-							<button type="submit">✓</button>
+						<%= form_for Comment.new(commentable: @movie), data: { jtemplate: '#commentTemplate', list: '#commentList' } do |f| %>
+							<%= f.hidden_field :commentable_id %>
+							<%= f.hidden_field :commentable_type %>
+							<%= f.hidden_field :user_id, value: current_user.id %>
+							<%= f.text_area :comment, type: 'text', placeholder: 'Escribe tu consulta aquí…', onfocus: 'exp_mInc()', required: true, maxlength: 540 %>
+							<%= f.submit '✓' %>
 						<% end %>
 					</div>
 					<div class="clear"></div>
 				</div>
 				<div class="s3_des-msg-mLst">
-					<ul>
-						<li>
-							<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-2.jpg' %>" /></div>
-							<div class="s3_des-msg-mLst-mtxt">
-								<div class="s3_des-msg-mLst-mtxt-nom">Jessica Briscenio</div>
-								<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
-							</div>
-						</li>
-						<li>
-							<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-3.jpg' %>" /></div>
-							<div class="s3_des-msg-mLst-mtxt">
-								<div class="s3_des-msg-mLst-mtxt-nom">Laura Prado</div>
-								<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
-							</div>
-						</li>
-						<li>
-							<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-4.jpg' %>" /></div>
-							<div class="s3_des-msg-mLst-mtxt">
-								<div class="s3_des-msg-mLst-mtxt-nom">Gabriela Lopez</div>
-								<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
-							</div>
-							<ul>
-								<li>
-									<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-8.jpg' %>" /></div>
-									<div class="s3_des-msg-mLst-mtxt">
-										<div class="s3_des-msg-mLst-mtxt-nom">Clara Billoch</div>
-										<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
-									</div>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-5.jpg' %>" /></div>
-							<div class="s3_des-msg-mLst-mtxt">
-								<div class="s3_des-msg-mLst-mtxt-nom">Valeria Romeo</div>
-								<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
-							</div>
-						</li>
-						<li>
-							<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-6.jpg' %>" /></div>
-							<div class="s3_des-msg-mLst-mtxt">
-								<div class="s3_des-msg-mLst-mtxt-nom">Fernanda Piro</div>
-								<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
-							</div>
-						</li>
-						<li>
-							<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-7.jpg' %>" /></div>
-							<div class="s3_des-msg-mLst-mtxt">
-								<div class="s3_des-msg-mLst-mtxt-nom">Daniela Lonero</div>
-								<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
-							</div>
-						</li>
+					<ul id="commentList">
+						<% @comments.each do |comment| %>
+							<li class="rootComment">
+								<div class="s3_des-msg-mLst-mPic"><img src="<%= comment.user.avatar.url(:thumb) %>" /></div>
+								<div class="s3_des-msg-mLst-mtxt">
+									<div class="s3_des-msg-mLst-mtxt-nom"><%= comment.user.name %></div>
+									<div class="s3_des-msg-mLst-mtxt-txt"><%= comment.comment %></div>	
+									<a href="<%= comment.id %>" class="utils-respond s3_des-msg-mLst-mtxt-lnk">Responder</a>
+								</div>
+								<ul id="<%= 'comment_list_' + comment.id.to_s %>">
+									<% comment.comments.each do |sub_comment| %>
+										<li>
+											<div class="s3_des-msg-mLst-mPic"><img src="<%= sub_comment.user.avatar.url(:thumb) %>" /></div>
+											<div class="s3_des-msg-mLst-mtxt">
+												<div class="s3_des-msg-mLst-mtxt-nom"><%= sub_comment.user.name %></div>
+												<div class="s3_des-msg-mLst-mtxt-txt"><%= sub_comment.comment %></div>	
+												<!--a href="<%= comment.id %>" class="utils-respond s3_des-msg-mLst-mtxt-lnk">Responder</a-->
+											</div>
+										</li>
+									<% end %>
+								</ul>
+							</li>
+						<% end %>
 					</ul>
-					<button class="btn_full">MOSTRAR MÁS</button>
+					<button class="btn_full" id="show_more_comments"
+					data-template="#commentTemplate"
+					data-list="#commentList"
+					data-url="<%= classroom_video_comments_path(@movie) %>"
+					data-page="2"
+					data-user-id="<%= current_user.id %>"
+					style="cursor:pointer;">MOSTRAR MÁS</button>
 				</div>
 			</div>
 		</div>

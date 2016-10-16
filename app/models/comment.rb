@@ -12,4 +12,14 @@ class Comment < ActiveRecord::Base
 
   # NOTE: Comments belong to a user
   belongs_to :user
+
+	acts_as_commentable
+
+  def user_avatar
+  	self.user.avatar_urls[:thumb]
+  end
+
+  def user_name
+  	self.user.name
+  end
 end
