@@ -1,0 +1,5 @@
+$(function() {
+	$('#comment_<%= params[:id] %>').fadeOut(function() {
+		$(this).remove();
+	})
+});

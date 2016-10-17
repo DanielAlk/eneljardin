@@ -1,7 +1,13 @@
 $(function() {
-	<% if @comment.commentable_type != 'Comment' %>
-		$('#comments').prepend('<%= j(render(@comment)) %>');
-	<% else %>
-		$('#comments_<%= @comment.commentable_id %>').append('<%= j(render(@comment)) %>');
-	<% end %>
+	var $comment = $('<%= j(render(@comment)) %>');
+	var $comment_existent = $('#' + $comment.attr('id'));
+	if (!!$comment_existent.length) {
+		$comment_existent.replaceWith($comment);
+	} else {
+		<% if @comment.commentable_type != 'Comment' %>
+			$('#comments').prepend($comment);
+		<% else %>
+			$('#comments_<%= @comment.commentable_id %>').append($comment);
+		<% end %>
+	};
 });

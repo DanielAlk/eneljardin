@@ -1,4 +1,13 @@
-<li class="<%= 'rootComment' if comment.commentable_type != 'Comment' %>" id="comment_<%= comment.id %>">
+<li class="comment <%= 'rootComment' if comment.commentable_type != 'Comment' %>" id="comment_<%= comment.id %>">
+	<% if comment.user == current_user %>
+		<div class="comment-controls">
+			<a href="#" class="comment-controls-trigger"><span></span><span></span><span></span></a>
+			<ol class="comment-controls-options">
+				<li><%= link_to 'Editar', edit_comment_path(comment), remote: true %></li>
+				<li><%= link_to 'Eliminar', comment, method: :delete, data: { confirm: '¿Seguro?' }, remote: true %></li>
+			</ol>
+		</div>
+	<% end %>
 	<div class="s3_des-msg-mLst-mPic"><%= image_tag comment.user.avatar.url(:thumb) %></div>
 	<div class="s3_des-msg-mLst-mtxt">
 		<div class="s3_des-msg-mLst-mtxt-nom"><%= comment.user.name %></div>

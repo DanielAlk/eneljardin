@@ -1,0 +1,13 @@
+$(function() {
+	$('form.new_comment_comment').remove();
+	var $comment = $('#comment_<%= @comment.id %>');
+	var $form = $('<%= j(render('formjs')) %>');
+	$comment.addClass('editing').find('.s3_des-msg-mLst-mtxt').first().html($form);
+	$form.validate();
+	$form.find('button[type=reset]').click(function() {
+		$.getScript('<%= comment_path @comment %>');
+	});
+	setTimeout(function() {
+		$form.find('textarea').focus();
+	}, 100);
+});

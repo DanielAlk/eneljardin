@@ -1,0 +1,8 @@
+<%= form_for(@comment, remote: true) do |f| %>
+	<%= f.hidden_field :commentable_id %>
+	<%= f.hidden_field :commentable_type %>
+	<%= f.hidden_field :user_id, value: current_user.id %>
+	<%= f.text_area :text, type: 'text', placeholder: 'Escribe tu consulta aquí…', required: true, maxlength: 540 %>
+	<%= f.submit '✓' %>
+	<%= button_tag 'x', type: :reset %>
+<% end %>
