@@ -1,6 +1,7 @@
 $(function() {
-	$('#comments').append('<%= j(render(@comments)) %>');
-	$('#moreComments').attr('href', '<%= comments_path(page: params[:page].to_i + 1) %>');
+	var $comments = $('<%= j(render(@comments)) %>').filter(function() { return !$('#' + $(this).attr('id')).length });
+	$('#comments').append($comments);
+	$('#moreComments').attr('href', '<%= comments_path(page: params[:page].to_i + 1, f: { commentable_id: params[:f][:commentable_id], commentable_type: params[:f][:commentable_type] }) %>');
 	<% if @comments.total_pages == @comments.current_page %>
 		$('#moreComments').addClass('hidden');
 	<% end %>

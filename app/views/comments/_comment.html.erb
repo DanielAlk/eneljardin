@@ -1,4 +1,4 @@
-<li class="<%= 'rootComment' if comment.commentable_type != 'Comment' %>">
+<li class="<%= 'rootComment' if comment.commentable_type != 'Comment' %>" id="comment_<%= comment.id %>">
 	<div class="s3_des-msg-mLst-mPic"><%= image_tag comment.user.avatar.url(:thumb) %></div>
 	<div class="s3_des-msg-mLst-mtxt">
 		<div class="s3_des-msg-mLst-mtxt-nom"><%= comment.user.name %></div>
