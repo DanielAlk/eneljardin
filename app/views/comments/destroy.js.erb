@@ -1,5 +1,12 @@
 $(function() {
-	$('#comment_<%= params[:id] %>').fadeOut(function() {
+	var $comment = $('#comment_<%= params[:id] %>');
+	var is_root = $comment.hasClass('rootComment');
+	$comment.fadeOut(function() {
 		$(this).remove();
-	})
+		if (is_root) {
+			var lastRootCommentId = $('#comments .rootComment').last().attr('id');
+			var id = lastRootCommentId.split('_')[1];
+			$.getScript('<%= comments_path() %>/' + id + '?next=1');
+		};
+	});
 });

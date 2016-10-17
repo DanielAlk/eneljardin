@@ -13,6 +13,11 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
+    if params[:next].present?
+      if (@comment = @comment.next).blank?
+        head :no_content
+      end
+    end
   end
 
   # GET /comments/new

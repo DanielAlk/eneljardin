@@ -40,6 +40,7 @@ Comments.respond = function(e) {
 Comments.showControls = function(e) {
 	e.preventDefault();
 	e.stopImmediatePropagation();
+	Comments.hideAllControls();
 	$(this).closest('.comment-controls').addClass('active');
 };
 

@@ -5,7 +5,11 @@ $(function() {
 		$comment_existent.replaceWith($comment);
 	} else {
 		<% if @comment.commentable_type != 'Comment' %>
-			$('#comments').prepend($comment);
+			<% if params[:next].present? %>
+				$('#comments').append($comment);
+			<% else %>
+				$('#comments').prepend($comment);
+			<% end %>
 		<% else %>
 			$('#comments_<%= @comment.commentable_id %>').append($comment);
 		<% end %>
