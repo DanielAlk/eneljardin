@@ -9,7 +9,7 @@ Comments.respond = function(e) {
 	var $trigger = $(this);
 	var comment_id = $trigger.attr('href');
 	var user_id = $trigger.data('user-id');
-	var $root = $trigger.closest('.rootComment');
+	var $root = $trigger.closest('.s3_des-msg-mLst-mtxt');
 	var $form = $('<form>', { action: '/comments', class: 'new_comment_comment', method: 'post' })
 	.append($('<input>', { type: 'hidden', name: 'comment[commentable_id]', value: comment_id }))
 	.append($('<input>', { type: 'hidden', name: 'comment[commentable_type]', value: 'Comment' }))
@@ -25,11 +25,13 @@ Comments.respond = function(e) {
 			$.post($(form).attr('action'), $(form).serialize(), loader.hide, 'script');
 		}
 	});
-	$root.append($form);
-	$form.find('textarea').focus();
+	$root.after($form);
 	$form.find('button[type=reset]').click(function() {
 		$form.remove();
 	});
+	setTimeout(function() {
+		$form.find('textarea').focus();
+	}, 100);
 };
 
 $(Comments.init);
