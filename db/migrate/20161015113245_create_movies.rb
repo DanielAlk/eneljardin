@@ -7,6 +7,7 @@ class CreateMovies < ActiveRecord::Migration
       t.decimal :price, precision: 8, scale: 2
       t.integer :level, default: 0
       t.attachment :image
+      t.text :vimeo
 
       t.timestamps null: false
     end

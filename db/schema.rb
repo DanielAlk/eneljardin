@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 20161016180833) do
     t.integer  "commentable_id",   limit: 4
     t.string   "commentable_type", limit: 255
     t.integer  "user_id",          limit: 4
-    t.integer  "role",             limit: 4
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "role",             limit: 4,     default: 0
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
   end
 
   add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20161016180833) do
     t.string   "image_content_type", limit: 255
     t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
+    t.text     "vimeo",              limit: 65535
     t.datetime "created_at",                                                           null: false
     t.datetime "updated_at",                                                           null: false
   end

@@ -29,7 +29,9 @@
   <%= @movie.video_url %>
 </p>
 
-<iframe style="margin-left:-75px;" src="<%= @movie.video_url %>?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<div style="margin-left:-75px;">
+  <%= @movie.vimeo[:html].html_safe %>
+</div>
 
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>
