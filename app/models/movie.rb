@@ -23,12 +23,7 @@ class Movie < ActiveRecord::Base
 	private
 		def get_vimeo_metadata
 			uri = URI.parse('https://vimeo.com/api/oembed.json')
-			params = {
-				url: video_url,
-				title: false,
-				byline: false,
-				portrait: false
-			}
+			params = { url: video_url }
 			uri.query = URI.encode_www_form(params)
 
 			res = Net::HTTP.get_response(uri)
