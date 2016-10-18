@@ -12,4 +12,16 @@ class Comment < ActiveRecord::Base
   def prev
   	Comment.where('(created_at > ?) AND (commentable_id = ?) AND (commentable_type = ?)', self.created_at, self.commentable_id, self.commentable_type).order(created_at: :desc).first
   end
+
+  def is_root?
+    commentable_type != 'Comment'
+  end
+
+  def new_response(user)
+    if is_root?
+      self.comments.new(user: user)
+    else
+      self.commentable.comments.new(user: user)
+    end
+  end
 end

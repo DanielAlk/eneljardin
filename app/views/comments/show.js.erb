@@ -1,16 +1,20 @@
 $(function() {
+	Utils.loader().hide();
+	Comments.removeForms();
 	var $comment = $('<%= j(render(@comment)) %>');
 	var $comment_existent = $('#' + $comment.attr('id'));
 	if (!!$comment_existent.length) {
 		$comment_existent.replaceWith($comment);
 	} else {
-		<% if @comment.commentable_type != 'Comment' %>
-			<% if params[:next].present? %>
+		<% if @comment.is_root? %>
+			<% if params[:next].present? #pagination compensation when destroy %>
 				$('#comments').append($comment);
-			<% else %>
+			<% else #new root comment %>
+				cont_mInc();
+				$('form#new_movie_comment').get(0).reset();
 				$('#comments').prepend($comment);
 			<% end %>
-		<% else %>
+		<% else #response %>
 			$('#comments_<%= @comment.commentable_id %>').append($comment);
 		<% end %>
 	};

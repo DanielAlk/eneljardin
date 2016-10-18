@@ -1,14 +1,14 @@
 $(function() {
 	Comments.removeForms();
-	var $comment = $('#comment_<%= @comment.id %>');
+	var $comment = $('#comment_<%= params[:id] %>');
+	var $text = $comment.find('.s3_des-msg-mLst-mtxt').first();
 	var $form = $('<%= j(render('formjs')) %>');
-	$comment.addClass('editing').find('.s3_des-msg-mLst-mtxt').first().append($form);
+	$text.after($form);
 	$form.find('button[type=reset]').click(function() {
 		$form.remove();
-		$comment.removeClass('editing');
 	});
 	$form.validate();
 	setTimeout(function() {
 		$form.find('textarea').focus();
 	}, 100);
-});
+})

@@ -1,5 +1,10 @@
 var Utils = {};
 
+Utils.init = function() {
+	$(document).on('submit', 'form[data-util="loader"]', Utils.loader);
+	$(document).on('click', 'a[data-util="loader"], button[data-util="loader"]', Utils.loader);
+};
+
 Utils.image_selector = function(selector) {
 	var $input = $(selector);
 	var $image = $input.closest('label').find('img');
@@ -71,3 +76,5 @@ Utils.cont_mInc_fix = function($form) {
 		down = false;
 	});
 }
+
+$(Utils.init);

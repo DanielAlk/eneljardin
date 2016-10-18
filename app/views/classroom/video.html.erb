@@ -1,17 +1,6 @@
 <% content_for :extra_js do %>
-	Utils.cont_mInc_fix($('form.new_comment'));
-	$('form.new_comment').validate({
-		submitHandler: function(form) {
-			cont_mInc();
-			var loader = Utils.loader();
-			$.post($(form).attr('action'), $(form).serialize(), loader.hide, 'script');
-			form.reset();
-		}
-	});
-	$('#moreComments').click(function() {
-		var loader = Utils.loader();
-		$.getScript($(this).attr('href')).done(loader.hide);
-	});
+	$('form#new_movie_comment').validate();
+	Utils.cont_mInc_fix($('form#new_movie_comment'));
 <% end %>
 
 <div id="s2_back" class="aula">
@@ -42,7 +31,7 @@
 				<div class="s3_des-msg-mInc">
 					<div class="s3_des-msg-mInc-pic"><%= image_tag current_user.avatar.url(:thumb) %></div>
 					<div class="s3_des-msg-mInc-form">
-						<%= form_for Comment.new(commentable: @movie) do |f| %>
+						<%= form_for Comment.new(commentable: @movie), remote: true, html: { id: :new_movie_comment }, data: { util: :loader } do |f| %>
 							<%= f.hidden_field :commentable_id %>
 							<%= f.hidden_field :commentable_type %>
 							<%= f.hidden_field :user_id, value: current_user.id %>
@@ -56,7 +45,7 @@
 					<ul id="comments">
 						<%= render @comments %>
 					</ul>
-					<button id="moreComments" class="btn_full <%= 'hidden' if @comments.total_pages == @comments.current_page %>" href="<%= comments_path(page: 2, f: { commentable_id: @movie.id, commentable_type: 'Movie' }) %>" style="cursor:pointer;">MOSTRAR MÁS</button>
+					<%= link_to 'MOSTRAR MÁS', comments_path(page: 2, f: commentable(@movie)), id: 'moreComments', remote: true, class: 'btn-full ' + ('hidden' if @comments.total_pages == @comments.current_page).to_s, data: { util: :loader } %>
 				</div>
 			</div>
 		</div>

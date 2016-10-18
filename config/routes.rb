@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   }
   
   resources :movies
-  resources :comments
+  
+  resources :comments do
+    member do
+      get 'respond'
+    end
+  end
 
   get 'bienvenidos', to: 'pages#welcome', as: :welcome_page
   get 'talleres-online', to: 'pages#workshops', as: :workshops_page

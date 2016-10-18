@@ -7,6 +7,8 @@ $(function() {
 			var lastRootCommentId = $('#comments .rootComment').last().attr('id');
 			var id = lastRootCommentId.split('_')[1];
 			$.getScript('<%= comments_path() %>/' + id + '?next=1');
+		} else {
+			Utils.loader().hide();
 		};
 	});
 });

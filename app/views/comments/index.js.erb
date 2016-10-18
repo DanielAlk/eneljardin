@@ -1,4 +1,6 @@
 $(function() {
+	Utils.loader().hide();
+	Comments.removeForms();
 	var $comments = $('<%= j(render(@comments)) %>').filter(function() {
 		var $comment_existent = $('#' + $(this).attr('id'));
 		if (!$comment_existent.length) return true;

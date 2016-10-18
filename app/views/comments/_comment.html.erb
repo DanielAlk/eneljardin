@@ -1,10 +1,10 @@
-<li class="comment <%= 'rootComment' if comment.commentable_type != 'Comment' %>" id="comment_<%= comment.id %>">
+<li class="comment <%= 'rootComment' if comment.is_root? %>" id="comment_<%= comment.id %>">
 	<% if comment.user == current_user %>
 		<div class="comment-controls">
 			<a href="#" class="comment-controls-trigger"><span></span><span></span><span></span></a>
 			<ol class="comment-controls-options">
 				<li><%= link_to 'Editar', edit_comment_path(comment), remote: true %></li>
-				<li><%= link_to 'Eliminar', comment, method: :delete, data: { confirm: '¿Seguro?' }, remote: true %></li>
+				<li><%= link_to 'Eliminar', comment, method: :delete, data: { confirm: '¿Seguro querés eliminar este mensaje?', util: :loader }, remote: true %></li>
 			</ol>
 		</div>
 	<% end %>
@@ -12,11 +12,7 @@
 	<div class="s3_des-msg-mLst-mtxt">
 		<div class="s3_des-msg-mLst-mtxt-nom"><%= comment.user.name %></div>
 		<div class="s3_des-msg-mLst-mtxt-txt"><%= comment.text %></div>
-		<% if comment.commentable_type != 'Comment' %>
-			<a href="<%= comment.id %>" data-user-id="<%= current_user.id %>" class="utils-respond s3_des-msg-mLst-mtxt-lnk">Responder</a>
-		<% else %>
-			<a href="<%= comment.commentable.id %>" data-user-id="<%= current_user.id %>" class="utils-respond s3_des-msg-mLst-mtxt-lnk">Responder</a>
-		<% end %>
+		<%= link_to 'Responder', respond_comment_path(comment), class: 's3_des-msg-mLst-mtxt-lnk remove-comment-forms', remote: true %>
 	</div>
 	<ul id="<%= 'comments_' + comment.id.to_s %>">
 		<%= render comment.comments %>
