@@ -7,13 +7,13 @@ Utils.init = function() {
 
 Utils.avatar_selector = function(selector) {
 	var $input = $(selector);
-	var $image = $input.closest('label').find('img');
+	var $image = $input.closest('label').find('.image');
 	var $use_default = $input.closest('.avatar').find('#user_use_default_avatar');
 	var $delete = $input.closest('.avatar').find('.avatar-delete');
 	var default_asset = $delete.data('asset');
 	var reader = new FileReader();
 	reader.onload = function(e) {
-		$image.attr('src', e.target.result);
+		$image.css('background-image', 'url('+e.target.result+')');
 		$use_default.val(0);
 		$delete.show();
 	};
@@ -24,7 +24,7 @@ Utils.avatar_selector = function(selector) {
 	var ondelete = function(e) {
 		e.preventDefault();
 		var $clone = $input.clone();
-		$image.attr('src', default_asset);
+		$image.css('background-image', 'url('+default_asset+')');
 		$use_default.val(1);
 		$input.replaceWith($clone);
 		$input = $clone;

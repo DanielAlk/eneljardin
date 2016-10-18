@@ -18,8 +18,9 @@
 		}
 	}
 	.avatar { text-align: center;
-		input { display: none;	}
-		img { border-radius: 50%; width: 130px; height: 130px; cursor: pointer; }
+		input { display: none; }
+		.avatar-delete { margin: 5px 0 10px; display: inline-block; }
+		.image { display: block; margin: 0 auto; border-radius: 50%; width: 130px; height: 130px; cursor: pointer; background-size: cover; background-position: center center; background-repeat: no-repeat; }
 	}
 	/* TABLE */
 	table { font-size: 14px; background-color: transparent; border-collapse: collapse; border-spacing: 0; }
