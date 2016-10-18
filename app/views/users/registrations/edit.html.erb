@@ -1,6 +1,5 @@
 <% content_for :extra_js do %>
   $('#edit_user').validate({
-    submitHandler: Utils.loaderSubmit,
     rules: {
       'user[password_confirmation]': {
         equalTo: "#user_password"
@@ -12,7 +11,7 @@
 
 <h2>Editar perfíl</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, data: { util: :loader }) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="avatar">

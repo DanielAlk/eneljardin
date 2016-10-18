@@ -1,11 +1,9 @@
 <% content_for :extra_js do %>
-  $('form.new_movie, form.edit_movie').validate({
-    submitHandler: Utils.loaderSubmit
-  });
+  $('form.new_movie, form.edit_movie').validate();
   Utils.autonumeric();
 <% end %>
 
-<%= form_for(@movie) do |f| %>
+<%= form_for(@movie, data: { util: :loader }) do |f| %>
   <% if @movie.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
