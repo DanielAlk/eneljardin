@@ -1,6 +1,9 @@
 <% content_for :extra_js do %>
   $('form.new_movie, form.edit_movie').validate();
   Utils.autonumeric();
+  $('#movie_image_from_vimeo').change(function(e) {
+    $('#imageField').fadeToggle();
+  });
 <% end %>
 
 <%= form_for(@movie, data: { util: :loader }) do |f| %>
@@ -29,21 +32,26 @@
     <%= f.text_field :video_url, required: true %>
   </div>
   <div class="field">
-    <%= f.label :image do %>
-      Image
-      <% if @movie.image.present? %>
-        <small>(Contiene una imagen: <%= @movie.image_file_name[0...20] %>…)</small>
-      <% end %>
-    <% end %><br>
-    <%= f.file_field :image, accept: 'image/*' %>
-  </div>
-  <div class="field">
     <%= f.label :price %><br>
     <%= f.text_field :price, required: true, class: 'autonumeric-price' %>
   </div>
   <div class="field">
     <%= f.label :level %><br>
     <%= f.select :level, options_for_select(Movie.levels) %>
+  </div>
+  <div class="field">
+    <%= f.label :image_from_vimeo, class: 'checkbox' do %>
+      <span>¿Tomar imágen desde VEVO?</span>
+      <%= f.check_box :image_from_vimeo %>
+    <% end %>
+  </div>
+  <div class="field" id="imageField" style="<%= 'display:none;' if @movie.image_from_vimeo %>">
+    <% if @movie.image.present? %>
+      <%= f.label :image do %>
+        <small>(Contiene una imagen: <%= @movie.image_file_name[0...20] %>…)</small>
+      <% end %><br>
+    <% end %>
+    <%= f.file_field :image, accept: 'image/*' %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -9,6 +9,7 @@
 .hidden { display:none!important; }
 .overflow-hidden { overflow:hidden!important; }
 .btn-full { cursor: pointer; display: block; width: 100%; height: 32px; background: #dbdbdb; border: none; font-family: 'Roboto Condensed', sans-serif; font-size: 14px; color: #FFF; outline: none; text-decoration: none; text-align: center; line-height: 32px; }
+.bg-cover { display: block; background-position: center center; background-size: cover; }
 
 /* CARDS DE LA HOME BORDESITO DEL TITULO */
 .pst_postal-tit { @include transition(text-indent, 400ms, ease-out); position: relative; max-width: none; border: none; white-space: nowrap; overflow: hidden;
@@ -69,3 +70,9 @@ body>div.loader { position: fixed; width: 100%; height: 100%; background-color: 
 .s3_des-vid-vFr { position: relative; padding-bottom: 56.25%; margin-bottom: 10px;
 	&>iframe { position: absolute; width: 100%; height: 100%; top: 0; left: 0; min-width: auto; min-height: auto; }
 }
+
+/* FIX SHOW BG IMAGE INSTEAD OF IMAGES TO PREVENT DIFFERENT SIZES MOVIES LISTS */
+.s3_des-vid-col2-fch-pic.bg-cover { height: 75px; margin-bottom: -4px;
+	@media(max-width: 752px) and (min-width: 521px) { height: 140px; margin-bottom: 5px; }
+}
+.s3_des-fchro-fch-pic.bg-cover { height: 180px; }

@@ -7,6 +7,7 @@
 		input[type="file"] { border-color: transparent!important; box-shadow: none!important; -webkit-box-shadow: none!important; }
 		textarea { resize: none; height: auto; }
 		select { text-transform: capitalize; }
+		label.checkbox { margin: 10px 0; display: block; }
 		label.error { position: absolute; left: 0; top: calc(100% - 5px); width: 100%; text-align: center; font-size: 10px; background-color: #d85757; color: #fff; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; line-height: 1.2em; }
 	}
 	.actions, div.cancel { text-align: center; margin: 15px 0;
@@ -20,7 +21,6 @@
 		input { display: none;	}
 		img { border-radius: 50%; width: 130px; height: 130px; cursor: pointer; }
 	}
-
 	/* TABLE */
 	table { font-size: 14px; background-color: transparent; border-collapse: collapse; border-spacing: 0; }
 	.table { width: 100%; max-width: 100%; margin-bottom: 20px;

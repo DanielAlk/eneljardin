@@ -20,6 +20,14 @@ class Movie < ActiveRecord::Base
 	  write_attribute(:price, price.gsub('.', '').gsub(',', '.'))
 	end
 
+	def image_from_vimeo=(boolean)
+		image.destroy if boolean.to_i == 1
+	end
+
+	def image_from_vimeo
+		image.blank?
+	end
+
 	private
 		def get_vimeo_metadata
 			uri = URI.parse('https://vimeo.com/api/oembed.json')

@@ -16,11 +16,7 @@
 	<div class="s3_des-fchro aula">
 		<% @movies.each do |movie| %>
 			<div class="s3_des-fchro-fch">
-				<div class="s3_des-fchro-fch-pic">
-					<a href="<%= classroom_video_path(movie) %>">
-						<%= image_tag movie.image.url(:small) %>
-					</a>
-				</div>
+				<a href="<%= classroom_video_path(movie) %>" class="s3_des-fchro-fch-pic bg-cover" style="background-image:url(<%= movie.image.url(:small) %>)"></a>
 				<div class="s3_des-fchro-fch-cont">
 					<div class="s3_des-fchro-fch-cont-tit"><%= movie.title %></div>
 					<div class="s3_des-fchro-fch-cont-txt"><%= movie.description %></div>
