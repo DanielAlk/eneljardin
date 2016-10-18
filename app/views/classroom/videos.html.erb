@@ -20,7 +20,7 @@
 				<div class="s3_des-fchro-fch-cont">
 					<div class="s3_des-fchro-fch-cont-tit"><%= movie.title %></div>
 					<div class="s3_des-fchro-fch-cont-txt"><%= movie.description %></div>
-					<div class="s3_des-fchro-fch-cont-dat">Nivel: <%= t ('movie.level.' + movie.level) %>  -  Valor <%= movie.price.to_s(:currency, unit: '$', separator: ",", delimiter: ".") %></div>
+					<div class="s3_des-fchro-fch-cont-dat">Nivel: <%= t ('levels.' + movie.level) %>  -  Valor <%= movie.price.to_s(:currency, unit: '$', separator: ",", delimiter: ".") %></div>
 					<div class="s3_des-fchro-fch-cont-btn">
 						<ul>
 							<li><a href="<%= classroom_video_path(movie) %>" class="btn_m">REPRODUCIR</a></li>

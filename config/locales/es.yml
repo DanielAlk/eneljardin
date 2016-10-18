@@ -20,12 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 es:
-  movie:
-    level:
-      beginner: principiante
-      intermediate: intermedio
-      advanced: avanzado
-      professional: profesional
+  levels:
+    beginner: principiante
+    intermediate: intermedio
+    advanced: avanzado
+    professional: profesional
   activerecord:
     errors:
       messages:
