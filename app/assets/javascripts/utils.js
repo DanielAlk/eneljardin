@@ -15,19 +15,22 @@ Utils.image_selector = function(selector) {
 };
 
 Utils.loader = function() {
-	var $loader = $('<div>', { class: 'loader' }).hide();
-	$('body').css({ overflow: 'hidden' }).append($loader);
-	setTimeout(function() {
-		$loader.fadeIn();
-	}, 100);
-	return {
-		hide: function() {
-			$loader.fadeOut(function() {
-				$('body').removeAttr('style');
-				$loader.remove();
-			});
-		}
+	var $loader = $('body>div.loader');
+	var show = function() {
+		$loader = $('<div>', { class: 'loader' }).hide();
+		$('body').addClass('overflow-hidden').append($loader);
+		setTimeout(function() {
+			$loader.fadeIn();
+		}, 100);
 	};
+	var hide = function() {
+		$loader.fadeOut(function() {
+			$('body').removeClass('overflow-hidden');
+			$loader.remove();
+		});
+	};
+	if (!$loader.length) show();
+	return { element: $loader, hide: hide, show: show };
 };
 
 Utils.loaderSubmit = function(form) {

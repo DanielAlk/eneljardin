@@ -7,6 +7,7 @@
 }
 
 .hidden { display:none!important; }
+.overflow-hidden { overflow:hidden!important; }
 
 /* CARDS DE LA HOME BORDESITO DEL TITULO */
 .pst_postal-tit { @include transition(text-indent, 400ms, ease-out); position: relative; max-width: none; border: none; white-space: nowrap; overflow: hidden;
@@ -16,7 +17,7 @@
 /* LOGO VERTIGO DEL FOOTER */
 #s5_fir-lVrt { width: auto; height: 20px; margin-bottom: -8px; }
 
-.loader { position: fixed; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); top: 0; left: 0; background-repeat: no-repeat; background-position: center center; background-size: 80px 80px; z-index: 999999999999; background-image: url('<%= asset_path 'loader.gif' %>');
+body>div.loader { position: fixed; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); top: 0; left: 0; background-repeat: no-repeat; background-position: center center; background-size: 80px 80px; z-index: 999999999999; background-image: url('<%= asset_path 'loader.gif' %>');
 	&:after {content: 'Cargando…';color: #ccc;display: block;text-align: center;position: absolute;width: 100%;top: calc(50% + 60px);}
 }
 
