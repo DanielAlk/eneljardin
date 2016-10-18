@@ -12,25 +12,27 @@
 		</ul>
 		<div class="clear"></div>
 	</div>
-	<div class="s3_des-bTit">Huerta</div>
-	<div class="s3_des-fchro aula">
-		<% @movies.each do |movie| %>
-			<div class="s3_des-fchro-fch">
-				<a href="<%= classroom_video_path(movie) %>" class="s3_des-fchro-fch-pic bg-cover" style="background-image:url(<%= movie.image.url(:small) %>)"></a>
-				<div class="s3_des-fchro-fch-cont">
-					<div class="s3_des-fchro-fch-cont-tit"><%= movie.title %></div>
-					<div class="s3_des-fchro-fch-cont-txt"><%= movie.description %></div>
-					<div class="s3_des-fchro-fch-cont-dat">Nivel: <%= t ('levels.' + movie.level) %>  -  Valor <%= movie.price.to_s(:currency, unit: '$', separator: ",", delimiter: ".") %></div>
-					<div class="s3_des-fchro-fch-cont-btn">
-						<ul>
-							<li><a href="<%= classroom_video_path(movie) %>" class="btn_m">REPRODUCIR</a></li>
-						</ul>
-						<div class="clear"></div>
+	<% @workshops.each do |workshop| %>
+		<div class="s3_des-bTit"><%= workshop.title %></div>
+		<div class="s3_des-fchro aula">
+			<% workshop.movies.each do |movie| %>
+				<div class="s3_des-fchro-fch">
+					<a href="<%= classroom_video_path(movie) %>" class="s3_des-fchro-fch-pic bg-cover" style="background-image:url(<%= movie.image.url(:small) %>)"></a>
+					<div class="s3_des-fchro-fch-cont">
+						<div class="s3_des-fchro-fch-cont-tit"><%= movie.title %></div>
+						<div class="s3_des-fchro-fch-cont-txt"><%= movie.description %></div>
+						<div class="s3_des-fchro-fch-cont-dat">Nivel: <%= t ('levels.' + movie.level) %>  -  Valor <%= movie.price.to_s(:currency, unit: '$', separator: ",", delimiter: ".") %></div>
+						<div class="s3_des-fchro-fch-cont-btn">
+							<ul>
+								<li><a href="<%= classroom_video_path(movie) %>" class="btn_m">REPRODUCIR</a></li>
+							</ul>
+							<div class="clear"></div>
+						</div>
 					</div>
 				</div>
-			</div>
-		<% end %>
-	</div>
+			<% end %>
+		</div>
+	<% end %>
 	<button disabled="disabled" class="btn_full">&nbsp;</button>
 	<!--button onclick="console.log('Mostrar Mas')" class="btn_full">Mostrar Más</button!-->
 </div>

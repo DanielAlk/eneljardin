@@ -6,99 +6,51 @@
 </div>
 <div id="s3_des">
 	<div class="s3_des-fchro">
-		<div class="s3_des-fchro-fch" id="huerta">
-			<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/talleres/tllr-1_huerta.jpg' %>"></img></div>
-			<div class="s3_des-fchro-fch-cont">
-				<div class="s3_des-fchro-fch-cont-tit">Huerta</div>
-				<div class="s3_des-fchro-fch-cont-txt">En este curso nos introducimos en el mundo de las huertas. Con la practicidad y simpleza que la caracterizan Clara nos explica todo lo que necesitamos saber para comenzar nuestra primera huerta y nos cuenta paso a paso como mantenerla sana y productiva todo el año.</div>
-				<div class="s3_des-fchro-fch-cont-dat">Nivel: principiantes  -  Valor $49.99</div>
-				<div class="s3_des-fchro-fch-cont-pls">
-					<p>El curso esta dividido en 4 módulos (un video por modulo) mas una sección de consejos útiles. Total de 5 videos + un set de apuntes para que bajes a tu maquina y puedas imprimir y seguir el curso paso a paso.</p>
-					<ol>
-						<li>¿Por qué tener una huerta? Ubicación. Tamaño. Tipos de huertas.</li>
-						<li>La mejor tierra para las mejores cosechas.</li>
-						<li>La siembra. Semillas, épocas y tipos de siembra.</li>
-						<li>Mantener la huerta sana y productiva.</li>
-						<li>Consejos y reflexiones finales.</li>
-					</ol>
-					<p>Con la compra del curso accedes al aula virtual donde tenes acceso a los 5 videos que componen el curso + los apuntes para que puedas seguir las lecturas paso a paso + la sección de preguntas y respuestas para que puedas interactuar con otros estudiantes y Clara responda cualquier pregunta o duda que pueda haber quedado después el curso.</p>
-				</div>
-				<div class="s3_des-fchro-fch-cont-btn">
-					<ul>
-						<li><a href="javascript: damePlusFch('#huerta')" class="btn_m s3_des-fchro-fch-cont-btn-info" id="huerta">MÁS INFO</a></li>
-						<li><a href="#" class="btn_m-gr">COMPRAR</a></li>
-					</ul>
-					<div class="clear"></div>
+		<% @workshops.each do |workshop| %>
+			<div class="s3_des-fchro-fch" id="<%= 'workshop_' + workshop.id.to_s %>">
+				<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path workshop.image.url(:small) %>"></img></div>
+				<div class="s3_des-fchro-fch-cont">
+					<div class="s3_des-fchro-fch-cont-tit"><%= workshop.title %></div>
+					<div class="s3_des-fchro-fch-cont-txt"><%= workshop.description %></div>
+					<div class="s3_des-fchro-fch-cont-dat">
+						Nivel: <%= t('levels.' + workshop.level) %>
+						-
+						Valor <%= workshop.price.to_s(:currency, unit: '$', delimiter: '.', separator: ',') %>
+					</div>
+					<div class="s3_des-fchro-fch-cont-pls">
+						<p><%= workshop.information %></p>
+					</div>
+					<div class="s3_des-fchro-fch-cont-btn">
+						<ul>
+							<li><a href="javascript: damePlusFch('#<%= 'workshop_' + workshop.id.to_s %>')" class="btn_m s3_des-fchro-fch-cont-btn-info" id="<%= 'workshop_' + workshop.id.to_s + '_btn' %>">MÁS INFO</a></li>
+							<li><a href="#" class="btn_m-gr">COMPRAR</a></li>
+						</ul>
+						<div class="clear"></div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="s3_des-fchro-fch" id="rosas">
-			<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/talleres/tllr-2_rosas.jpg' %>"></img></div>
-			<div class="s3_des-fchro-fch-cont">
-				<div class="s3_des-fchro-fch-cont-tit">Rosas</div>
-				<div class="s3_des-fchro-fch-cont-txt">En este curso nos introducimos en el mundo de las huertas. Con la practicidad y simpleza que la caracterizan Clara nos explica todo lo que necesitamos saber para comenzar nuestra primera huerta y nos cuenta paso a paso como mantenerla sana y productiva todo el año.</div>
-				<div class="s3_des-fchro-fch-cont-dat">Nivel: principiantes  -  Valor $49.99</div>
-				<div class="s3_des-fchro-fch-cont-pls"></div>
-				<div class="s3_des-fchro-fch-cont-btn">
-					<ul>
-						<li><a href="javascript: damePlusFch('#rosas')" class="btn_m s3_des-fchro-fch-cont-btn-info" id="rosas">MÁS INFO</a></li>
-						<li><a href="#" class="btn_m-gr">COMPRAR</a></li>
-					</ul>
-					<div class="clear"></div>
-				</div>
-			</div>
-		</div>
-		<div class="s3_des-fchro-fch" id="canteros">
-			<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/talleres/tllr-3_canteros.jpg' %>"></img></div>
-			<div class="s3_des-fchro-fch-cont">
-				<div class="s3_des-fchro-fch-cont-tit">Canteros</div>
-				<div class="s3_des-fchro-fch-cont-txt">En este curso nos introducimos en el mundo de las huertas. Con la practicidad y simpleza que la caracterizan Clara nos explica todo lo que necesitamos saber para comenzar nuestra primera huerta y nos cuenta paso a paso como mantenerla sana y productiva todo el año.</div>
-				<div class="s3_des-fchro-fch-cont-dat">Nivel: principiantes  -  Valor $49.99</div>
-				<div class="s3_des-fchro-fch-cont-pls"></div>
-				<div class="s3_des-fchro-fch-cont-btn">
-					<ul>
-						<li><a href="javascript: damePlusFch('#canteros')" class="btn_m s3_des-fchro-fch-cont-btn-info" id="canteros">MÁS INFO</a></li>
-						<li><a href="#" class="btn_m-gr">COMPRAR</a></li>
-					</ul>
-					<div class="clear"></div>
-				</div>
-			</div>
-		</div>
-		<div class="s3_des-fchro-fch" id="frutales">
-			<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/talleres/tllr-4_frutales.jpg' %>"></img></div>
-			<div class="s3_des-fchro-fch-cont">
-				<div class="s3_des-fchro-fch-cont-tit">frutales</div>
-				<div class="s3_des-fchro-fch-cont-txt">En este curso nos introducimos en el mundo de las huertas. Con la practicidad y simpleza que la caracterizan Clara nos explica todo lo que necesitamos saber para comenzar nuestra primera huerta y nos cuenta paso a paso como mantenerla sana y productiva todo el año.</div>
-				<div class="s3_des-fchro-fch-cont-dat">Nivel: principiantes  -  Valor $49.99</div>
-				<div class="s3_des-fchro-fch-cont-pls"></div>
-				<div class="s3_des-fchro-fch-cont-btn">
-					<ul>
-						<li><a href="javascript: damePlusFch('#frutales')" class="btn_m s3_des-fchro-fch-cont-btn-info" id="frutales">MÁS INFO</a></li>
-						<li><a href="#" class="btn_m-gr">COMPRAR</a></li>
-					</ul>
-					<div class="clear"></div>
-				</div>
-			</div>
-		</div>
+		<% end %>
 	</div>
-	<div class="s3_des-enc">
-		<div class="s3_des-enc-tit">¿Cuál te gustaría que sea el próximo taller online?</div>
-		<form method="post" action="includes/enc_prc.php" id="encTaller">
-			<div class="s3_des-enc-opt">
-				<label for="rosas"><input type="radio" name="taller" value="rosas" id="rosas"/> Rosas</label>
-				<label for="canteros"><input type="radio" name="taller" value="canteros" id="canteros" /> Canteros de flores y ramos</label>
-				<label for="huertas"><input type="radio" name="taller" value="huertas" id="huertas" /> Huertas para balcones</label>
-				<label for="frutales"><input type="radio" name="taller" value="frutales" id="frutales" /> Frutales</label>
-			</div>
-			<div class="s3_des-enc-btn">
-				<ul>
-					<li><a href="#" onclick="$('#encTaller').submit()" class="btn_m-bl">VOTAR</a></li>
-					<li><a href="#" class="btn_m-gr">VER RESULTADOS</a></li>
-					<div class="clear"></div>
-				</ul>
-			</div>
-		</form>
-	</div>
+	<% if false %>
+		<div class="s3_des-enc">
+			<div class="s3_des-enc-tit">¿Cuál te gustaría que sea el próximo taller online?</div>
+			<form method="post" action="includes/enc_prc.php" id="encTaller">
+				<div class="s3_des-enc-opt">
+					<label for="rosas"><input type="radio" name="taller" value="rosas" id="rosas"/> Rosas</label>
+					<label for="canteros"><input type="radio" name="taller" value="canteros" id="canteros" /> Canteros de flores y ramos</label>
+					<label for="huertas"><input type="radio" name="taller" value="huertas" id="huertas" /> Huertas para balcones</label>
+					<label for="frutales"><input type="radio" name="taller" value="frutales" id="frutales" /> Frutales</label>
+				</div>
+				<div class="s3_des-enc-btn">
+					<ul>
+						<li><a href="#" onclick="$('#encTaller').submit()" class="btn_m-bl">VOTAR</a></li>
+						<li><a href="#" class="btn_m-gr">VER RESULTADOS</a></li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+			</form>
+		</div>
+	<% end %>
 	<div class="s3_des-txtFull">
 		<h1>¿cómo funciona?</h1>
 		<p>Es muy sencillo seguí este paso a paso:</p>

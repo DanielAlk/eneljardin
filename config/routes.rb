@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   }
   
   resources :movies
+
+  resources :workshops do
+    resources :movies, only: :new
+  end
   
   resources :comments do
     member do

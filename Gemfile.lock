@@ -164,6 +164,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.5)
+    tinymce-rails (4.3.12)
+      railties (>= 3.1.1)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -200,6 +202,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   seed_dump
   spring
+  tinymce-rails
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)

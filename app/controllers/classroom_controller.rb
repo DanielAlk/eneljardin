@@ -2,7 +2,7 @@ class ClassroomController < ApplicationController
 	before_action :authenticate_user!, only: :video
 	
   def videos
-  	@movies = Movie.all
+    @workshops = Workshop.all
   end
 
   def video

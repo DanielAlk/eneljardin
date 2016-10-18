@@ -1,6 +1,7 @@
 class CreateMovies < ActiveRecord::Migration
   def change
     create_table :movies do |t|
+      t.references :workshop, index: true, foreign_key: true
       t.string :title
       t.text :description
       t.string :video_url

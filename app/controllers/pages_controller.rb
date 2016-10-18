@@ -6,6 +6,7 @@ class PagesController < ApplicationController
   end
   
   def workshops
+    @workshops = Workshop.order(created_at: :desc)
   end
   
   def bouquets

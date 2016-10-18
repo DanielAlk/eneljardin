@@ -99,15 +99,16 @@ ocultarCV = function(){
 }
 
 damePlusFch = function(id){
+	var btn_id = id + '_btn';
 	$(".s3_des-fchro-fch-cont-pls").css({
 		display: "none"
 	});
-	if($(".s3_des-fchro-fch-cont-btn-info"+id).html() != "VOLVER"){	
+	if($(".s3_des-fchro-fch-cont-btn-info"+btn_id).html() != "VOLVER"){	
 		$(".s3_des-fchro-fch"+id).children(".s3_des-fchro-fch-cont").children(".s3_des-fchro-fch-cont-pls").css({
 			display: "inherit"
 		});
 		$(".s3_des-fchro-fch-cont-btn-info").html("MÁS INFO");
-		$(".s3_des-fchro-fch-cont-btn-info"+id).html("VOLVER");	
+		$(".s3_des-fchro-fch-cont-btn-info"+btn_id).html("VOLVER");	
 	}else{
 		$(".s3_des-fchro-fch-cont-pls").css({
 			display: "none"

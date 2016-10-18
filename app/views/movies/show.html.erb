@@ -1,30 +1,26 @@
-<div style="float:left; margin-right: -120px;">
-  <%= image_tag @movie.image.url(:small), style: 'width:120px;height:auto;' %>
-</div>
+<h1>Movie</h1>
+
+<h3>Workshop: <%= link_to @movie.workshop.title, @movie.workshop %></h3>
+<h2><%= @movie.title %></h2>
+
+<h4>
+  <small>
+    <strong>Level:</strong>
+    <%= t('levels.' + @movie.level).titlecase %>
+    &nbsp;&nbsp;&nbsp;
+    <strong>Price:</strong>
+    <%= @movie.price.to_s(:currency, unit: '$', delimiter: '.', separator: ',') %>
+  </small>
+</h4>
 
 <p>
-  <strong>Title:</strong>
-  <%= @movie.title %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @movie.price %>
-</p>
-
-<p>
-  <strong>Level:</strong>
-  <%= @movie.level %>
-</p>
-
-<p>
-  <strong>Description:</strong>
+  <%= image_tag @movie.image.url(:small), style: 'width:120px;height:auto;float:left;' %>
   <%= @movie.description %>
 </p>
 
 <p>
   <strong>Video url:</strong>
-  <%= @movie.video_url %>
+  <%= link_to @movie.video_url, @movie.video_url, target: '_blank' %>
 </p>
 
 <div style="margin-left:-75px;">

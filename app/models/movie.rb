@@ -4,6 +4,7 @@ class Movie < ActiveRecord::Base
 
 	validates_presence_of [:title, :description, :video_url, :price]
 
+	belongs_to :workshop
 	has_many :comments, as: :commentable, dependent: :destroy
 
 	enum level: [ :beginner, :intermediate, :advanced, :professional ]

@@ -1,0 +1,56 @@
+<h1>Workshop</h1>
+
+<h2><%= @workshop.title %></h2>
+<h4>
+  <small>
+    <strong>Level:</strong>
+    <%= t('levels.' + @workshop.level).titlecase %>
+    &nbsp;&nbsp;&nbsp;
+    <strong>Price:</strong>
+    <%= @workshop.price.to_s(:currency, unit: '$', delimiter: '.', separator: ',') %>
+  </small>
+</h4>
+
+<p>
+  <%= image_tag @workshop.image.url(:small), style: 'width:120px;height:auto;float:left;' %>
+  <%= @workshop.description %>
+</p>
+
+<p class="t-left">
+  <%= @workshop.information %>
+</p>
+
+<%= link_to 'Edit', edit_workshop_path(@workshop) %> |
+<%= link_to 'Back', workshops_path %>
+
+<hr>
+
+<h3>Workshop Movies</h3>
+
+<table class="table table-bordered table-condensed table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Level</th>
+      <th colspan="3">Control</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @workshop.movies.each do |movie| %>
+      <tr>
+        <td><%= movie.title %></td>
+        <td><%= movie.price %></td>
+        <td><%= movie.level %></td>
+        <td><%= link_to 'Show', movie %></td>
+        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Movie', new_workshop_movie_path(@workshop) %>
