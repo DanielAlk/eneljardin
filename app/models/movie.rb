@@ -21,7 +21,7 @@ class Movie < ActiveRecord::Base
 	end
 
 	def image_from_vimeo=(boolean)
-		image.destroy if boolean.to_i == 1
+		image.destroy if boolean.try(:to_i) == 1
 	end
 
 	def image_from_vimeo
