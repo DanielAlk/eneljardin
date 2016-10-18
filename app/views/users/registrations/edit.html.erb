@@ -6,7 +6,7 @@
       }
     }
   });
-  Utils.image_selector('#user_avatar');
+  Utils.avatar_selector('#user_avatar');
 <% end %>
 
 <h2>Editar perfíl</h2>
@@ -15,12 +15,14 @@
   <%= devise_error_messages! %>
 
   <div class="avatar">
+    <%= f.hidden_field :use_default_avatar %>
     <%= f.label :avatar do %>
       <div class="image">
         <%= image_tag current_user.avatar.url(:small) %>
       </div>
       <%= f.file_field :avatar, accept: 'image/*' %>
     <% end %>
+    <%= link_to 'Eliminar foto de perfil', '#', data: { asset: asset_path('profile/avatar-small.jpg') }, class: 'avatar-delete', style: ('display:none;' if current_user.avatar.blank?).to_s %>
   </div>
 
   <div class="field">

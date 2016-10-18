@@ -5,18 +5,34 @@ Utils.init = function() {
 	$(document).on('click', 'a[data-util="loader"], button[data-util="loader"]', Utils.loader);
 };
 
-Utils.image_selector = function(selector) {
+Utils.avatar_selector = function(selector) {
 	var $input = $(selector);
 	var $image = $input.closest('label').find('img');
+	var $use_default = $input.closest('.avatar').find('#user_use_default_avatar');
+	var $delete = $input.closest('.avatar').find('.avatar-delete');
+	var default_asset = $delete.data('asset');
 	var reader = new FileReader();
 	reader.onload = function(e) {
 		$image.attr('src', e.target.result);
+		$use_default.val(0);
+		$delete.show();
 	};
 	var onchange = function(e) {
 		var file = this.files[0];
 		reader.readAsDataURL(file);
 	};
+	var ondelete = function(e) {
+		e.preventDefault();
+		var $clone = $input.clone();
+		$image.attr('src', default_asset);
+		$use_default.val(1);
+		$input.replaceWith($clone);
+		$input = $clone;
+		$input.change(onchange);
+		$delete.hide();
+	};
 	$input.change(onchange);
+	$delete.click(ondelete);
 };
 
 Utils.loader = function() {
