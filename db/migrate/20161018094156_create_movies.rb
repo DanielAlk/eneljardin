@@ -9,8 +9,10 @@ class CreateMovies < ActiveRecord::Migration
       t.integer :level, default: 0
       t.attachment :image
       t.text :vimeo
+      t.string :slug
 
       t.timestamps null: false
     end
+    add_index :movies, :slug, unique: true
   end
 end

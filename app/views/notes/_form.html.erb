@@ -24,7 +24,7 @@
       <% @note.workshop_id = params[:workshop_id] %>
     <% end %>
     <%= f.label :workshop_id, 'Workshop' %><br>
-    <%= f.select :workshop_id, options_for_select(Workshop.all.map{|w| [w.title, w.id]}, @note.workshop_id) %>
+    <%= f.select :workshop_id, options_for_select(Workshop.all.map{|w| [w.title, w.id]}, @note.workshop_id), required: true %>
   </div>
   <div class="field">
     <%= f.label :description %><br>

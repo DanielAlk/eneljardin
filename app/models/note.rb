@@ -5,7 +5,7 @@ class Note < ActiveRecord::Base
 	has_attached_file :note
 	validates_attachment :note, required: true, content_type: { content_type: /\Aapplication\/pdf\Z/ }
 
-	validates_presence_of [:title, :description]
+	validates_presence_of [:workshop, :title, :description]
 
 	belongs_to :workshop
 	has_many :comments, as: :commentable, dependent: :destroy

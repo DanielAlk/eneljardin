@@ -6,7 +6,7 @@ class ClassroomController < ApplicationController
   end
 
   def video
-    @movie = Movie.find(params[:movie_id])
+    @movie = Movie.friendly.find(params[:movie_id])
   	@other_movies = Movie.where.not(id: @movie.id)
     @comments = @movie.comments.order(created_at: :desc).paginate(page: 1, per_page: 4)
   end
