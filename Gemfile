@@ -36,6 +36,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'figaro'
+gem 'sucker_punch'
 gem 'devise'
 gem 'friendly_id', '~> 5.1.0'
 gem "paperclip", "~> 5.0.0"
