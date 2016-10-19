@@ -7,6 +7,7 @@ class Workshop < ActiveRecord::Base
 	tinymce column: :information
 
 	has_many :movies, dependent: :destroy
+	has_many :notes, dependent: :destroy
 
 	enum level: [ :beginner, :intermediate, :advanced, :professional ]
 

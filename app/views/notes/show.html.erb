@@ -1,0 +1,17 @@
+<h1>Note</h1>
+
+<h3>Workshop: <%= link_to @note.workshop.title, @note.workshop %></h3>
+<h2><%= @note.title %></h2>
+
+<p>
+  <%= image_tag @note.image.url(:small), style: 'width:120px;height:auto;float:left;' %>
+  <%= @note.description %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= link_to @note.note_file_name, @note.note.url, target: '_blank' %>
+</p>
+
+<%= link_to 'Edit', edit_note_path(@note) %> |
+<%= link_to 'Back', notes_path %>

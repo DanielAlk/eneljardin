@@ -1,0 +1,54 @@
+<% content_for :extra_js do %>
+  $('form.new_note, form.edit_note').validate();
+<% end %>
+
+<%= form_for(@note, data: { util: :loader }) do |f| %>
+  <% if @note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
+
+      <ul>
+      <% @note.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, required: true %>
+  </div>
+  <div class="field">
+    <% if @note.new_record? && params[:workshop_id].present? %>
+      <% @note.workshop_id = params[:workshop_id] %>
+    <% end %>
+    <%= f.label :workshop_id, 'Workshop' %><br>
+    <%= f.select :workshop_id, options_for_select(Workshop.all.map{|w| [w.title, w.id]}, @note.workshop_id) %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, rows: 5, required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :image do %>
+      Image
+      <% if @note.image.present? %>
+        <small>(Contiene una imágen: <%= @note.image_file_name[0...20] %>…)</small>
+      <% end %>
+    <% end %><br>
+    <%= f.file_field :image, accept: 'image/*', required: @note.image.blank? %>
+  </div>
+  <div class="field">
+    <%= f.label :note do %>
+      Note
+      <% if @note.note.present? %>
+        <small>(Contiene una nota: <%= @note.note_file_name[0...20] %>…)</small>
+      <% end %>
+    <% end %><br>
+    <%= f.file_field :note, accept: 'application/pdf', required: @note.note.blank? %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

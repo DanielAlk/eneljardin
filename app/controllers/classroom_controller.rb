@@ -12,5 +12,6 @@ class ClassroomController < ApplicationController
   end
 
   def notes
+    @notes = Note.all
   end
 end

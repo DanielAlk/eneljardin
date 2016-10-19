@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  workshop_id: 
+  title: MyString
+  description: MyText
+  image: 
+  note: 
+
+two:
+  workshop_id: 
+  title: MyString
+  description: MyText
+  image: 
+  note: 

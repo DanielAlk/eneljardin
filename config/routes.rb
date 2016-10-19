@@ -8,9 +8,11 @@ Rails.application.routes.draw do
   }
   
   resources :movies
+  resources :notes
 
   resources :workshops do
     resources :movies, only: :new
+    resources :notes, only: :new
   end
   
   resources :comments do

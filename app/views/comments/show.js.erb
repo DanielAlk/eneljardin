@@ -11,7 +11,7 @@ $(function() {
 				$('#comments').append($comment);
 			<% else #new root comment %>
 				cont_mInc();
-				$('form#new_movie_comment').get(0).reset();
+				$('form.new_comment').get(0).reset();
 				$('#comments').prepend($comment);
 			<% end %>
 		<% else #response %>

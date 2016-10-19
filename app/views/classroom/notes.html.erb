@@ -1,3 +1,8 @@
+<% content_for :extra_js do %>
+	$('form.new_comment').validate();
+	Utils.cont_mInc_fix($('form.new_comment'));
+<% end %>
+
 <div id="s2_back" class="aula">
 	<div id="s2_back-cont">
 		<div id="s2_back-cont-tit">Aula virtual</div>
@@ -13,167 +18,44 @@
 		<div class="clear"></div>
 	</div>
 	<div class="s3_des-fchro fchroApuntes">
-		<div class="s3_des-fchro-fch" id="frutales">
-			<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/aula/apuntes/aula_apuntes-01.jpg' %>" /></div>
-			<div class="s3_des-fchro-fch-cont">
-				<div class="s3_des-fchro-fch-cont-tit">Árboles Frutales</div>
-				<div class="s3_des-fchro-fch-cont-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</div>
-				<div class="s3_des-fchro-fch-cont-btn">
-					<ul>
-						<li><a href="#" class="btn_m">DESCARGAR</a></li>
-						<li><a href="#" class="btn_m-gr">VER</a></li>
-						<li><a href="javascript: mostrarMsg('#frutales')" class="btn_m-bl"><img src="<%= asset_path 'icoMsg.png' %>" class="icoMsg" /> MENSAJES</a></li>
-					</ul>
-					<div class="clear"></div>
-				</div>
-				<div class="s3_des-msg">
-					<div class="s3_des-msg-tit">Mensajes:</div>
-					<div class="s3_des-msg-mInc">
-						<div class="s3_des-msg-mInc-pic"><img src="<%= asset_path 'profile/profilePic-1.jpg' %>" /></div>
-						<div class="s3_des-msg-mInc-form">
-							<textarea type="text" name="mInc_txt" id="mInc_txt" placeholder="Escribe tu consulta aquí..." onfocus="exp_mInc()" onblur="cont_mInc()"></textarea>
-							<button>✓</button>
-						</div>
-						<div class="clear"></div>
-					</div>	
-					<div class="s3_des-msg-mLst">
+		<% @notes.each do |note| %>
+			<div class="s3_des-fchro-fch" id="note_<%= note.id %>">
+				<div class="s3_des-fchro-fch-pic"><%= image_tag note.image.url(:small) %></div>
+				<div class="s3_des-fchro-fch-cont">
+					<div class="s3_des-fchro-fch-cont-tit"><%= note.title %></div>
+					<div class="s3_des-fchro-fch-cont-txt"><%= note.description %></div>
+					<div class="s3_des-fchro-fch-cont-btn">
 						<ul>
-							<li>
-								<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-2.jpg' %>" /></div>
-								<div class="s3_des-msg-mLst-mtxt">
-									<div class="s3_des-msg-mLst-mtxt-nom">Jessica Briscenio</div>
-									<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
-								</div>
-							</li>
-							<li>
-								<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-3.jpg' %>" /></div>
-								<div class="s3_des-msg-mLst-mtxt">
-									<div class="s3_des-msg-mLst-mtxt-nom">Laura Prado</div>
-									<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
-								</div>
-							</li>
-							<li>
-								<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-4.jpg' %>" /></div>
-								<div class="s3_des-msg-mLst-mtxt">
-									<div class="s3_des-msg-mLst-mtxt-nom">Gabriela Lopez</div>
-									<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
-								</div>
-								<ul>
-									<li>
-										<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-8.jpg' %>" /></div>
-										<div class="s3_des-msg-mLst-mtxt">
-											<div class="s3_des-msg-mLst-mtxt-nom">Clara Billoch</div>
-											<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
-										</div>
-									</li>
-								</ul>
-							</li>
-							<li>
-								<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-5.jpg' %>" /></div>
-								<div class="s3_des-msg-mLst-mtxt">
-									<div class="s3_des-msg-mLst-mtxt-nom">Valeria Romeo</div>
-									<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
-								</div>
-							</li>
-							<li>
-								<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-6.jpg' %>" /></div>
-								<div class="s3_des-msg-mLst-mtxt">
-									<div class="s3_des-msg-mLst-mtxt-nom">Fernanda Piro</div>
-									<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
-								</div>
-							</li>
-							<li>
-								<div class="s3_des-msg-mLst-mPic"><img src="<%= asset_path 'profile/profilePic-7.jpg' %>" /></div>
-								<div class="s3_des-msg-mLst-mtxt">
-									<div class="s3_des-msg-mLst-mtxt-nom">Daniela Lonero</div>
-									<div class="s3_des-msg-mLst-mtxt-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</div>	
-								</div>
-							</li>
+							<li><%= link_to 'DESCARGAR', note.note.url, download: note.note_file_name, class: 'btn_m' %></li>
+							<li><%= link_to 'VER', note.note.url, target: '_blank', class: 'btn_m-gr' %></li>
+							<li><a href="javascript: mostrarMsg('#note_<%= note.id %>')" class="btn_m-bl"><img src="<%= asset_path 'icoMsg.png' %>" class="icoMsg" /> MENSAJES</a></li>
 						</ul>
-						<button class="btn_full" onclick="ocultarMsg()">CERRAR</button>
+						<div class="clear"></div>
+					</div>
+					<div class="s3_des-msg">
+						<div class="s3_des-msg-tit">Mensajes:</div>
+						<div class="s3_des-msg-mInc">
+							<div class="s3_des-msg-mInc-pic"><%= image_tag current_user.avatar.url(:thumb) %></div>
+							<div class="s3_des-msg-mInc-form">
+								<%= form_for Comment.new(commentable: note), remote: true, html: { id: 'new_note_'+note.id.to_s+'_comment' }, data: { util: :loader } do |f| %>
+									<%= f.hidden_field :commentable_id %>
+									<%= f.hidden_field :commentable_type %>
+									<%= f.hidden_field :user_id, value: current_user.id %>
+									<%= f.text_area :text, type: 'text', placeholder: 'Escribe tu consulta aquí…', onfocus: 'exp_mInc()', required: true, maxlength: 540 %>
+									<%= f.submit '✓' %>
+								<% end %>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="s3_des-msg-mLst">
+							<ul id="comments">
+								<%= render note.comments %>
+							</ul>
+							<button class="btn_full" onclick="ocultarMsg()">CERRAR</button>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="s3_des-fchro-fch" id="cesped">
-			<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/aula/apuntes/aula_apuntes-02.jpg' %>" /></div>
-			<div class="s3_des-fchro-fch-cont">
-				<div class="s3_des-fchro-fch-cont-tit">Cesped</div>
-				<div class="s3_des-fchro-fch-cont-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</div>
-				<div class="s3_des-fchro-fch-cont-pls"></div>
-				<div class="s3_des-fchro-fch-cont-btn">
-					<ul>
-						<li><a href="#" class="btn_m">DESCARGAR</a></li>
-						<li><a href="#" class="btn_m-gr">VER</a></li>
-						<li><a href="#" class="btn_m-bl"><img src="<%= asset_path 'icoMsg.png' %>" class="icoMsg" /> MENSAJES</a></li>
-					</ul>
-					<div class="clear"></div>
-				</div>
-			</div>
-		</div>
-		<div class="s3_des-fchro-fch" id="enredaderas">
-			<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/aula/apuntes/aula_apuntes-03.jpg' %>" /></div>
-			<div class="s3_des-fchro-fch-cont">
-				<div class="s3_des-fchro-fch-cont-tit">Enredaderas</div>
-				<div class="s3_des-fchro-fch-cont-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</div>
-				<div class="s3_des-fchro-fch-cont-pls"></div>
-				<div class="s3_des-fchro-fch-cont-btn">
-					<ul>
-						<li><a href="#" class="btn_m">DESCARGAR</a></li>
-						<li><a href="#" class="btn_m-gr">VER</a></li>
-						<li><a href="#" class="btn_m-bl"><img src="<%= asset_path 'icoMsg.png' %>" class="icoMsg" /> MENSAJES</a></li>
-					</ul>
-					<div class="clear"></div>
-				</div>
-			</div>
-		</div>
-		<div class="s3_des-fchro-fch" id="bulbos">
-			<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/aula/apuntes/aula_apuntes-04.jpg' %>" /></div>
-			<div class="s3_des-fchro-fch-cont">
-				<div class="s3_des-fchro-fch-cont-tit">Bulbos</div>
-				<div class="s3_des-fchro-fch-cont-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</div>
-				<div class="s3_des-fchro-fch-cont-pls"></div>
-				<div class="s3_des-fchro-fch-cont-btn">
-					<ul>
-						<li><a href="#" class="btn_m">DESCARGAR</a></li>
-						<li><a href="#" class="btn_m-gr">VER</a></li>
-						<li><a href="#" class="btn_m-bl"><img src="<%= asset_path 'icoMsg.png' %>" class="icoMsg" /> MENSAJES</a></li>
-					</ul>
-					<div class="clear"></div>
-				</div>
-			</div>
-		</div>
-		<div class="s3_des-fchro-fch" id="plagas">
-			<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/aula/apuntes/aula_apuntes-05.jpg' %>" /></div>
-			<div class="s3_des-fchro-fch-cont">
-				<div class="s3_des-fchro-fch-cont-tit">Control de Plagas</div>
-				<div class="s3_des-fchro-fch-cont-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</div>
-				<div class="s3_des-fchro-fch-cont-pls"></div>
-				<div class="s3_des-fchro-fch-cont-btn">
-					<ul>
-						<li><a href="#" class="btn_m">DESCARGAR</a></li>
-						<li><a href="#" class="btn_m-gr">VER</a></li>
-						<li><a href="#" class="btn_m-bl"><img src="<%= asset_path 'icoMsg.png' %>" class="icoMsg" /> MENSAJES</a></li>
-					</ul>
-					<div class="clear"></div>
-				</div>
-			</div>
-		</div>
-		<div class="s3_des-fchro-fch" id="poda">
-			<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/aula/apuntes/aula_apuntes-06.jpg' %>" /></div>
-			<div class="s3_des-fchro-fch-cont">
-				<div class="s3_des-fchro-fch-cont-tit">Poda</div>
-				<div class="s3_des-fchro-fch-cont-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</div>
-				<div class="s3_des-fchro-fch-cont-pls"></div>
-				<div class="s3_des-fchro-fch-cont-btn">
-					<ul>
-						<li><a href="#" class="btn_m">DESCARGAR</a></li>
-						<li><a href="#" class="btn_m-gr">VER</a></li>
-						<li><a href="#" class="btn_m-bl"><img src="<%= asset_path 'icoMsg.png' %>" class="icoMsg" /> MENSAJES</a></li>
-					</ul>
-					<div class="clear"></div>
-				</div>
-			</div>
-		</div>
+		<% end %>
 	</div>
 </div>

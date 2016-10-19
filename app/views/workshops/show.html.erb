@@ -25,6 +25,36 @@
 
 <hr>
 
+<h1>Workshop Notes</h1>
+
+<table class="table table-bordered table-condensed table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Note</th>
+      <th colspan="3">Control</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @workshop.notes.each do |note| %>
+      <tr>
+        <td><%= note.title %></td>
+        <td><%= link_to note.note_file_name, note.note.url, target: '_blank' %></td>
+        <td><%= link_to 'Show', note %></td>
+        <td><%= link_to 'Edit', edit_note_path(note) %></td>
+        <td><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Note', new_workshop_note_path(@workshop) %>
+
+<hr>
+
 <h3>Workshop Movies</h3>
 
 <table class="table table-bordered table-condensed table-hover table-striped">

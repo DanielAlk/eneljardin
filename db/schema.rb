@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018094156) do
+ActiveRecord::Schema.define(version: 20161019063605) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "title",            limit: 255
@@ -44,6 +44,24 @@ ActiveRecord::Schema.define(version: 20161018094156) do
   end
 
   add_index "movies", ["workshop_id"], name: "index_movies_on_workshop_id", using: :btree
+
+  create_table "notes", force: :cascade do |t|
+    t.integer  "workshop_id",        limit: 4
+    t.string   "title",              limit: 255
+    t.text     "description",        limit: 65535
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
+    t.string   "note_file_name",     limit: 255
+    t.string   "note_content_type",  limit: 255
+    t.integer  "note_file_size",     limit: 4
+    t.datetime "note_updated_at"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "notes", ["workshop_id"], name: "index_notes_on_workshop_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   limit: 255
@@ -84,4 +102,5 @@ ActiveRecord::Schema.define(version: 20161018094156) do
 
   add_foreign_key "comments", "users"
   add_foreign_key "movies", "workshops"
+  add_foreign_key "notes", "workshops"
 end
