@@ -12,8 +12,16 @@ class Payment < ActiveRecord::Base
 
   def self.find_mp(collection_id)
   	payment_info = $mp.get('/collections/notifications/' + collection_id)
-  	#payment_info = $mp.get_payment_info(collection_id)
-
+	if payment_info['status'].try(:to_i) == 200
+		payment = self.find(payment_info['response']['collection']['external_reference'])
+		if payment.present?
+			payment.collection_status = payment_info['response']['collection']['status']
+			#payment.collection_status_detail = payment_info['response']['collection']['status_detail']
+			payment.save
+			return payment
+		end
+	end
+	return false
   end
 
   def workshop
