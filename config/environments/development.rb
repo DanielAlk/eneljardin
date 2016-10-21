@@ -41,6 +41,8 @@ Rails.application.configure do
   config.i18n.default_locale = :es
   config.i18n.fallbacks = true
 
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+
   # ActionMailer Config
   config.action_mailer.default_url_options = { host: ENV['webapp_domain'], port: 3000 }
   config.action_mailer.smtp_settings = {

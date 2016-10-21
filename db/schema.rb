@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161019063605) do
+ActiveRecord::Schema.define(version: 20161020093419) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "title",            limit: 255
@@ -78,6 +78,32 @@ ActiveRecord::Schema.define(version: 20161019063605) do
 
   add_index "notes", ["workshop_id"], name: "index_notes_on_workshop_id", using: :btree
 
+  create_table "payment_workshops", force: :cascade do |t|
+    t.integer  "payment_id",  limit: 4
+    t.integer  "workshop_id", limit: 4
+    t.decimal  "price",                 precision: 8, scale: 2
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  add_index "payment_workshops", ["payment_id"], name: "index_payment_workshops_on_payment_id", using: :btree
+  add_index "payment_workshops", ["workshop_id"], name: "index_payment_workshops_on_workshop_id", using: :btree
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "user_id",                limit: 4
+    t.decimal  "transaction_amount",                   precision: 8, scale: 2
+    t.text     "mercadopago_preference", limit: 65535
+    t.string   "init_point",             limit: 255
+    t.integer  "collection_id",          limit: 8
+    t.string   "collection_status",      limit: 255
+    t.string   "preference_id",          limit: 255
+    t.string   "payment_type",           limit: 255
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
+  end
+
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "name",                   limit: 255
     t.string   "avatar_file_name",       limit: 255
@@ -121,4 +147,7 @@ ActiveRecord::Schema.define(version: 20161019063605) do
   add_foreign_key "comments", "users"
   add_foreign_key "movies", "workshops"
   add_foreign_key "notes", "workshops"
+  add_foreign_key "payment_workshops", "payments"
+  add_foreign_key "payment_workshops", "workshops"
+  add_foreign_key "payments", "users"
 end

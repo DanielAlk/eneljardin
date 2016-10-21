@@ -1,0 +1,10 @@
+$(function() {
+	Utils.loader().hide();
+	$MPC.openCheckout ({
+		url: '<%= @payment.init_point %>',
+		mode: 'modal',
+		onreturn: function(data) {
+			console.log(data);
+		}
+	});
+});

@@ -1,0 +1,42 @@
+<p>
+  <strong>User:</strong>
+  <%= @payment.user.name %>
+</p>
+
+<p>
+  <strong>Transaction amount:</strong>
+  <%= @payment.transaction_amount %>
+</p>
+
+<!--p>
+  <strong>Mercadopago preference:</strong>
+  <%= @payment.mercadopago_preference %>
+</p-->
+
+<!--p>
+  <strong>Init point:</strong>
+  <%= @payment.init_point %>
+</p-->
+
+<p>
+  <strong>Collection id:</strong>
+  <%= @payment.collection_id %>
+</p>
+
+<p>
+  <strong>Collection status:</strong>
+  <%= @payment.collection_status %>
+</p>
+
+<p>
+  <strong>Preference id:</strong>
+  <%= @payment.preference_id %>
+</p>
+
+<p>
+  <strong>Payment type:</strong>
+  <%= @payment.payment_type %>
+</p>
+
+<%= link_to 'Edit', edit_payment_path(@payment) %> |
+<%= link_to 'Back', payments_path %>

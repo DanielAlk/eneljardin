@@ -8,6 +8,14 @@ class User < ActiveRecord::Base
 	#validates_attachment :avatar, presence: true, content_type: { content_type: /\Aimage\/.*\Z/ }, size: { less_than: 1.megabytes }
 	validates_attachment :avatar, content_type: { content_type: /\Aimage\/.*\Z/ }
 
+	def first_name
+		name[/[^\s]+/]
+	end
+
+	def last_name
+		name.sub(first_name + ' ', '') unless self.name[' '].nil?
+	end
+
 	def use_default_avatar=(boolean)
 		avatar.destroy if boolean.try(:to_i) == 1
 	end

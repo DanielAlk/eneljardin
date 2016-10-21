@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  payment_id: 
+  workshop_id: 
+  price: 9.99
+
+two:
+  payment_id: 
+  workshop_id: 
+  price: 9.99

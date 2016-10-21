@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  transaction_amount: 9.99
+  mercadopago_preference: MyText
+  init_point: MyString
+  collection_id: 1
+  collection_status: MyString
+  preference_id: MyString
+  payment_type: MyString
+
+two:
+  user_id: 
+  transaction_amount: 9.99
+  mercadopago_preference: MyText
+  init_point: MyString
+  collection_id: 1
+  collection_status: MyString
+  preference_id: MyString
+  payment_type: MyString
