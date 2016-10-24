@@ -82,24 +82,5 @@
 		<p>2013. “HUERTA Y COCINA" (Ediciones Catapulta, 2015), Autora.</p>
 		<p>2015. “FRUTALES Y COCINA” (Ediciones Catapulta”, 2015), Autora.</p>
 	</div>
-	<div id="s3_des-nwsl">
-		<div id="s3_des-nwsl-icn"><img src="<%= asset_path 'nwsltr/btnNwsltr.png' %>" /></div>
-		<div id="s3_des-nwsl-tit">
-			<div id="s3_des-nwsl-tit-cont">
-				<h1>Newsletter</h1>
-				<p>Suscribirte para recibir las últimas novedades sobre cursos y publicaciones.</p>	
-			</div>
-		</div>
-		<div id="s3_des-nwsl-form">
-			<form action="includes/nwsltr_prc.php" method="post">
-				<div id="s3_des-nwsl-form-mail">
-					<input type="text" placeholder="Tu Email aquí" />
-				</div>
-				<div id="s3_des-nwsl-form-btn">
-					<input type="submit" value="ENVIAR" />
-				</div>
-			</form>
-		</div>
-		<div class="clear"></div>
-	</div>
+	<%= render 'partials/newsletter_form' %>
 </div>

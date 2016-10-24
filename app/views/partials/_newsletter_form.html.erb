@@ -1,0 +1,34 @@
+<% unless user_signed_in? && Contact.where(kind: 1, email: current_user.email).present? %>
+	<% content_for :extra_js do %>
+		$('form#newsletter_form').validate();
+	<% end %>
+
+	<% if user_signed_in? %>
+		<% @contact = Contact.new(name: current_user.name, email: current_user.email, kind: :newsletter) %>
+	<% else %>
+		<% @contact = Contact.new(kind: :newsletter) %>
+	<% end %>
+
+	<div id="s3_des-nwsl">
+		<div id="s3_des-nwsl-icn"><img src="<%= asset_path 'nwsltr/btnNwsltr.png' %>" /></div>
+		<div id="s3_des-nwsl-tit">
+			<div id="s3_des-nwsl-tit-cont">
+				<h1>Newsletter</h1>
+				<p>Suscribirte para recibir las últimas novedades sobre cursos y publicaciones.</p>	
+			</div>
+		</div>
+		<div id="s3_des-nwsl-form">
+			<%= form_for @contact, html: { id: 'newsletter_form' } do |f| %>
+				<%= f.hidden_field :kind %>
+				<%= f.hidden_field :name %>
+				<div id="s3_des-nwsl-form-mail">
+					<%= f.email_field :email, placeholder: 'Tu Email Aquí', required: true %>
+				</div>
+				<div id="s3_des-nwsl-form-btn">
+					<%= f.submit 'ENVIAR' %>
+				</div>
+			<% end %>
+		</div>
+		<div class="clear"></div>
+	</div>
+<% end %>
