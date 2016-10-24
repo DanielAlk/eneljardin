@@ -1,47 +1,45 @@
 Rails.application.routes.draw do
-  constraints subdomain: /stage/ do
-    root 'pages#home'
+  root 'pages#home'
 
-    devise_for :users, controllers: { 
-      registrations: 'users/registrations',
-      sessions: 'users/sessions',
-      passwords: 'users/passwords'
-    }
+  devise_for :users, controllers: { 
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    passwords: 'users/passwords'
+  }
 
-    resources :payments do
-      collection do
-        post 'notifications', action: :notifications
-      end
+  resources :payments do
+    collection do
+      post 'notifications', action: :notifications
     end
-    
-    resources :comments do
-      member do
-        get 'respond'
-      end
-    end
-    
-    resources :contacts
-
-    resources :movies
-    resources :notes
-
-    resources :workshops do
-      resources :movies, only: :new
-      resources :notes, only: :new
-    end
-
-    get 'bienvenidos', to: 'pages#welcome', as: :welcome_page
-    get 'talleres-online', to: 'pages#workshops', as: :workshops_page
-    get 'talleres-online/:workshop_id', to: 'pages#workshop', as: :workshop_page
-    get 'ramos', to: 'pages#bouquets', as: :bouquets_page
-    get 'talleres-presenciales', to: 'pages#face_workshops', as: :face_workshops_page
-    get 'publicaciones', to: 'pages#publications', as: :publications_page
-    get 'contacto', to: 'pages#contact', as: :contact_page
-
-    get 'aula-virtual/videos', to: 'classroom#videos', as: :classroom_videos
-    get 'aula-virtual/video/:movie_id', to: 'classroom#video', as: :classroom_video
-    get 'aula-virtual/apuntes', to: 'classroom#notes', as: :classroom_notes
   end
+  
+  resources :comments do
+    member do
+      get 'respond'
+    end
+  end
+  
+  resources :contacts
+
+  resources :movies
+  resources :notes
+
+  resources :workshops do
+    resources :movies, only: :new
+    resources :notes, only: :new
+  end
+
+  get 'bienvenidos', to: 'pages#welcome', as: :welcome_page
+  get 'talleres-online', to: 'pages#workshops', as: :workshops_page
+  get 'talleres-online/:workshop_id', to: 'pages#workshop', as: :workshop_page
+  get 'ramos', to: 'pages#bouquets', as: :bouquets_page
+  get 'talleres-presenciales', to: 'pages#face_workshops', as: :face_workshops_page
+  get 'publicaciones', to: 'pages#publications', as: :publications_page
+  get 'contacto', to: 'pages#contact', as: :contact_page
+
+  get 'aula-virtual/videos', to: 'classroom#videos', as: :classroom_videos
+  get 'aula-virtual/video/:movie_id', to: 'classroom#video', as: :classroom_video
+  get 'aula-virtual/apuntes', to: 'classroom#notes', as: :classroom_notes
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
