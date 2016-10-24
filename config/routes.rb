@@ -19,6 +19,8 @@ Rails.application.routes.draw do
         get 'respond'
       end
     end
+    
+    resources :contacts
 
     resources :movies
     resources :notes

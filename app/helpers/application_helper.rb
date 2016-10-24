@@ -5,7 +5,7 @@ module ApplicationHelper
 
 	def scaffolds_size
 		case controller_name.to_sym
-		when :payments
+		when :payments, :contacts
 			case action_name.to_sym
 			when :index
 				:large if user_signed_in? && current_user.admin?

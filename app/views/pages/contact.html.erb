@@ -1,10 +1,14 @@
+<% content_for :extra_js do %>
+	$('form.new_contact').validate();
+<% end %>
+
 <div id="s2_back" class="contacto"></div>
 <div id="s3_des" class="s3_desCntc">
 	<center><h4>Dejanos un mensaje</h4></center>
-	<form action="includes/cntc_prc.php" method="post">
-		<input type="text" name="cntc_nom" id="cntc_nom" placeholder="Nombre" />
-		<input type="text" name="cntc_mail" id="cntc_mail" placeholder="Email" />
-		<textarea name="cntc_msg" id="cntc_msg" placeholder="Mensaje" /></textarea>
-		<input type="submit" name="cntc_sbmt" id="cntc_sbmt" value="ENVIAR" />
-	</form>
+	<%= form_for @contact do |f| %>
+		<%= f.text_field :name, placeholder: 'Nombre', required: true %>
+		<%= f.email_field :email, placeholder: 'Email', required: true %>
+		<%= f.text_area :message, placeholder: 'Mensaje', required: true %>
+		<%= f.submit 'ENVIAR' %>
+	<% end %>
 </div>

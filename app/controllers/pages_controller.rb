@@ -26,5 +26,10 @@ class PagesController < ApplicationController
   end
   
   def contact
+    @contact = Contact.new
+    if user_signed_in?
+      @contact.name = current_user.name
+      @contact.email = current_user.email
+    end
   end
 end
