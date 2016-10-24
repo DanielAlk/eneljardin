@@ -18,7 +18,7 @@
 			</div>
 		</div>
 		<div id="s3_des-nwsl-form">
-			<%= form_for @contact, html: { id: 'newsletter_form' } do |f| %>
+			<%= form_for @contact, html: { id: 'newsletter_form' }, data: { util: :loader } do |f| %>
 				<%= f.hidden_field :kind %>
 				<%= f.hidden_field :name %>
 				<div id="s3_des-nwsl-form-mail">
