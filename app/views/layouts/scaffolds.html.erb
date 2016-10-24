@@ -8,10 +8,11 @@
 </head>
 <body>
 	<%= render 'layouts/navigation' %>
-	<div class="scaffolds">
+	<div class="scaffolds <%= scaffolds_size %>">
 		<%= yield %>
 	</div>
 	<%= render 'layouts/footer' %>
+	<%= render 'layouts/mp_sdk' %>
 	<script>
 		$(function() {
 			<% if notice.present? %>

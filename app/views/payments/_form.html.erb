@@ -16,6 +16,10 @@
     <%= f.text_field :user_id %>
   </div>
   <div class="field">
+    <%= f.label :workshop_id %><br>
+    <%= f.text_field :workshop_id %>
+  </div>
+  <div class="field">
     <%= f.label :transaction_amount %><br>
     <%= f.text_field :transaction_amount %>
   </div>
@@ -28,12 +32,20 @@
     <%= f.text_field :init_point %>
   </div>
   <div class="field">
+    <%= f.label :payment_info %><br>
+    <%= f.text_field :payment_info %>
+  </div>
+  <div class="field">
     <%= f.label :collection_id %><br>
     <%= f.number_field :collection_id %>
   </div>
   <div class="field">
     <%= f.label :collection_status %><br>
     <%= f.text_field :collection_status %>
+  </div>
+  <div class="field">
+    <%= f.label :collection_status_detail %><br>
+    <%= f.text_field :collection_status_detail %>
   </div>
   <div class="field">
     <%= f.label :preference_id %><br>

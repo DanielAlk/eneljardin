@@ -1,13 +1,18 @@
 class PaymentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :notifications
   before_action :authenticate_user!, except: :notifications
-  before_action :set_payment, only: [:show, :edit, :update, :destroy, :back]
+  before_action :set_payment, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_payment_user!, only: [:show, :update, :destroy]
   layout 'scaffolds'
 
   # GET /payments
   # GET /payments.json
   def index
-    @payments = Payment.all
+    if current_user.admin?
+      @payments = Payment.paginate(page: params[:page])
+    else
+      @payments = Payment.where(user: current_user).paginate(page: params[:page])
+    end
   end
 
   # GET /payments/1
@@ -28,7 +33,6 @@ class PaymentsController < ApplicationController
   # POST /payments.json
   def create
     @payment = Payment.new(payment_params)
-    @payment.payment_workshops.new(workshop: Workshop.friendly.find(params.require(:workshop_id)))
 
     respond_to do |format|
       if @payment.save
@@ -65,14 +69,6 @@ class PaymentsController < ApplicationController
     end
   end
 
-  def back
-    if @payment.update(params.permit(:collection_id, :collection_status, :preference_id, :payment_type))
-      redirect_to @payment, notice: 'Se ha procesado tu pago.'
-    else
-      redirect_to @payment, alert: 'Ocurrió un error.'
-    end
-  end
-
   # POST /payments/notifications/
   def notifications
     topic = params[:type] || params[:topic]
@@ -97,6 +93,12 @@ class PaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:user_id, :transaction_amount, :installments, :additional_info, :mercadopago_payment, :mercadopago_payment_id, :status, :status_detail)
+      params.require(:payment).permit(:user_id, :workshop_id, :transaction_amount, :collection_id, :collection_status, :collection_status_detail, :preference_id, :payment_type)
+    end
+
+    def authenticate_payment_user!
+      unless @payment.user == current_user || current_user.admin?
+        raise ActionController::RoutingError.new("No route matches [GET] \"#{request.path}\"")
+      end
     end
 end

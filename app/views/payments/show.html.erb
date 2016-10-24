@@ -1,42 +1,41 @@
+<% if @payment.approved? %>
+  <h1>SE COMPLETÓ TU PÁGO</h1>
+<% elsif @payment.in_process? %>
+  <h1>TU PÁGO ESTÁ SIENDO PROCESADO</h1>
+<% else %>
+  <h1>EL PÁGO FUE RECHAZADO</h1>
+<% end %>
+
 <p>
-  <strong>User:</strong>
-  <%= @payment.user.name %>
+  <% if @payment.approved? %>
+    ¡Gracias <%= @payment.user.first_name %> por comprar nustro curso!
+  <% end %>
+</p>
+
+<%= link_to @payment.workshop, class: 'conceal-link' do %>
+  <h3 style="margin-bottom:0;"><%= @payment.workshop.title %></h3>
+  <div class="bg-cover" style="height:150px;background-image:url(<%= @payment.workshop.image.url(:medium) %>)"></div>
+<% end %>
+
+<p>
+  <big>
+    <strong><%= t "mercadopago.statuses.#{@payment.collection_status}" %>:</strong>
+    <%= @payment.transaction_amount.to_s(:currency, unit: '$', separator: '.', delimiter: ',') %>
+  </big>
 </p>
 
 <p>
-  <strong>Transaction amount:</strong>
-  <%= @payment.transaction_amount %>
+  <%= t "mercadopago.status_messages.#{@payment.collection_status}" %>
 </p>
 
-<!--p>
-  <strong>Mercadopago preference:</strong>
-  <%= @payment.mercadopago_preference %>
-</p-->
+<% if @payment.approved? %>
+  <p>
+    <small><strong>ATENCIÓN</strong><br>
+    Los videos estarán disponibles para que los veas cuantas veces quieras, pero solo por un lapso de 30 días. Terminado ese periodo los videos no estarán disponibles. Los apuntes y el acceso al aula virtual junto a la sección de preguntas y respuestas es ilimitada, es decir que incluso pasado el periodo de 30 dias podrás tener acceso a ellas.</small>
+  </p>
+<% end %>
 
-<!--p>
-  <strong>Init point:</strong>
-  <%= @payment.init_point %>
-</p-->
-
-<p>
-  <strong>Collection id:</strong>
-  <%= @payment.collection_id %>
-</p>
-
-<p>
-  <strong>Collection status:</strong>
-  <%= @payment.collection_status %>
-</p>
-
-<p>
-  <strong>Preference id:</strong>
-  <%= @payment.preference_id %>
-</p>
-
-<p>
-  <strong>Payment type:</strong>
-  <%= @payment.payment_type %>
-</p>
-
-<%= link_to 'Edit', edit_payment_path(@payment) %> |
-<%= link_to 'Back', payments_path %>
+<%= link_to '¡Empezar el curso!', @payment.workshop.movies.first, class: 'button' %>
+<br>
+<%# link_to 'Edit', edit_payment_path(@payment) %>
+<%= link_to 'Ver mis pagos', payments_path %>

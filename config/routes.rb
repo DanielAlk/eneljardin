@@ -12,16 +12,12 @@ Rails.application.routes.draw do
       collection do
         post 'notifications', action: :notifications
       end
-      member do
-        get 'back'
-      end
     end
     
     resources :movies
     resources :notes
 
     resources :workshops do
-      resources :payments, only: :create
       resources :movies, only: :new
       resources :notes, only: :new
     end

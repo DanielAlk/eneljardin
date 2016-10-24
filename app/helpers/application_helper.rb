@@ -3,6 +3,16 @@ module ApplicationHelper
 		'activo' if action == action_name.to_sym
 	end
 
+	def scaffolds_size
+		case controller_name.to_sym
+		when :payments
+			case action_name.to_sym
+			when :index
+				:large if user_signed_in? && current_user.admin?
+			end
+		end
+	end
+
 	def tinymce_init(height = 0)
 		content_for :extra_js do
 			"setTimeout(function() {

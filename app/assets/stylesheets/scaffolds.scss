@@ -1,5 +1,6 @@
 .scaffolds { text-align: center; max-width: 500px; margin: 0 auto 30px; padding: 0 15px;
 	&, * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+	&.large { max-width: 900px; }
 	h2 { &+h3,&+h4,&+h5,&+h6 { margin: -15px 0 15px; } }
 	form { text-align: left; }
 	.field { position: relative;
