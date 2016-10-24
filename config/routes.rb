@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  constraints subdomain: /stage|panel/ do
+  constraints subdomain: /stage/ do
     root 'pages#home'
 
     devise_for :users, controllers: { 
@@ -20,6 +20,14 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :movies
+    resources :notes
+
+    resources :workshops do
+      resources :movies, only: :new
+      resources :notes, only: :new
+    end
+
     get 'bienvenidos', to: 'pages#welcome', as: :welcome_page
     get 'talleres-online', to: 'pages#workshops', as: :workshops_page
     get 'talleres-online/:workshop_id', to: 'pages#workshop', as: :workshop_page
@@ -31,16 +39,6 @@ Rails.application.routes.draw do
     get 'aula-virtual/videos', to: 'classroom#videos', as: :classroom_videos
     get 'aula-virtual/video/:movie_id', to: 'classroom#video', as: :classroom_video
     get 'aula-virtual/apuntes', to: 'classroom#notes', as: :classroom_notes
-  end
-
-  constraints subdomain: /panel/ do    
-    resources :movies
-    resources :notes
-
-    resources :workshops do
-      resources :movies, only: :new
-      resources :notes, only: :new
-    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
