@@ -1,0 +1,19 @@
+<% if @notification %>
+	Información de compra actualizada
+<% else %>
+	Nueva compra
+<% end %>
+
+Pago <%= t "mercadopago.statuses.#{@payment.collection_status}" %>
+por <%= @payment.transaction_amount.to_s(:currency, unit: '$', delimiter: '.', separator: ',') %>
+
+Estado: <%= t "mercadopago.statuses.#{@payment.collection_status}" %>
+<% if @payment.payment_type.present? %>
+	Medio de págo: <%= @payment.payment_type.try(:upcase) %>
+<% end %>
+Importe: <%= @payment.transaction_amount.to_s(:currency, unit: '$', delimiter: '.', separator: ',') %>
+Usuario: <%= @payment.user.name %></a> - <%= @payment.user.email %>
+Fecha: <%= @payment.created_at.strftime('%d/%m/%Y') %>
+Horario: <%= @payment.created_at.strftime('%H:%M') %>
+
+Taller: <%= @payment.workshop.title %>

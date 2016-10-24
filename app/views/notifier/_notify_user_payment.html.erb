@@ -1,0 +1,22 @@
+<% if @notification %>
+	<h1>Información de su compra en <a href="<%= root_url %>">eneljardin.com.ar</a></h1>
+<% else %>
+	<h1>Gracias por confiar en <a href="<%= root_url %>">eneljardin.com.ar</a></h1>
+<% end %>
+<h2>
+	Pago <%= t "mercadopago.statuses.#{@payment.collection_status}" %>
+	por <%= @payment.transaction_amount.to_s(:currency, unit: '$', delimiter: '.', separator: ',') %>
+</h2>
+
+<h4><a href="<%= payment_url(@payment) %>">Ver en la web</a></h4>
+<strong>Estado:</strong> <%= t "mercadopago.statuses.#{@payment.collection_status}" %><br>
+<% if @payment.payment_type.present? %>
+	<strong>Medio de págo</strong> <%= @payment.payment_type.try(:upcase) %><br>
+<% end %>
+<strong>Importe:</strong> <%= @payment.transaction_amount.to_s(:currency, unit: '$', delimiter: '.', separator: ',') %><br>
+<strong>Fecha:</strong> <%= @payment.created_at.strftime('%d/%m/%Y') %><br>
+<strong>Horario:</strong> <%= @payment.created_at.strftime('%H:%M') %><br>
+
+<h3>Taller</h3>
+<strong><big><%= @payment.workshop.title %></big></strong><br>
+<%= @payment.workshop.description %><br>

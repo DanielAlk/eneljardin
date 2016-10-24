@@ -31,6 +31,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
+        Notifier.notify_admin(@contact).deliver_later
         format.html { redirect_to root_url, notice: 'Se envió tu consulta, te contestaremos a la brevedad.' }
         format.json { render :show, status: :created, location: @contact }
       else

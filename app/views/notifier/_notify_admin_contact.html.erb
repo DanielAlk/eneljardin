@@ -1,0 +1,16 @@
+<h2>
+	<%= {
+		contact: 'Contacto',
+		newsletter: 'Newsletter'
+	}[@contact.kind.try(:to_sym)] %>
+</h2>
+
+<% if @contact.name.present? %>
+	<strong>Nombre:</strong> <%= @contact.name %><br>
+<% end %>
+<% if @contact.email.present? %>
+	<strong>Email:</strong> <%= @contact.email %><br>
+<% end %>
+<% if @contact.message.present? %>
+	<strong>Mesnsaje:</strong> <%= @contact.message %><br>
+<% end %>

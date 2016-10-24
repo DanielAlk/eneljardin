@@ -50,6 +50,8 @@ class PaymentsController < ApplicationController
   def update
     respond_to do |format|
       if @payment.update(payment_params)
+        Notifier.notify_admin(@payment).deliver_later
+        Notifier.notify_user(@payment).deliver_later
         format.html { redirect_to @payment, notice: 'Payment was successfully updated.' }
         format.json { render :show, status: :ok, location: @payment }
       else
@@ -77,8 +79,8 @@ class PaymentsController < ApplicationController
       @payment = Payment.find_mp(id)
     end
     if @payment.present?
-      #Notifier.notify_admin(@payment, 'mercadopago_notification').deliver_later
-      #Notifier.notify_user(@payment, 'mercadopago_notification').deliver_later
+      Notifier.notify_admin(@payment, 'notification').deliver_later
+      Notifier.notify_user(@payment, 'notification').deliver_later
       render json: @payment, status: :ok
     else
       head :no_content
