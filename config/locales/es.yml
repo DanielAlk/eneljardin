@@ -38,12 +38,16 @@ es:
     status_messages:
       pending: Aún no completaste el proceso de pago.
       approved: El pago fue aprobado y acreditado.
-      in_process: El pago por está siendo revisado por mercadopago, te enviaremos un mail cuando se complete.
+      in_process: El pago está siendo revisado por mercadopago, te enviaremos un mail cuando se complete.
       in_mediation: Se ha iniciado una una disputa por éste pago.
       rejected: El pago fue rechazado. Puedes intentar pagar nuevamente con otro medio de pago.
       cancelled: El pago fue cancelado por una de las partes, o porque el tiempo expiró.
       refunded: El pago fue devuelto al usuario.
       charged_back: Fue hecho un contracargo en la tarjeta del pagador.
+  workshops:
+    statuses:
+      approved: Comprado
+      in_process: Procesando pago
   will_paginate:
     next_label: "→"
     page_entries_info:

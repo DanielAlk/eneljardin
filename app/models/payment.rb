@@ -12,6 +12,8 @@ class Payment < ActiveRecord::Base
   before_update :manage_user_workshop, if: :collection_status_changed?
 
   scope :approved, -> { where(collection_status: :approved) }
+  scope :in_process, -> { where(collection_status: [:in_process, :pending, :in_mediation]) }
+  scope :rejected, -> { where(collection_status: [:rejected, :cancelled, :refunded, :charged_back]) }
 
   def self.find_mp(collection_id)
   	payment_info = $mp.get('/collections/notifications/' + collection_id)
@@ -31,13 +33,13 @@ class Payment < ActiveRecord::Base
   end
 
   def approved?
-  	self.collection_status == 'approved'
+  	collection_status == 'approved'
   end
   def in_process?
-  	self.collection_status == 'in_process' || self.collection_status == 'pending' || self.collection_status == 'in_mediation'
+  	['in_process', 'pending', 'in_mediation'].include? self.collection_status
   end
   def rejected?
-  	self.collection_status == 'rejected' || self.collection_status == 'cancelled' || self.collection_status == 'refunded' || self.collection_status == 'charged_back'
+  	['rejected', 'cancelled', 'refunded', 'charged_back'].include? self.collection_status
   end
 
   private

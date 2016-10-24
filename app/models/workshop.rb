@@ -10,6 +10,8 @@ class Workshop < ActiveRecord::Base
 
 	has_many :movies, dependent: :destroy
 	has_many :notes, dependent: :destroy
+	has_many :payments
+	has_many :users, through: :payments
 
 	enum level: [ :beginner, :intermediate, :advanced, :professional ]
 
@@ -19,6 +21,21 @@ class Workshop < ActiveRecord::Base
 
 	def price=(price)
 	  write_attribute(:price, price.gsub('.', '').gsub(',', '.'))
+	end
+
+	def is_owned_by?(user)
+		self.payments.where(user: user, collection_status: [:approved, :in_process, :in_mediation]).present?
+	end
+
+	def status_for_user(user)
+		user_payments = self.payments.where(user: user)
+		if user_payments.approved.present?
+			:approved
+		elsif user_payments.in_process.present?
+			:in_process
+		elsif user_payments.rejected.present?
+			:rejected
+		end
 	end
 
 	private

@@ -1,7 +1,7 @@
 <div id="s2_back" class="aula">
 	<div id="s2_back-cont">
 		<div id="s2_back-cont-tit">Aula virtual</div>
-		<div id="s2_back-cont-txt">Vestibulum id ligula porta felis euismod semper. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</div>
+		<div id="s2_back-cont-txt">Desde aquí puedes acceder a los talleres de Clara incluyendo los videos y los apuntes. Además pasas a formar parte de nuestra comunidad de alumnos virtuales donde podes intercambiar consejos y preguntas con otros alumnos en toda Latinoamérica.</div>
 	</div>
 </div>
 <div id="s3_des">
@@ -21,7 +21,13 @@
 					<div class="s3_des-fchro-fch-cont">
 						<div class="s3_des-fchro-fch-cont-tit"><%= movie.title %></div>
 						<div class="s3_des-fchro-fch-cont-txt"><%= movie.description %></div>
-						<div class="s3_des-fchro-fch-cont-dat">Nivel: <%= t ('levels.' + movie.level) %>  -  Valor <%= movie.price.to_s(:currency, unit: '$', separator: ",", delimiter: ".") %></div>
+						<div class="s3_des-fchro-fch-cont-dat">
+							Nivel: <%= t ('levels.' + movie.level) %>
+							<% if false %>
+								-
+								Valor <%= movie.price.to_s(:currency, unit: '$', separator: ",", delimiter: ".") %>
+							<% end %>
+						</div>
 						<div class="s3_des-fchro-fch-cont-btn">
 							<ul>
 								<li><a href="<%= classroom_video_path(movie) %>" class="btn_m">REPRODUCIR</a></li>

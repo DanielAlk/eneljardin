@@ -21,7 +21,13 @@
   <tbody>
     <% @payments.each do |payment| %>
       <tr>
-        <td><%= link_to payment.workshop.title, payment.workshop %></td>
+        <td>
+          <% if current_user.admin? %>
+            <%= link_to payment.workshop.title, payment.workshop %>
+          <% else %>
+            <%= link_to payment.workshop.title, workshop_page_path(payment.workshop) %>
+          <% end %>
+        </td>
         <% if current_user.admin? %>
           <td><%= payment.user.name %></td>
         <% end %>

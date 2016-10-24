@@ -1,20 +1,20 @@
 <% if @payment.approved? %>
-  <h1>SE COMPLETÓ TU PÁGO</h1>
+  <h1>SE COMPLETÓ TU PAGO</h1>
 <% elsif @payment.in_process? %>
-  <h1>TU PÁGO ESTÁ SIENDO PROCESADO</h1>
+  <h1>TU PAGO ESTÁ SIENDO PROCESADO</h1>
 <% else %>
-  <h1>EL PÁGO FUE RECHAZADO</h1>
+  <h1>EL PAGO FUE RECHAZADO</h1>
 <% end %>
 
-<p>
-  <% if @payment.approved? %>
-    ¡Gracias <%= @payment.user.first_name %> por comprar nustro curso!
-  <% end %>
-</p>
+<% if @payment.approved? %>
+  <p>
+    ¡Gracias <%= @payment.user.first_name %> por comprar el curso de Clara!
+  </p>
 
-<%= link_to @payment.workshop, class: 'conceal-link' do %>
-  <h3 style="margin-bottom:0;"><%= @payment.workshop.title %></h3>
-  <div class="bg-cover" style="height:150px;background-image:url(<%= @payment.workshop.image.url(:medium) %>)"></div>
+  <%= link_to classroom_video_path(@payment.workshop.movies.first), class: 'conceal-link' do %>
+    <h3 style="margin-bottom:0;"><%= @payment.workshop.title %></h3>
+    <div class="bg-cover" style="height:150px;background-image:url(<%= @payment.workshop.image.url(:medium) %>)"></div>
+  <% end %>
 <% end %>
 
 <p>
@@ -35,7 +35,9 @@
   </p>
 <% end %>
 
-<%= link_to '¡Empezar el curso!', @payment.workshop.movies.first, class: 'button' %>
-<br>
+<% if @payment.approved? %>
+  <%= link_to '¡Empezar el curso!', classroom_video_path(@payment.workshop.movies.first), class: 'button' %>
+  <br>
+<% end %>
 <%# link_to 'Edit', edit_payment_path(@payment) %>
 <%= link_to 'Ver mis pagos', payments_path %>

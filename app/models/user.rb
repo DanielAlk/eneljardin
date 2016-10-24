@@ -9,12 +9,10 @@ class User < ActiveRecord::Base
 	validates_attachment :avatar, content_type: { content_type: /\Aimage\/.*\Z/ }
 
 	has_many :payments, :dependent => :destroy
+	has_many :workshops, -> { where payments: { collection_status: :approved } }, through: :payments
+	has_many :notes, through: :workshops
 
 	enum role: [:user, :admin]
-
-	def workshops
-		dani.payments.approved.map{|w|w.workshop}
-	end
 
 	def first_name
 		name[/[^\s]+/]

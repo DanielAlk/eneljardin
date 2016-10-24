@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!, only: :workshop
+  
   def home
   end
   
@@ -7,6 +9,11 @@ class PagesController < ApplicationController
   
   def workshops
     @workshops = Workshop.order(created_at: :desc)
+  end
+  
+  def workshop
+    @workshops = [Workshop.friendly.find(params[:workshop_id])]
+    render :workshops
   end
   
   def bouquets
