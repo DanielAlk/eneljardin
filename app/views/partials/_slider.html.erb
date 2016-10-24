@@ -9,21 +9,23 @@
 		<div class="s2_sld-slI-con">
 			<div class="s2_sld-slI-con-tit">BIENVENIDO AL SITE DE CLARA BILLOCH</div>
 			<div class="s2_sld-slI-con-des">Como paisajista apunto a la creación de espacios que puedan ser aprovechados al máximo, trato de generar interés por la naturaleza y el espacio que nos rodea. Suscribite a nuestro newsletter y entérate de todas las novedades sobre nuevos lanzamientos de talleres online, notas del blog, etc.</div>
-			<div class="s2_sld-slI-con-btn"><a href="#">LEER MÁS</a></div>
+			<div class="s2_sld-slI-con-btn"><a href="<%= welcome_page_path %>">LEER MÁS</a></div>
 		</div>
 	</div>
 	<div class="s2_sld-slI" id="talleres">
 		<div class="s2_sld-slI-con">
 			<div class="s2_sld-slI-con-tit">talleres online</div>
 			<div class="s2_sld-slI-con-des">Ahora podés acceder a los talleres de Clara desde tu jardín. Con la compra de los talleres además pasas a formar parte de nuestra comunidad de alumnos virtuales donde podes intercambiar consejos y preguntas con otros alumnos en toda Latinoamérica.</div>
-			<div class="s2_sld-slI-con-btn"><a href="#">LEER MÁS</a></div>
+			<div class="s2_sld-slI-con-btn"><a href="<%= workshops_page_path %>">LEER MÁS</a></div>
 		</div>
 	</div>
-	<div class="s2_sld-slI" id="huerta">
-		<div class="s2_sld-slI-con">
-			<div class="s2_sld-slI-con-tit">Talleres online huertas</div>
-			<div class="s2_sld-slI-con-des">En este curso nos introducimos en el mundo de las huertas. Con la practicidad y simpleza que la caracterizan, Clara nos explica todo lo que necesitamos saber para comenzar nuestra primera huerta y nos cuenta paso a paso como mantenerla sana y productiva todo el año.</div>
-			<div class="s2_sld-slI-con-btn"><a href="#">LEER MÁS</a></div>
+	<% if (workshop = Workshop.first).present? %>
+		<div class="s2_sld-slI" id="huerta">
+			<div class="s2_sld-slI-con">
+				<div class="s2_sld-slI-con-tit"><%= workshop.title %></div>
+				<div class="s2_sld-slI-con-des"><%= workshop.description %></div>
+				<div class="s2_sld-slI-con-btn"><a href="<%= workshops_page_path %>">LEER MÁS</a></div>
+			</div>
 		</div>
-	</div>
+	<% end %>
 </div>
