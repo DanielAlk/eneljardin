@@ -9,7 +9,7 @@ class Payment < ActiveRecord::Base
 	serialize :mercadopago_preference
 
   after_create :create_mercadopago_preference
-  before_update :manage_user_workshop, if: :collection_status_changed?
+  #before_update :manage_user_workshop, if: :collection_status_changed?
 
   scope :approved, -> { where(collection_status: :approved) }
   scope :in_process, -> { where(collection_status: [:in_process, :pending, :in_mediation]) }
@@ -25,7 +25,6 @@ class Payment < ActiveRecord::Base
 				payment.collection_status = payment.payment_info['status']
 				payment.collection_status_detail = payment.payment_info['status_detail']
 				payment.payment_type = payment.payment_info['payment_type']
-				payment.save
 				return payment
 			end
 		end
@@ -33,13 +32,13 @@ class Payment < ActiveRecord::Base
   end
 
   def approved?
-  	collection_status == 'approved'
+  	collection_status.try(:to_sym) == :approved
   end
   def in_process?
-  	['in_process', 'pending', 'in_mediation'].include? self.collection_status
+  	[nil, :in_process, :pending, :in_mediation].include? self.collection_status.try(:to_sym)
   end
   def rejected?
-  	['rejected', 'cancelled', 'refunded', 'charged_back'].include? self.collection_status
+  	[:rejected, :cancelled, :refunded, :charged_back].include? self.collection_status.try(:to_sym)
   end
 
   private

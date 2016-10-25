@@ -1,6 +1,7 @@
 class PaymentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :notifications
   before_action :authenticate_user!, except: :notifications
+  before_action :authenticate_admin!, only: :edit
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_payment_user!, only: [:show, :update, :destroy]
   layout 'scaffolds'
@@ -48,8 +49,14 @@ class PaymentsController < ApplicationController
   # PATCH/PUT /payments/1
   # PATCH/PUT /payments/1.json
   def update
+    payment_from_mp = Payment.find_mp(payment_params[:collection_id])
+    if payment_from_mp.present? && payment_from_mp == @payment
+      @payment = payment_from_mp
+    elsif payment_params[:collection_id].present?
+      @payment.collection_status = 'in_process'
+    end
     respond_to do |format|
-      if @payment.update(payment_params)
+      if @payment.save
         Notifier.notify_admin(@payment).deliver_later
         Notifier.notify_user(@payment).deliver_later
         format.html { redirect_to @payment, notice: 'Payment was successfully updated.' }
@@ -78,7 +85,7 @@ class PaymentsController < ApplicationController
       id = params['data.id'] || params[:id]
       @payment = Payment.find_mp(id)
     end
-    if @payment.present?
+    if @payment.present? && @payment.save
       Notifier.notify_admin(@payment, 'notification').deliver_later
       Notifier.notify_user(@payment, 'notification').deliver_later
       render json: @payment, status: :ok
@@ -95,7 +102,8 @@ class PaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:user_id, :workshop_id, :transaction_amount, :collection_id, :collection_status, :collection_status_detail, :preference_id, :payment_type)
+      #params.require(:payment).permit(:user_id, :workshop_id, :transaction_amount, :collection_id, :collection_status, :collection_status_detail, :preference_id, :payment_type)
+      params.require(:payment).permit(:user_id, :workshop_id, :collection_id)
     end
 
     def authenticate_payment_user!
