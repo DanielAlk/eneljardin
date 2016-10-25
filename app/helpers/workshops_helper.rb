@@ -5,7 +5,7 @@ module WorkshopsHelper
 				link_to 'IR AL AULA', classroom_videos_path, class: 'btn_m-gr'
 			else
 				if workshop.is_owned_by?(current_user)
-					if workshop.status_for_user(current_user) == :approved
+					if workshop.status_for(current_user) == :approved
 						link_to 'IR AL AULA', classroom_videos_path, class: 'btn_m-gr'
 					else
 						link_to 'VER MIS PAGOS', payments_path, class: 'btn_m-gr'

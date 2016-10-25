@@ -18,9 +18,18 @@
 		<div class="clear"></div>
 	</div>
 	<div class="s3_des-vid">
-		<div class="s3_des-vid-vFr">
-			<%= @movie.vimeo[:html].html_safe %>
-		</div>
+		<% if @movie.workshop.valid_for?(current_user) %>
+			<div class="s3_des-vid-vFr">
+				<%= @movie.vimeo[:html].html_safe %>
+			</div>
+		<% else %>
+			<div class="s3_des-vid-vFr bg-cover" style="background-image:url(<%= @movie.image.url(:medium) %>)">
+				<h3 class="s3_des-vid-vFr-txt">
+					Han pasado los 30 días desde que compraste el Taller online y el video ya no está disponible<br>
+					Podés seguir usando la sección de comentarios.
+				</h3>
+			</div>
+		<% end %>
 		<div class="s3_des-vid-col1">
 			<div class="s3_des-vid-col1-datV">
 				<h1><%= @movie.title %></h1>

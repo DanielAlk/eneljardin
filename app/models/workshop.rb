@@ -27,7 +27,7 @@ class Workshop < ActiveRecord::Base
 		self.payments.where(user: user, collection_status: [:approved, :in_process, :in_mediation]).present?
 	end
 
-	def status_for_user(user)
+	def status_for(user)
 		user_payments = self.payments.where(user: user)
 		if user_payments.approved.present?
 			:approved
@@ -36,6 +36,20 @@ class Workshop < ActiveRecord::Base
 		elsif user_payments.rejected.present?
 			:rejected
 		end
+	end
+
+	def valid_for?(user)
+		payment = self.last_approved_payment_for(user)
+		payment.present? && payment.updated_at + 30.days > Time.now
+	end
+
+	def expiration_for(user)
+		payment = self.last_approved_payment_for(user)
+		payment.updated_at + 30.days if payment.present?
+	end
+
+	def last_approved_payment_for(user)
+		self.payments.where(user: user).order(updated_at: :asc).approved.last
 	end
 
 	private

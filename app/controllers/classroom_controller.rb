@@ -20,7 +20,7 @@ class ClassroomController < ApplicationController
     @movie = Movie.friendly.find(params[:movie_id])
     if current_user.user?
       if @movie.workshop.is_owned_by? current_user
-        if @movie.workshop.status_for_user(current_user) == :in_process
+        if @movie.workshop.status_for(current_user) == :in_process
           redirect_to workshop_page_url(@movie.workshop), notice: 'Estamos procesando el pago por este taller.'
         end
       else

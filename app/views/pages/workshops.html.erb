@@ -16,7 +16,7 @@
 						Nivel: <%= t('levels.' + workshop.level) %>
 						-
 						<% if workshop.is_owned_by? current_user %>
-							<%= t("workshops.statuses.#{workshop.status_for_user(current_user)}").upcase %>
+							<%= t("workshops.statuses.#{workshop.status_for(current_user)}").upcase %>
 						<% else %>
 							Valor <%= workshop.price.to_s(:currency, unit: '$', delimiter: '.', separator: ',') %>
 						<% end %>

@@ -13,7 +13,13 @@
 		<div class="clear"></div>
 	</div>
 	<% @workshops.each do |workshop| %>
-		<div class="s3_des-bTit"><%= workshop.title %></div>
+		<div class="s3_des-bTit">
+			<%= workshop.title %>
+			<% if workshop.valid_for?(current_user) %>
+				<small><i><%= distance_of_time_in_words(workshop.expiration_for(current_user), Time.now) %></i></small>
+				<!--small><i><%# time_ago_in_words(workshop.last_approved_payment_for(current_user).updated_at) %></i></small-->
+			<% end %>
+		</div>
 		<div class="s3_des-fchro aula">
 			<% workshop.movies.each do |movie| %>
 				<div class="s3_des-fchro-fch">
