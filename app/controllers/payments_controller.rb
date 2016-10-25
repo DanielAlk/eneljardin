@@ -52,7 +52,7 @@ class PaymentsController < ApplicationController
     payment_from_mp = Payment.find_mp(payment_params[:collection_id])
     if payment_from_mp.present? && payment_from_mp == @payment
       @payment = payment_from_mp
-    elsif payment_params[:collection_id].present?
+    elsif payment_params[:collection_id].present? && @payment.collection_status.nil?
       @payment.collection_status = 'in_process'
     end
     respond_to do |format|

@@ -79,11 +79,10 @@ class Payment < ActiveRecord::Base
 					email: user.email
 				},
 				statement_descriptor: 'Taller online de eneljardin.com.ar',
-				external_reference: id,
-				notification_url: notifications_payments_url
+				external_reference: id
 			}
-			if Rails.env.development? #mercadopago sandbox fails if localhost:3000 is in the notification_url
-				preference_data[:notification_url] = notifications_payments_url(host: 'eneljardin.com.ar')
+			if Rails.env.production? #mercadopago sandbox fails if localhost:3000 is in the notification_url
+				preference_data[:notification_url] = notifications_payments_url
 			end
 			self.mercadopago_preference = $mp.create_preference(preference_data)['response']
 			self.init_point = mercadopago_preference[mercadopago_init_point]
