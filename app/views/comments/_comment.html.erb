@@ -1,5 +1,5 @@
 <li class="comment <%= 'rootComment' if comment.is_root? %>" id="comment_<%= comment.id %>">
-	<% if comment.user == current_user %>
+	<% if current_user.admin? || comment.user == current_user %>
 		<div class="comment-controls">
 			<a href="#" class="comment-controls-trigger"><span></span><span></span><span></span></a>
 			<ol class="comment-controls-options">

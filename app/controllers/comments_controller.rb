@@ -1,13 +1,15 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authenticate_admin!, unless: Proc.new{request.format.js?}
   before_action :set_comment, only: [:show, :edit, :respond, :update, :destroy]
+  layout 'scaffolds'
 
   # GET /comments
   # GET /comments.json
   def index
     @comments = Comment.all
     @comments = @comments.where(commentable_id: params[:f][:commentable_id], commentable_type: params[:f][:commentable_type]) if params[:f].present? && params[:f][:commentable_id].present? && params[:f][:commentable_type].present?
-    @comments = @comments.order(created_at: :desc).paginate(page: params[:page], per_page: 4) if params[:page].present?
+    @comments = @comments.order(created_at: :desc).paginate(page: params[:page], per_page: 12) if params[:page].present?
   end
 
   # GET /comments/1

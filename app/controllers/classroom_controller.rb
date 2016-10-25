@@ -28,7 +28,7 @@ class ClassroomController < ApplicationController
       end
     end
     @other_movies = Movie.where.not(id: @movie.id)
-    @comments = @movie.comments.order(created_at: :desc).paginate(page: 1, per_page: 4)
+    @comments = @movie.comments.order(created_at: :desc).paginate(page: 1, per_page: 12)
   end
 
   def notes
