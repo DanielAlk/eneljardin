@@ -6,8 +6,8 @@
       <th>Taller</th>
       <% if current_user.admin? %>
         <th>Usuario</th>
+        <th># MP</th>
       <% end %>
-      <th># MP</th>
       <th>Status</th>
       <th>Monto</th>
       <% if current_user.admin? %>
@@ -30,8 +30,8 @@
         </td>
         <% if current_user.admin? %>
           <td><%= payment.user.name %></td>
+          <td><%= payment.collection_id %></td>
         <% end %>
-        <td><%= payment.collection_id %></td>
         <td><%= t 'mercadopago.statuses.' + payment.collection_status rescue nil %></td>
         <td><%= payment.transaction_amount.to_s(:currency, unit: '$', separator: '.', delimiter: ',') %></td>
         <% if current_user.admin? %>
