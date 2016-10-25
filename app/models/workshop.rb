@@ -39,8 +39,12 @@ class Workshop < ActiveRecord::Base
 	end
 
 	def valid_for?(user)
-		payment = self.last_approved_payment_for(user)
-		payment.present? && payment.updated_at + 30.days > Time.now
+		if user.admin?
+			true
+		else
+			payment = self.last_approved_payment_for(user)
+			payment.present? && payment.updated_at + 30.days > Time.now
+		end
 	end
 
 	def expiration_for(user)
