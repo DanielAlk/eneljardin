@@ -8,7 +8,7 @@
 
 <% if @payment.approved? %>
   <p>
-    ¡Gracias <%= @payment.user.first_name %> por comprar el curso de Clara!
+    ¡Gracias <%= @payment.user.first_name %> por comprar el taller de Clara!
   </p>
 
   <%= link_to classroom_video_path(@payment.workshop.movies.first), class: 'conceal-link' do %>
@@ -36,7 +36,7 @@
 <% end %>
 
 <% if @payment.approved? %>
-  <%= link_to '¡Empezar el curso!', classroom_video_path(@payment.workshop.movies.first), class: 'button' %>
+  <%= link_to '¡Empezar el taller!', classroom_video_path(@payment.workshop.movies.first), class: 'button' %>
   <br>
 <% end %>
 <%# link_to 'Edit', edit_payment_path(@payment) %>
