@@ -56,7 +56,7 @@
 		<div class="s3_des-vid-col2">
 			<div class="s3_des-vid-col2-tit">Mas videos</div>
 			<% @other_movies.each do |movie| %>
-				<div class="s3_des-vid-col2-fch">
+				<div class="s3_des-vid-col2-fch" title="<%= movie.title %>">
 					<a href="<%= classroom_video_path(movie) %>" class="s3_des-vid-col2-fch-pic bg-cover" style="background-image:url(<%= movie.image.url(:thumb) %>)"></a>
 					<div class="s3_des-vid-col2-fch-dat">
 						<div class="s3_des-vid-col2-fch-dat-tit"><%= movie.title %></div>
