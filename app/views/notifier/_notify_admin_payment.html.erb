@@ -4,12 +4,12 @@
 	<h1>Nueva compra</h1>
 <% end %>
 <h2>
-	Pago <%= t "mercadopago.statuses.#{@payment.collection_status}" %>
+	Pago <%= t 'mercadopago.statuses.' + @payment.collection_status rescue nil %>
 	por <%= @payment.transaction_amount.to_s(:currency, unit: '$', delimiter: '.', separator: ',') %>
 </h2>
 
 <h4><a href="<%= payment_url(@payment) %>">Ver en la web</a></h4>
-<strong>Estado:</strong> <%= t "mercadopago.statuses.#{@payment.collection_status}" %><br>
+<strong>Estado:</strong> <%= t 'mercadopago.statuses.' + @payment.collection_status rescue nil %><br>
 <% if @payment.payment_type.present? %>
 	<strong>Medio de págo</strong> <%= @payment.payment_type.try(:upcase) %><br>
 <% end %>

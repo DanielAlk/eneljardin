@@ -2,6 +2,8 @@
   <h1>SE COMPLETÓ TU PAGO</h1>
 <% elsif @payment.in_process? %>
   <h1>TU PAGO ESTÁ SIENDO PROCESADO</h1>
+<% elsif @payment.collection_status.nil? %>
+  <h1>EL PROCESO DE PAGO NO SE COMPLETÓ</h1>
 <% else %>
   <h1>EL PAGO FUE RECHAZADO</h1>
 <% end %>
@@ -19,13 +21,17 @@
 
 <p>
   <big>
-    <strong><%= t "mercadopago.statuses.#{@payment.collection_status}" %>:</strong>
+    <% if @payment.collection_status.present? %>
+      <strong><%= t 'mercadopago.statuses.' + @payment.collection_status rescue nil %>:</strong>
+    <% else %>
+      <strong>MONTO:</strong>
+    <% end %>
     <%= @payment.transaction_amount.to_s(:currency, unit: '$', separator: '.', delimiter: ',') %>
   </big>
 </p>
 
 <p>
-  <%= t "mercadopago.status_messages.#{@payment.collection_status}" %>
+  <%= t 'mercadopago.status_messages.' + @payment.collection_status rescue nil %>
 </p>
 
 <% if @payment.approved? %>

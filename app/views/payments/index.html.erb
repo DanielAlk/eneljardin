@@ -32,7 +32,11 @@
           <td><%= payment.user.name %></td>
           <td><%= payment.collection_id %></td>
         <% end %>
-        <td><%= t 'mercadopago.statuses.' + payment.collection_status rescue nil %></td>
+        <% if payment.collection_status.present? %>
+          <td><%= t 'mercadopago.statuses.' + payment.collection_status rescue nil %></td>
+        <% else %>
+          <td>Incompleto</td>
+        <% end %>
         <td><%= payment.transaction_amount.to_s(:currency, unit: '$', separator: '.', delimiter: ',') %></td>
         <% if current_user.admin? %>
           <td><%= link_to 'Show', payment %></td>

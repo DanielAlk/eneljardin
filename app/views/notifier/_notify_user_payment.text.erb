@@ -4,10 +4,10 @@
 	Gracias por confiar en eneljardin.com.ar
 <% end %>
 
-Pago <%= t "mercadopago.statuses.#{@payment.collection_status}" %>
+Pago <%= t 'mercadopago.statuses.' + @payment.collection_status rescue nil %>
 por <%= @payment.transaction_amount.to_s(:currency, unit: '$', delimiter: '.', separator: ',') %>
 
-Estado: <%= t "mercadopago.statuses.#{@payment.collection_status}" %>
+Estado: <%= t 'mercadopago.statuses.' + @payment.collection_status rescue nil %>
 <% if @payment.payment_type.present? %>
 	Medio de págo: <%= @payment.payment_type.try(:upcase) %>
 <% end %>

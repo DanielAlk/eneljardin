@@ -35,7 +35,7 @@ class Payment < ActiveRecord::Base
   	collection_status.try(:to_sym) == :approved
   end
   def in_process?
-  	[nil, :in_process, :pending, :in_mediation].include? self.collection_status.try(:to_sym)
+  	[:in_process, :pending, :in_mediation].include? self.collection_status.try(:to_sym)
   end
   def rejected?
   	[:rejected, :cancelled, :refunded, :charged_back].include? self.collection_status.try(:to_sym)
