@@ -1,28 +1,24 @@
-<h1>Listing Comments</h1>
+<h1>Comentarios</h1>
 
-<table>
+<table class="table table-bordered table-condensed table-hover table-striped">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Text</th>
-      <th>Commentable</th>
-      <th>User</th>
-      <th>Role</th>
-      <th colspan="3"></th>
+      <th>Usuario</th>
+      <th>Comentario</th>
+      <th>Video/Apunte</th>
+      <!--th colspan="3"></th-->
     </tr>
   </thead>
 
   <tbody>
-    <% @comments.each do |comment| %>
+    <% @comments.where.not(user: current_user).each do |comment| %>
       <tr>
-        <td><%= comment.title %></td>
-        <td><%= comment.text %></td>
-        <td><%= comment.commentable %></td>
-        <td><%= comment.user %></td>
-        <td><%= comment.role %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= comment.user.name %></td>
+        <td><%= comment.text[0...20] + (comment.text.length > 20 ? '…' : '') %></td>
+        <td><%= link_to comment.root_commentable.title, comment.root_commentable.try(:class).try(:to_s) == 'Movie' ? classroom_video_path(comment.root_commentable) : classroom_notes_path %></td>
+        <!--td><%# link_to 'Show', comment %></td-->
+        <!--td><%# link_to 'Edit', edit_comment_path(comment) %></td-->
+        <!--td><%# link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td-->
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Comment', new_comment_path %>
+<%# link_to 'New Comment', new_comment_path %>

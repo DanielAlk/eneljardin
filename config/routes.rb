@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   get 'talleres-presenciales', to: 'pages#face_workshops', as: :face_workshops_page
   get 'publicaciones', to: 'pages#publications', as: :publications_page
   get 'contacto', to: 'pages#contact', as: :contact_page
+  
+  get 'panel', to: 'pages#panel', as: :panel
 
   get 'aula-virtual/videos', to: 'classroom#videos', as: :classroom_videos
   get 'aula-virtual/video/:movie_id', to: 'classroom#video', as: :classroom_video

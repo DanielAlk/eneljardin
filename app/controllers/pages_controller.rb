@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!, only: :workshop
+  before_action :authenticate_user!, only: [:workshop, :panel]
+  before_action :authenticate_admin!, only: :panel
+  layout 'scaffolds', only: :panel
   
   def home
   end
@@ -31,5 +33,8 @@ class PagesController < ApplicationController
       @contact.name = current_user.name
       @contact.email = current_user.email
     end
+  end
+
+  def panel
   end
 end
