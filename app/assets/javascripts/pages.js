@@ -66,7 +66,7 @@ playAutoSlide = function(){
 		}
 		/*$("#p1_timer").remove();*/
 		playAutoSlide();
-	},5000);/**/
+	},8000);/**/
 }
 redimensionar = function(){
 	dameDimensiones();
