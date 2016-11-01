@@ -17,6 +17,14 @@ class Comment < ActiveRecord::Base
     commentable_type != 'Comment'
   end
 
+  def root_commentable
+    if is_root?
+      commentable
+    else
+      commentable.try(:commentable)
+    end
+  end
+
   def new_response(user)
     if is_root?
       self.comments.new(user: user)

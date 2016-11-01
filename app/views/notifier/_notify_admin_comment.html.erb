@@ -1,0 +1,9 @@
+<h2>Commentario en <%= @comment.root_commentable.title %></h2>
+
+<strong>Usuario:</strong> <%= @comment.user.name %><br>
+<% if @comment.root_commentable.try(:class).try(:to_s) == 'Movie' %>
+	<strong>Video:</strong> <a href="<%= classroom_video_url(@comment.root_commentable) %>"><%= @comment.root_commentable.title %></a><br>
+<% else %>
+	<strong>Apunte:</strong> <a href="<%= classroom_notes_url %>"><%= @comment.root_commentable.title %></a><br>
+<% end %>
+<strong>Comentario:</strong> <%= @comment.text %><br>

@@ -10,6 +10,9 @@ class Notifier < ApplicationMailer
 			@payment = object
 			@notification = special.try(:to_sym) == :notification
 			mail(to: admin_email, subject: 'Compra en eneljardin.com.ar')
+		when 'Comment'
+			@comment = object
+			mail(to: admin_email, subject: 'Commentario en ' + @comment.root_commentable.title)
 		end
 	end
 
