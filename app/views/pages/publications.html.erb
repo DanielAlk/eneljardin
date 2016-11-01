@@ -2,68 +2,60 @@
 <div id="s3_des">
 	<div class="s3_des-fchro">
 		<div class="s3_des-fchro-fch" id="fyc">
-			<p>
-				Para adquirir los libros de Clara consultar aquí: <a href="mailto:info@eneljardin.com.ar">info@eneljardin.com.ar</a>
-				o en el <%= link_to 'formulario de contacto', contact_page_path %>
-			</p>
+			<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/publicaciones/publicaciones-1.jpg' %>"></img></div>
+			<div class="s3_des-fchro-fch-cont">
+				<div class="s3_des-fchro-fch-cont-tit">Frutales y cocina</div>
+				<div class="s3_des-fchro-fch-cont-txt">En este curso nos introducimos en el mundo de las huertas. Con la practicidad y simpleza que la caracterizan Clara nos explica todo lo que necesitamos saber para comenzar nuestra primera huerta y nos cuenta paso a paso como mantenerla sana y productiva todo el año.</div>
+				<div class="s3_des-fchro-fch-cont-dat">Nivel: principiantes  -  Valor $129.99</div>
+				<div class="s3_des-fchro-fch-cont-pls">
+					<p>Vestibulum id ligula porta felis euismod semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nulla vitae elit libero, a pharetra augue. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+					<p>Donec ullamcorper nulla non metus auctor fringilla. Donec ullamcorper nulla non metus auctor fringilla. Aenean lacinia bibendum nulla sed consectetur. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+				</div>
+				<div class="s3_des-fchro-fch-cont-btn">
+					<ul>
+						<li><a href="javascript: damePlusFch('#fyc')" class="btn_m s3_des-fchro-fch-cont-btn-info" id="fyc_btn">MÁS INFO</a></li>
+						<li><a href="<%= contact_page_path %>" class="btn_m-gr">COMPRAR</a></li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div>
 		</div>
-		<% if false %>
-			<div class="s3_des-fchro-fch" id="fyc">
-				<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/publicaciones/publicaciones-1.jpg' %>"></img></div>
-				<div class="s3_des-fchro-fch-cont">
-					<div class="s3_des-fchro-fch-cont-tit">Frutales y cocina</div>
-					<div class="s3_des-fchro-fch-cont-txt">En este curso nos introducimos en el mundo de las huertas. Con la practicidad y simpleza que la caracterizan Clara nos explica todo lo que necesitamos saber para comenzar nuestra primera huerta y nos cuenta paso a paso como mantenerla sana y productiva todo el año.</div>
-					<div class="s3_des-fchro-fch-cont-dat">Nivel: principiantes  -  Valor $129.99</div>
-					<div class="s3_des-fchro-fch-cont-pls">
-						<p>Vestibulum id ligula porta felis euismod semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nulla vitae elit libero, a pharetra augue. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-						<p>Donec ullamcorper nulla non metus auctor fringilla. Donec ullamcorper nulla non metus auctor fringilla. Aenean lacinia bibendum nulla sed consectetur. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-					</div>
-					<div class="s3_des-fchro-fch-cont-btn">
-						<ul>
-							<li><a href="javascript: damePlusFch('#fyc')" class="btn_m s3_des-fchro-fch-cont-btn-info" id="fyc_btn">MÁS INFO</a></li>
-							<li><a href="#" class="btn_m-gr">COMPRAR</a></li>
-						</ul>
-						<div class="clear"></div>
-					</div>
+		<div class="s3_des-fchro-fch" id="hyc">
+			<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/publicaciones/publicaciones-2.jpg' %>"></img></div>
+			<div class="s3_des-fchro-fch-cont">
+				<div class="s3_des-fchro-fch-cont-tit">Huerta y cocina</div>
+				<div class="s3_des-fchro-fch-cont-txt">En este curso nos introducimos en el mundo de las huertas. Con la practicidad y simpleza que la caracterizan Clara nos explica todo lo que necesitamos saber para comenzar nuestra primera huerta y nos cuenta paso a paso como mantenerla sana y productiva todo el año.</div>
+				<div class="s3_des-fchro-fch-cont-dat">Nivel: principiantes  -  Valor $49.99</div>
+				<div class="s3_des-fchro-fch-cont-pls">
+					<p>Este libro continua el espíritu cordial y sencillo del primer libro. Esta vez dividido en las 4 estaciones explica un paso a paso de como realizar y mantener una huerta y suma recetas fáciles y cotidianas recolectadas de amigos y conocidos chefs como Maru Botana.</p>
+				</div>
+				<div class="s3_des-fchro-fch-cont-btn">
+					<ul>
+						<li><a href="javascript: damePlusFch('#hyc')" class="btn_m s3_des-fchro-fch-cont-btn-info" id="hyc_btn">MÁS INFO</a></li>
+						<li><a href="<%= contact_page_path %>" class="btn_m-gr">COMPRAR</a></li>
+					</ul>
+					<div class="clear"></div>
 				</div>
 			</div>
-			<div class="s3_des-fchro-fch" id="hyc">
-				<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/publicaciones/publicaciones-2.jpg' %>"></img></div>
-				<div class="s3_des-fchro-fch-cont">
-					<div class="s3_des-fchro-fch-cont-tit">Huerta y cocina</div>
-					<div class="s3_des-fchro-fch-cont-txt">En este curso nos introducimos en el mundo de las huertas. Con la practicidad y simpleza que la caracterizan Clara nos explica todo lo que necesitamos saber para comenzar nuestra primera huerta y nos cuenta paso a paso como mantenerla sana y productiva todo el año.</div>
-					<div class="s3_des-fchro-fch-cont-dat">Nivel: principiantes  -  Valor $49.99</div>
-					<div class="s3_des-fchro-fch-cont-pls">
-						<p>Este libro continua el espíritu cordial y sencillo del primer libro. Esta vez dividido en las 4 estaciones explica un paso a paso de como realizar y mantener una huerta y suma recetas fáciles y cotidianas recolectadas de amigos y conocidos chefs como Maru Botana.</p>
-					</div>
-					<div class="s3_des-fchro-fch-cont-btn">
-						<ul>
-							<li><a href="javascript: damePlusFch('#hyc')" class="btn_m s3_des-fchro-fch-cont-btn-info" id="hyc_btn">MÁS INFO</a></li>
-							<li><a href="#" class="btn_m-gr">COMPRAR</a></li>
-						</ul>
-						<div class="clear"></div>
-					</div>
+		</div>
+		<div class="s3_des-fchro-fch" id="uaj">
+			<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/publicaciones/publicaciones-3.jpg' %>"></img></div>
+			<div class="s3_des-fchro-fch-cont">
+				<div class="s3_des-fchro-fch-cont-tit">Un año en el jardin</div>
+				<div class="s3_des-fchro-fch-cont-txt">En este curso nos introducimos en el mundo de las huertas. Con la practicidad y simpleza que la caracterizan Clara nos explica todo lo que necesitamos saber para comenzar nuestra primera huerta y nos cuenta paso a paso como mantenerla sana y productiva todo el año.</div>
+				<div class="s3_des-fchro-fch-cont-dat">Nivel: principiantes  -  Valor $129.99</div>
+				<div class="s3_des-fchro-fch-cont-pls">
+					<p>De una redacción y exposición de la información clara y amena, la autora abre su jardín y nos cuenta a lo largo de un año calendario todas las tareas que se deben llevar a cabo para mantenerlo saludable y en óptimas condiciones. Además, nos brinda consejos útiles para desarrollar paso a paso y un paso a paso con las tareas a realizar cada mes. Con ilustraciones realizadas por ella misma y fotografías de Angela Copelo.</p>
+				</div>
+				<div class="s3_des-fchro-fch-cont-btn">
+					<ul>
+						<li><a href="javascript: damePlusFch('#uaj')" class="btn_m s3_des-fchro-fch-cont-btn-info" id="uaj_btn">MÁS INFO</a></li>
+						<li><a href="<%= contact_page_path %>" class="btn_m-gr">COMPRAR</a></li>
+					</ul>
+					<div class="clear"></div>
 				</div>
 			</div>
-			<div class="s3_des-fchro-fch" id="uaj">
-				<div class="s3_des-fchro-fch-pic"><img src="<%= asset_path 'pags/publicaciones/publicaciones-3.jpg' %>"></img></div>
-				<div class="s3_des-fchro-fch-cont">
-					<div class="s3_des-fchro-fch-cont-tit">Un año en el jardin</div>
-					<div class="s3_des-fchro-fch-cont-txt">En este curso nos introducimos en el mundo de las huertas. Con la practicidad y simpleza que la caracterizan Clara nos explica todo lo que necesitamos saber para comenzar nuestra primera huerta y nos cuenta paso a paso como mantenerla sana y productiva todo el año.</div>
-					<div class="s3_des-fchro-fch-cont-dat">Nivel: principiantes  -  Valor $129.99</div>
-					<div class="s3_des-fchro-fch-cont-pls">
-						<p>De una redacción y exposición de la información clara y amena, la autora abre su jardín y nos cuenta a lo largo de un año calendario todas las tareas que se deben llevar a cabo para mantenerlo saludable y en óptimas condiciones. Además, nos brinda consejos útiles para desarrollar paso a paso y un paso a paso con las tareas a realizar cada mes. Con ilustraciones realizadas por ella misma y fotografías de Angela Copelo.</p>
-					</div>
-					<div class="s3_des-fchro-fch-cont-btn">
-						<ul>
-							<li><a href="javascript: damePlusFch('#uaj')" class="btn_m s3_des-fchro-fch-cont-btn-info" id="uaj_btn">MÁS INFO</a></li>
-							<li><a href="#" class="btn_m-gr">COMPRAR</a></li>
-						</ul>
-						<div class="clear"></div>
-					</div>
-				</div>
-			</div>
-		<% end %>
+		</div>
 	</div>
 	<div class="s3_des-txtFull">
 		<p>1998-2005. Revista Jardín. (Suplemento Principiantes desde 1998 hasta 2005), Colaboradora. 2001. Revista Jardín Edición</p>
@@ -81,6 +73,14 @@
 		<p>2009. "Un año en el Jardín" (Ediciones Jardín, 2009), Autora.</p>
 		<p>2013. “HUERTA Y COCINA" (Ediciones Catapulta, 2015), Autora.</p>
 		<p>2015. “FRUTALES Y COCINA” (Ediciones Catapulta”, 2015), Autora.</p>
+	</div>
+	<div class="s3_des-fchro">
+		<div class="s3_des-fchro-fch" id="fyc2">
+			<p>
+				Para adquirir los libros de Clara consultar aquí: <a href="mailto:info@eneljardin.com.ar">info@eneljardin.com.ar</a>
+				o en el <%= link_to 'formulario de contacto', contact_page_path %>
+			</p>
+		</div>
 	</div>
 	<%= render 'partials/newsletter_form' %>
 </div>
