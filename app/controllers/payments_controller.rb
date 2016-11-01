@@ -10,9 +10,9 @@ class PaymentsController < ApplicationController
   # GET /payments.json
   def index
     if current_user.admin?
-      @payments = Payment.paginate(page: params[:page], per_page: 12)
+      @payments = Payment.order(updated_at: :desc).paginate(page: params[:page], per_page: 12)
     else
-      @payments = Payment.where(user: current_user).paginate(page: params[:page], per_page: 12)
+      @payments = Payment.order(updated_at: :desc).where(user: current_user).paginate(page: params[:page], per_page: 12)
     end
   end
 

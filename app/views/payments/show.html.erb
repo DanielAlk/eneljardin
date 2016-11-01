@@ -1,3 +1,5 @@
+<h5><%= time_tag @payment.updated_at.localtime %></h5>
+
 <% if @payment.approved? %>
   <h1>SE COMPLETÓ TU PAGO</h1>
 <% elsif @payment.in_process? %>
