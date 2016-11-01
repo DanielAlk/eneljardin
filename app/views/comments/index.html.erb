@@ -11,7 +11,7 @@
   </thead>
 
   <tbody>
-    <% @comments.where.not(user: current_user).each do |comment| %>
+    <% @comments.each do |comment| %>
       <tr>
         <td><%= comment.user.name %></td>
         <td><%= comment.text[0...20] + (comment.text.length > 20 ? '…' : '') %></td>
@@ -26,4 +26,5 @@
 
 <br>
 
+<%= will_paginate @payments, outer_window: 0, inner_window: 1 if params[:page].present? %>
 <%# link_to 'New Comment', new_comment_path %>
