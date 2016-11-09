@@ -33,6 +33,9 @@ class PagesController < ApplicationController
       @contact.name = current_user.name
       @contact.email = current_user.email
     end
+    if (publication = params[:publication]).present?
+      @contact.message = "Consulta por Publicación: #{publication}.\r\n"
+    end
   end
 
   def panel
