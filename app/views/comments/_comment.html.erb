@@ -11,7 +11,7 @@
 	<div class="s3_des-msg-mLst-mPic"><%= image_tag comment.user.avatar.url(:thumb) %></div>
 	<div class="s3_des-msg-mLst-mtxt">
 		<div class="s3_des-msg-mLst-mtxt-nom"><%= comment.user.name %></div>
-		<div class="s3_des-msg-mLst-mtxt-txt"><%= comment.text.gsub(/\r\n?|\n/, '<br>').html_safe %></div>
+		<div class="s3_des-msg-mLst-mtxt-txt"><%= comment.text.gsub(/\r\n?|\n/, '<br>').gsub(/(https?:\/\/[^\s<>]+)/, '<a href="\1" target="_blank">\1</a>').html_safe %></div>
 		<%= link_to 'Responder', respond_comment_path(comment), class: 's3_des-msg-mLst-mtxt-lnk remove-comment-forms', remote: true %>
 	</div>
 	<ul id="<%= 'comments_' + comment.id.to_s %>">
