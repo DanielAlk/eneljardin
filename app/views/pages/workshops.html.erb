@@ -13,12 +13,16 @@
 					<div class="s3_des-fchro-fch-cont-tit"><%= workshop.title %></div>
 					<div class="s3_des-fchro-fch-cont-txt"><%= workshop.description %></div>
 					<div class="s3_des-fchro-fch-cont-dat">
-						Nivel: <%= t('levels.' + workshop.level) %>
-						-
+						Nivel:
+						<% workshop.levels.each do |level| %>
+							<%= t('levels.' + level) %>
+							<%= '-' unless level == workshop.levels.last %>
+						<% end %>
+						<br>
 						<% if workshop.is_owned_by? current_user %>
 							<%= t("workshops.statuses.#{workshop.status_for(current_user)}").upcase %>
 						<% else %>
-							Valor <%= workshop.price.to_s(:currency, unit: '$', delimiter: '.', separator: ',') %>
+							Valor: <%= workshop.price.to_s(:currency, unit: '$', delimiter: '.', separator: ',') %>
 						<% end %>
 					</div>
 					<div class="s3_des-fchro-fch-cont-pls">

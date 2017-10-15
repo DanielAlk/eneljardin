@@ -23,6 +23,10 @@ class Workshop < ActiveRecord::Base
 	  write_attribute(:price, price.gsub('.', '').gsub(',', '.'))
 	end
 
+	def levels
+		self.movies.map{|m| m.level}.uniq
+	end
+
 	def is_owned_by?(user)
 		self.payments.where(user: user, collection_status: [:approved, :in_process, :in_mediation]).present?
 	end
