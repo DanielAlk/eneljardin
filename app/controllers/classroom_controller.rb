@@ -3,9 +3,9 @@ class ClassroomController < ApplicationController
 	
   def videos
     if current_user.admin?
-      @workshops = Workshop.all
+      @workshops = Workshop.all.order(created_at: :desc)
     else
-      @workshops = current_user.workshops
+      @workshops = current_user.workshops.order(created_at: :desc)
       unless @workshops.present?
         if current_user.payments.in_process.present?
           redirect_to workshops_page_url, notice: 'Estamos procesando tu pago.'
