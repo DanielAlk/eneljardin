@@ -1,4 +1,18 @@
+<% content_for :extra_js do %>
+  $('.simple-search-form button').click(function(e) {
+    e.preventDefault();
+    $('#search').val(null);
+    $(this).closest('form').submit();
+  });
+<% end %>
+
 <h1>Usuarios</h1>
+
+<%= form_tag users_path, method: :get, class: 'simple-search-form' do %>
+  <%= text_field_tag :search, params[:search] || nil, class: 'form-control', placeholder: 'Buscar por nombre o email' %>
+  <%= submit_tag 'Buscar', class: 'button-blue' %>
+  <%= button_tag 'Reset', type: 'button', class: 'button-orange' %>
+<% end %>
 
 <table class="table table-bordered table-condensed table-hover table-striped">
   <thead>
