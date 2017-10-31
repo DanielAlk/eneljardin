@@ -29,4 +29,18 @@ class User < ActiveRecord::Base
 	def use_default_avatar
 		false
 	end
+
+	def renew_expiration_for=(workshop_id)
+		payment = workshops.find(workshop_id).last_approved_payment_for(self)
+		payment.created_at = DateTime.now - 1.minute
+		payment.updated_at = DateTime.now - 1.minute
+		payment.save
+	end
+
+	def expirate_for=(workshop_id)
+		payment = workshops.find(workshop_id).last_approved_payment_for(self)
+		payment.created_at = DateTime.now - 31.days
+		payment.updated_at = DateTime.now - 31.days
+		payment.save
+	end
 end

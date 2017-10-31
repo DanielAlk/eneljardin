@@ -1,0 +1,71 @@
+<h1>Usuario: <%= @user.name %></h1>
+
+<div class="avatar">
+  <%= label_tag :avatar do %>
+    <div class="image" style="background-image:url(<%= asset_path @user.avatar.url(:small) %>)"></div>
+  <% end %>
+</div>
+
+<p>
+	<strong>Email: </strong>
+	<%= @user.email %>
+</p>
+
+<p>
+	<strong>Role: </strong>
+	<%= @user.role %>
+</p>
+
+<p>
+	<strong>Cantidad de sign ins: </strong>
+	<%= @user.sign_in_count %>
+</p>
+
+<p>
+	<strong>Sign in actual: </strong>
+	<%= @user.current_sign_in_at %>
+</p>
+
+<p>
+	<strong>Último sign in: </strong>
+	<%= @user.last_sign_in_at %>
+</p>
+
+<p>
+	<strong>IP sign in actual: </strong>
+	<%= @user.current_sign_in_ip %>
+</p>
+
+<p>
+	<strong>IP último sign in: </strong>
+	<%= @user.last_sign_in_ip %>
+</p>
+
+<p>
+	<strong>Creado: </strong>
+	<%= @user.created_at %>
+</p>
+
+<div style="margin: 10px 0;">
+	<strong>Workshops: </strong><br>
+	<% @user.workshops.each do |workshop| %>
+		<strong><%= workshop.title %></strong>
+		<% if workshop.valid_for?(@user) %>
+			<small><i>Quedan <%= distance_of_time_in_words(workshop.expiration_for(@user), Time.now) %></i></small>
+			<%= form_for @user, html: { style: 'display: inline;' } do |f| %>
+				<%= f.hidden_field :expirate_for, value: workshop.id %>
+				<%= f.submit 'Expirar', class: 'button-bordeau' %>
+			<% end %>
+		<% else %>
+			<small><i><%= 'Pasaron los 30 días' %></i></small>
+			<%= form_for @user, html: { style: 'display: inline;' } do |f| %>
+				<%= f.hidden_field :renew_expiration_for, value: workshop.id %>
+				<%= f.submit 'Renovar', class: 'button-blue' %>
+			<% end %>
+		<% end %>
+		<%= '<br>'.html_safe unless workshop === @user.workshops.last %>
+	<% end %>
+</div>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

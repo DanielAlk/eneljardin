@@ -1,0 +1,49 @@
+<% content_for :extra_js do %>
+  $('#edit_user').validate();
+  Utils.avatar_selector('#user_avatar');
+<% end %>
+
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="avatar">
+    <%= f.hidden_field :use_default_avatar %>
+    <%= f.label :avatar do %>
+      <div class="image" style="background-image:url(<%= asset_path @user.avatar.url(:small) %>)"></div>
+      <%= f.file_field :avatar, accept: 'image/*' %>
+    <% end %>
+    <%= link_to 'Eliminar foto de perfil', '#', data: { asset: asset_path('profile/avatar-small.jpg') }, class: 'avatar-delete', style: ('display:none;' if @user.avatar.blank?).to_s %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name, 'Nombre' %><br />
+    <%= f.text_field :name, autofocus: true, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :role, 'Rol: ' %>&nbsp;
+    <%= f.label :role_user, 'User' %>
+    <%= f.radio_button :role, :user, required: true %>
+    <%= f.label :role_admin, 'Admin' %>
+    <%= f.radio_button :role, :admin, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     passwords: 'users/passwords'
   }
 
+  resources :users, except: [:new, :create]
+
   resources :payments do
     collection do
       post 'notifications', action: :notifications
