@@ -8,7 +8,10 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.order(role: :desc, name: :asc).where.not(email: current_user.email).where.not(email: ENV['webmaster_email']).paginate(page: params[:page], per_page: 12)
+    @users = User.order(role: :desc, name: :asc).where.not(email: current_user.email).paginate(page: params[:page], per_page: 12)
+    unless current_user.is_webmaster?
+      @users = @users.where(role: 0)
+    end
     if params[:search]
       @users = @users.where('users.name LIKE :string OR users.email LIKE :string', string: '%' + params[:search] + '%')
     end

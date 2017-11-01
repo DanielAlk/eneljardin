@@ -11,10 +11,12 @@
 	<%= @user.email %>
 </p>
 
-<p>
-	<strong>Role: </strong>
-	<%= @user.role %>
-</p>
+<% if current_user.is_webmaster? %>
+	<p>
+		<strong>Role: </strong>
+		<%= @user.role %>
+	</p>
+<% end %>
 
 <p>
 	<strong>Cantidad de sign ins: </strong>

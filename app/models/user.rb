@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
 
 	enum role: [:user, :admin]
 
+	def is_webmaster?
+		email === ENV['webmaster_email']
+	end
+
 	def first_name
 		name[/[^\s]+/]
 	end

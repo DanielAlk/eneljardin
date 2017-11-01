@@ -35,13 +35,15 @@
     <%= f.email_field :email, required: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :role, 'Rol: ' %>&nbsp;
-    <%= f.label :role_user, 'User' %>
-    <%= f.radio_button :role, :user, required: true %>
-    <%= f.label :role_admin, 'Admin' %>
-    <%= f.radio_button :role, :admin, required: true %>
-  </div>
+  <% if current_user.is_webmaster? %>
+    <div class="field">
+      <%= f.label :role, 'Rol: ' %>&nbsp;
+      <%= f.label :role_user, 'User' %>
+      <%= f.radio_button :role, :user, required: true %>
+      <%= f.label :role_admin, 'Admin' %>
+      <%= f.radio_button :role, :admin, required: true %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>
