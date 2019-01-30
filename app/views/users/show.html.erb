@@ -76,10 +76,9 @@
 		<% @available_workshops.each do |workshop| %>
 			<div style="margin: 5px 0;">
 				<strong><%= workshop.title %></strong>
-				<small><i>Click en el botón para asignar por 30 días</i></small>
 				<%= form_for @user, html: { style: 'display: inline;' } do |f| %>
 					<%= f.hidden_field :assign_workshop, value: workshop.id %>
-					<%= f.submit 'Asignar manualmente', class: 'button-blue' %>
+					<%= f.submit 'Asignar por 30 días', class: 'button-blue' %>
 				<% end %>
 			</div>
 		<% end %>
