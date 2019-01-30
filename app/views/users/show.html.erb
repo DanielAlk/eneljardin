@@ -48,37 +48,43 @@
 	<%= @user.created_at %>
 </p>
 
-<div style="margin: 10px 0;">
+<div style="margin: 10px 0 15px;">
 	<strong>Workshops: </strong><br>
 	<% @user.workshops.each do |workshop| %>
-		<strong><%= workshop.title %></strong>
-		<% if workshop.valid_for?(@user) %>
-			<small><i>Quedan <%= distance_of_time_in_words(workshop.expiration_for(@user), Time.now) %></i></small>
-			<%= form_for @user, html: { style: 'display: inline;' } do |f| %>
-				<%= f.hidden_field :expirate_for, value: workshop.id %>
-				<%= f.submit 'Expirar', class: 'button-bordeau' %>
+		<div style="margin: 5px 0;">
+			<strong><%= workshop.title %></strong>
+			<% if workshop.valid_for?(@user) %>
+				<small><i>Quedan <%= distance_of_time_in_words(workshop.expiration_for(@user), Time.now) %></i></small>
+				<%= form_for @user, html: { style: 'display: inline;' } do |f| %>
+					<%= f.hidden_field :expirate_for, value: workshop.id %>
+					<%= f.submit 'Expirar', class: 'button-bordeau' %>
+				<% end %>
+			<% else %>
+				<small><i><%= 'Pasaron los 30 días' %></i></small>
+				<%= form_for @user, html: { style: 'display: inline;' } do |f| %>
+					<%= f.hidden_field :renew_expiration_for, value: workshop.id %>
+					<%= f.submit 'Renovar', class: 'button-blue' %>
+				<% end %>
 			<% end %>
-		<% else %>
-			<small><i><%= 'Pasaron los 30 días' %></i></small>
-			<%= form_for @user, html: { style: 'display: inline;' } do |f| %>
-				<%= f.hidden_field :renew_expiration_for, value: workshop.id %>
-				<%= f.submit 'Renovar', class: 'button-blue' %>
-			<% end %>
-		<% end %>
-		<%= '<br>'.html_safe unless workshop === @user.workshops.last %>
+		</div>
 	<% end %>
 </div>
 
-<div style="margin: 10px 0;">
-	<strong>Aisgnar Workshops manualmente: </strong><br>
-	<% Workshop.where.not(id: @user.workshops.map{|w| w.id}) do |workshop| %>
-		<strong><%= workshop.title %></strong>
-		<%= form_for @user, html: { style: 'display: inline;' } do |f| %>
-			<%= f.hidden_field :assign_workshop, value: workshop.id %>
-			<%= f.submit 'Asignar manualmente', class: 'button-blue' %>
+<% if @available_workshops.present? %>
+	<div style="margin: 10px 0 15px;">
+		<strong>Aisgnar Workshops manualmente: </strong><br>
+		<% @available_workshops.each do |workshop| %>
+			<div style="margin: 5px 0;">
+				<strong><%= workshop.title %></strong>
+				<small><i>Click en el botón para asignar por 30 días</i></small>
+				<%= form_for @user, html: { style: 'display: inline;' } do |f| %>
+					<%= f.hidden_field :assign_workshop, value: workshop.id %>
+					<%= f.submit 'Asignar manualmente', class: 'button-blue' %>
+				<% end %>
+			</div>
 		<% end %>
-	<% end %>
-</div>
+	</div>
+<% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @available_workshops = Workshop.where.not(id: @user.workshops.map{|w| w.id})
   end
 
   # GET /users/1/edit
