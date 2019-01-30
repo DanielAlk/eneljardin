@@ -47,4 +47,12 @@ class User < ActiveRecord::Base
 		payment.updated_at = DateTime.now - 31.days
 		payment.save
 	end
+
+	def assign_workshop=(workshop_id)
+		payment = self.payments.new
+		payment.workshop = Workshop.find(workshop_id)
+		payment.collection_status = :approved
+		payment.collection_status_detail = :approved_by_admin
+		payment.save
+	end
 end

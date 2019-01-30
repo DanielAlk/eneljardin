@@ -58,7 +58,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :avatar, :role, :email, :use_default_avatar, :renew_expiration_for, :expirate_for)
+      params.require(:user).permit(:name, :avatar, :role, :email, :use_default_avatar, :renew_expiration_for, :expirate_for, :assign_workshop)
     end
 
     def redirect_to_registrations

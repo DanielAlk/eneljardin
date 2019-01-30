@@ -69,5 +69,16 @@
 	<% end %>
 </div>
 
+<div style="margin: 10px 0;">
+	<strong>Aisgnar Workshops manualmente: </strong><br>
+	<% Workshop.where.not(id: @user.workshops.map{|w| w.id}) do |workshop| %>
+		<strong><%= workshop.title %></strong>
+		<%= form_for @user, html: { style: 'display: inline;' } do |f| %>
+			<%= f.hidden_field :assign_workshop, value: workshop.id %>
+			<%= f.submit 'Asignar manualmente', class: 'button-blue' %>
+		<% end %>
+	<% end %>
+</div>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
