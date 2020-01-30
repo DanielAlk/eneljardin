@@ -39,7 +39,7 @@ gem 'figaro'
 gem 'sucker_punch'
 gem 'devise'
 gem 'friendly_id', '~> 5.1.0'
-gem "paperclip", "~> 5.0.0"
+gem "paperclip", "~> 5.2.0"
 gem 'will_paginate', '~> 3.1.0'
 
 gem 'autonumeric-rails'
