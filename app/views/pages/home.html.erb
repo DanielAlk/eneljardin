@@ -7,9 +7,13 @@
 	<div class="s3_des-colCGG">
 		<div class="s3_des-colC pst_promo">
 			<div class="pst_promo-ins">
-				<div class="pst_promo-ins-tit"><h1>Próximo lanzamiento</h1></div>
+				<div class="pst_promo-ins-tit"><h1>Talleres Disponibles</h1></div>
 				<div class="pst_promo-ins-des">
-					<p>Taller online de ROSAS</p>
+					<ul>
+						<% @workshops.each do |workshop| %>
+							<li><%= workshop.title %></li>
+						<% end %>
+					</ul>
 					<a href="<%= workshops_page_path %>" class="pst_promo-ins-btn">VER TALLERES</a>
 				</div>
 				<div class="clear"></div>
