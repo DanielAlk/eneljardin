@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   layout 'scaffolds', only: :panel
   
   def home
-    @workshops = Workshop.order(created_at: :desc)
+    @workshops = Workshop.order(created_at: :asc)
   end
   
   def welcome
